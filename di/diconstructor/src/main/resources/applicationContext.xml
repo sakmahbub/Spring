@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id="add" class="com.mahbub.diconstructor.entity.Address">
+    <constructor-arg value="Bogra"></constructor-arg>
+    <constructor-arg value="Rajshahi"></constructor-arg>
+    <constructor-arg value="Bangladesh"></constructor-arg>
+</bean>
+
+    <bean id="emp" class="com.mahbub.diconstructor.entity.Employee">
+        <constructor-arg value="10"></constructor-arg>
+        <constructor-arg value="Mahbub"></constructor-arg>
+        <constructor-arg>
+            <ref bean="add"/>
+        </constructor-arg>
+
+    </bean>
+
+
+</beans>
