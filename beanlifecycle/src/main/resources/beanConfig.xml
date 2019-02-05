@@ -6,10 +6,27 @@
     <bean id="sb" init-method="init" class="com.mahbub.beanlifecycle.entity.SimpleBean">
         <property name="name" value="Nazmul"/>
         <property name="age" value="28"/>
+        <property name="otherBean" ref="ot2"/>
     </bean>
+
 
     <bean id="sb1" init-method="init" class="com.mahbub.beanlifecycle.entity.SimpleBean">
 
         <property name="age" value="28"/>
+        <property name="otherBean" ref="ot"/>
     </bean>
+
+
+
+    <bean id="ot" class="com.mahbub.beanlifecycle.entity.OtherBean">
+        <property name="obid" value="10"/>
+        <property name="obName" value="OtherBean"/>
+    </bean>
+
+    <bean id="ot2" class="com.mahbub.beanlifecycle.entity.OtherBean">
+        <property name="obid" value="10"/>
+
+    </bean>
+
+
 </beans>
