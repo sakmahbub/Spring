@@ -54,6 +54,6 @@ public class SpringbasicApplication {
 
         com.coderbd.springbasic.bean.scops.prototype.BB b1 = context1.getBean(com.coderbd.springbasic.bean.scops.prototype.BB.class);
         com.coderbd.springbasic.bean.scops.prototype.BB b2 = context1.getBean(com.coderbd.springbasic.bean.scops.prototype.BB.class);
-
+        com.coderbd.springbasic.bean.scops.prototype.BB b3 = context1.getBean(com.coderbd.springbasic.bean.scops.prototype.BB.class);
     }
 }

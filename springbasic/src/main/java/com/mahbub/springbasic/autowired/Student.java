@@ -36,9 +36,10 @@ public class Student {
     public void setName(String name) {
         this.name = name;
     }
-public void showDetails(){
+
+    public void showDetails() {
 
         this.address.show();
-}
+    }
 
 }

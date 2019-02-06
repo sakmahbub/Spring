@@ -15,6 +15,7 @@ public class Test {
         Student student=context.getBean(Student.class);
 //kaj kore na, SpringbasicApplication a run dite hobe
 
+
     }
 
 }
