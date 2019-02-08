@@ -12,13 +12,35 @@ xmlns="http://www.w3.org/1999/xhtml"
 <body>
 <h3>Hello Java Programmer</h3>
 
-<span style="color: aqua" th:text="${msg}"></span>
+<span style="color: green" th:text="${msg}"></span>
 <form th:object="${user}" th:action="@{/}" th:method="POST">
 
-   Name: <input th:field="*{name}"/><br/>
-   UserName: <input th:field="*{userName}"/><br/>
-   Password: <input th:field="*{password}"/><br/>
-    <button type="submit">Save</button>
+   <!--Name: <input th:field="*{name}"/><br/>-->
+   <!--UserName: <input th:field="*{userName}"/><br/>-->
+   <!--Password: <input th:field="*{password}"/><br/>-->
+    <!--<button type="submit">Save</button>-->
+
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input th:field="*{name}"/></td>
+        </tr>
+
+        <tr>
+            <td>User Name:</td>
+            <td><input th:field="*{userName}"/></td>
+        </tr>
+
+        <tr>
+            <td>Password:</td>
+            <td><input th:field="*{password}"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Save</button></td>
+        </tr>
+    </table>
 </form>
 
 </body>

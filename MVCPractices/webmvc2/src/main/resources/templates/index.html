@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .mm {
+            background-color: aquamarine;
+
+        }
+
+        .nn {
+            background-color: aqua;
+
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+<div class="nn" align="center">
+    <h1>IDB-BISEW Student Data Form</h1>
+    <span style="color: green" th:text="${text}"></span>
+    <form th:object="${stu}" th:action="@{/}" th:method="POST">
+        <table class="mm">
+            <tr>
+                <td>Name:</td>
+                <td><input th:field="*{name}"/></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+
+                    Male<input type="radio" value="Male" th:field="*{gender}"/>
+                    Female<input type="radio" value="Female" th:field="*{gender}"/>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>Course:</td>
+                <td>
+                    Java<input type="checkbox" value="Java" th:field="*{course}"/>
+                    PHP<input type="checkbox" value="PHP" th:field="*{course}"/>
+                    DDD<input type="checkbox" value="DDD" th:field="*{course}"/>
+                    NT<input type="checkbox" value="NT" th:field="*{course}"/>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>Round:</td>
+                <td>
+                    <select th:field="*{round}">
+                        <option value="">Select the Round</option>
+                        <option value="36">Round-36</option>
+                        <option value="37">Round-37</option>
+                        <option value="38">Round-38</option>
+                        <option value="39">Round-39</option>
+                        <option value="40">Round-40</option>
+                    </select>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td>Message:</td>
+                <td>
+                    <textarea th:field="*{msg}" cols="20" rows="2"/>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

@@ -22,6 +22,7 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         // mv.addObject("title","Home | sakbd Inc...");
         mv.addObject("user", new User());
+
         mv.setViewName("index");
         return mv;
     }
@@ -33,7 +34,7 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         if (user.getName() != null) {
             this.repo.save(user);
-            mv.addObject("msg", "Success");
+            mv.addObject("msg", "Successfully Submit");
             mv.addObject("user", new User());
 
         }
