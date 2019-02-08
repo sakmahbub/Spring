@@ -36,6 +36,7 @@ public class HomeController {
             mv.addObject("text","Successfully Save");
             mv.addObject("stu",new Student());
 
+
         }
 
 
