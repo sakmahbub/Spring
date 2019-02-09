@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home| Mahbub</title>
+</head>
+<body>
+<h1>Student Regestration Form</h1>
+<form th:object="${stu}" th:action="@{/}" th:method="POST">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input th:field="*{name}"/></td>
+        </tr>
+
+
+        <tr>
+            <td>Age:</td>
+            <td><input th:field="*{age}"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><button type="submit">Save</button></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>
