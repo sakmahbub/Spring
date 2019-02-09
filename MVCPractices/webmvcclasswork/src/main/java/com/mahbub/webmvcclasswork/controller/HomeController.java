@@ -27,24 +27,27 @@ public class HomeController {
 
 
     @PostMapping("/add")
-    public String save(@Valid Student student, BindingResult bindingResult, Model model) {
+    public String dosave(@Valid Student student, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "add-page";
 
         }
         this.repo.save(student);
         model.addAttribute("student", new Student());
-        model.addAttribute("text", "Congratulations! Data save sucessfully");
-        return "add-page";
+        model.addAttribute("textt", "Congratulations! Data save sucessfully");
+        return "redirect:/";
     }
 
+    @GetMapping("/edit/{id}")
+        public String editView(Model model, @PathVariable("id") Long id){
+        model.addAttribute("student",this.repo.getOne(id));
+        return "edit-page";
+        }
 
-
-    @PostMapping("/edit")
-    public String edit(@Valid Student student, BindingResult bindingResult, Model model) {
+    @PostMapping("/edit/{id}")
+    public String edit(@Valid Student student, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
             return "edit-page";
-
         }
         this.repo.save(student);
         model.addAttribute("student", new Student());

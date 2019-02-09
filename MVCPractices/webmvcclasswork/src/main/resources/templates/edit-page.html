@@ -18,8 +18,8 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
 <h1>Student Regestration Form</h1>
 <a th:href="@{/}">Home Page</a>
-<span th:class="mm" th:text="${text}"></span>
-<form action="#" th:object="${student}" th:action="@{/add}" th:method="POST">
+<span th:class="mm" th:text="${textt}"></span>
+<form action="#" th:object="${student}" th:action="@{/edit/} + ${id}" th:method="POST">
     <table>
         <tr>
             <td>Name:</td>
