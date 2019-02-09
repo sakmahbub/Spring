@@ -1,10 +1,7 @@
 package com.mahbub.webmvcclasswork.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "student2")
@@ -20,8 +17,7 @@ public class Student {
     @Min(value = 18, message = "Hey, Minimum Age is 18")
     private byte age;
 
-    @NotNull(message = "Enter An Email Address")
-    @Column(name = "email", unique = true)
+    @NotBlank(message = "Enter your email")
     private String email;
 
 

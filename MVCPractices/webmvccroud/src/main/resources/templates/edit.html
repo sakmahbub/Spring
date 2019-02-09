@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <style>
+            .err{
+                color: red;
+            }
+            .mm{
+                color: green;
+            }
+
+            .sform{
+                background-color: aqua;
+
+
+            }
+
+            .stable{
+                background-color: aquamarine;
+
+            }
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title> Add | Mahbub</title>
+</head>
+<body>
+<div class="sform" align="center">
+    <h1>Student Regestration Form</h1>
+        <a th:href="@{/}"><button>Home Page</button></a>
+        <a th:href="@{/add}"><button>Add Student</button></a>
+
+        <form action="#" th:object="${student}" th:action="@{/edit/} + ${id}"  th:method="POST">
+            <table class="stable">
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                        Male: <input type="radio" th:field="*{gender}" value="Male"/>
+                        Female: <input type="radio" th:field="*{gender}" value="Female"/>
+                    </td>
+                    <td th:class="err" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>Subject:</td>
+                    <td>
+                        Java<input type="checkbox" value="Java" th:field="*{subject}"/>
+                        PHP<input type="checkbox" value="PHP" th:field="*{subject}"/>
+                        DDD<input type="checkbox" value="DDD" th:field="*{subject}"/>
+                        NT<input type="checkbox" value="NT" th:field="*{subject}"/>
+                    </td>
+                    <td th:class="err" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Round:</td>
+                    <td>
+                        <select th:field="*{round}">
+                            <option value="">Select the Round</option>
+                            <option value="36">Round-36</option>
+                            <option value="37">Round-37</option>
+                            <option value="38">Round-38</option>
+                            <option value="39">Round-39</option>
+                            <option value="40">Round-40</option>
+                        </select>
+                    </td>
+                    <td th:class="err" th:if="${#fields.hasErrors('round')}" th:errors="*{round}"></td>
+                </tr>
+
+
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="text" th:field="*{age}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Phone:</td>
+                    <td><input type="text" th:field="*{phone}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" th:field="*{email}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                </tr>
+
+
+                <tr>
+                    <td>Message:</td>
+                    <td>
+                        <textarea th:field="*{msg}" cols="20" rows="2"/>
+                    </td>
+                    <td th:class="err" th:if="${#fields.hasErrors('msg')}" th:errors="*{msg}"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td></td>
+                    <td><button type="submit">Update</button></td>
+                </tr>
+
+            </table>
+
+        </form>
+</div>
+</body>
+</html>

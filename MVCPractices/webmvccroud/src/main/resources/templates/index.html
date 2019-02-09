@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+           xmlns="http://www.w3.org/1999/xhtml"
+           xmlns:th="http://www.thymeleaf.org">
+<head>
+
+        <style>
+
+            #customers {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+            #customers tr:hover {background-color: #ddd;}
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
+        </style>
+
+    <meta charset="UTF-8">
+    <title>Home | Mahbub</title>
+</head>
+<body>
+    <h1 align="center">Student Data List</h1>
+    <a th:href="@{/add}"><button><h3>Add Student</h3></button></a>
+        <form>
+            <table id="customers">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Subject</th>
+                    <th>Round</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <td></td>
+                    <th></th>
+                </tr>
+
+                <tr th:each="s : ${list}">
+                    <td th:text="${s.id}"></td>
+                    <td th:text="${s.name}"></td>
+                    <td th:text="${s.gender}"></td>
+                    <td th:text="${s.subject}"></td>
+                    <td th:text="${s.round}"></td>
+                    <td th:text="${s.age}"></td>
+                    <td th:text="${s.phone}"></td>
+                    <td th:text="${s.email}"></td>
+                    <td th:text="${s.msg}"></td>
+
+                    <td><a th:href="@{'/edit/' + ${s.id}}">Edit</a></td>
+                    <td><a th:href="@{'/del/' + ${s.id}}">Del</a></td>
+
+                </tr>
+
+            </table>
+
+
+        </form>
+
+
+
+</body>
+</html>
