@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html lang="en"
-xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
+    <style>
+        .mm {
+
+            color: green;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Home| Mahbub</title>
 </head>
 <body>
-<h1>Student Regestration Form</h1>
-<form th:object="${stu}" th:action="@{/}" th:method="POST">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input th:field="*{name}"/></td>
-        </tr>
+
+<h1>Student Data List</h1>
+
+<a th:href="@{/add}">Add Student</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr th:each="s : ${list}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.age}"></td>
+        <td th:text="${s.email}"></td>
+        <td> <a th:href="@{'/edit/'+ ${s.id}}">Edit</a></td>
+        <td> <a th:href="@{'/del/'+ ${s.id}}">Del</a></td>
+    </tr>
 
 
-        <tr>
-            <td>Age:</td>
-            <td><input th:field="*{age}"/></td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td><button type="submit">Save</button></td>
-        </tr>
-    </table>
-
-</form>
+</table>
 </body>
 </html>

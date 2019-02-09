@@ -1,6 +1,7 @@
 package com.mahbub.webmvcclasswork.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,9 +11,8 @@ import javax.validation.constraints.Size;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
     private Long id;
+
     @NotNull
     @Size(min = 2, max = 30, message = "Name at list 2 letter")
     private String name;
@@ -20,13 +20,18 @@ public class Student {
     @Min(value = 18, message = "Hey, Minimum Age is 18")
     private byte age;
 
+    @NotNull(message = "Enter An Email Address")
+    @Column(name = "email", unique = true)
+    private String email;
+
 
     public Student() {
     }
 
-    public Student(@NotNull @Size(min = 2, max = 30) String name, @Min(value = 18, message = "Hey, Minimum Age is 18") byte age) {
+    public Student(@NotNull @Size(min = 2, max = 30, message = "Name at list 2 letter") String name, @Min(value = 18, message = "Hey, Minimum Age is 18") byte age, @NotNull(message = "Enter Your valid Email") String email) {
         this.name = name;
         this.age = age;
+        this.email = email;
     }
 
     public Long getId() {
@@ -53,12 +58,21 @@ public class Student {
         this.age = age;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
