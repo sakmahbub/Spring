@@ -36,6 +36,8 @@
 
         <form action="#" th:object="${student}" th:action="@{/edit/} + ${id}"  th:method="POST">
             <table class="stable">
+
+
                 <tr>
                     <td>Name:</td>
                     <td><input type="text" th:field="*{name}"/></td>
@@ -108,6 +110,20 @@
                 </tr>
 
 
+
+                <!--<tr>-->
+                    <!--<td>RegiDate:</td>-->
+                    <!--<td><input type="date" th:field="*{regidate}"/></td>-->
+                    <!--<td th:class="err" th:if="${#fields.hasErrors('regidate')}" th:errors="*{regidate}"></td>-->
+                <!--</tr>-->
+
+                <!--<tr>-->
+                    <!--<td>Last ModifireDate:</td>-->
+                    <!--<td><input type="date" th:field="*{lastModifireDate}"/></td>-->
+                    <!--<td th:class="err" th:if="${#fields.hasErrors('lastModifireDate')}" th:errors="*{lastModifireDate}"></td>-->
+                <!--</tr>-->
+
+
                 <tr>
                     <td>Message:</td>
                     <td>
@@ -117,6 +133,11 @@
                 </tr>
 
 
+                <!--<tr>-->
+                    <!--<td>Birth Date:</td>-->
+                    <!--<td><input type="date" th:field="*{birthDate}"/></td>-->
+                    <!---->
+                <!--</tr>-->
 
                 <tr>
                     <td></td>

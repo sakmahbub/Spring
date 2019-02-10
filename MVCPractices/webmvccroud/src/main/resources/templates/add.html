@@ -36,13 +36,14 @@
 
     <a th:href="@{/}"><button>Home Page</button></a>
 
-    <span th:class="mm" th:text="${msgg}"></span>
 
-        <form action="#" th:object="${student}" th:action="@{/add}"  th:method="POST">
+
+        <form th:object="${student}" th:action="@{/add}"  th:method="POST">
             <table class="stable">
+
                 <tr>
                     <td>Name:</td>
-                    <td><input type="text" th:field="*{name}"/></td>
+                    <td><input type="text" th:field="*{name}" placeholder="Name"/></td>
                     <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
                 </tr>
 
@@ -98,34 +99,33 @@
 
                 <tr>
                     <td>Phone:</td>
-                    <td><input type="text" th:field="*{phone}"/></td>
+                    <td><input type="text" th:field="*{phone}" placeholder="+880XXXXXXXXXX"/></td>
                     <td th:class="err" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
                 </tr>
 
 
 
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="email" th:field="*{email}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-                </tr>
-
 
                 <tr>
                     <td>Message:</td>
                     <td>
-                        <textarea th:field="*{msg}" cols="20" rows="2"/>
+                        <textarea th:field="*{msg}" cols="20" rows="2" placeholder="Write Here....."/>
                     </td>
                     <td th:class="err" th:if="${#fields.hasErrors('msg')}" th:errors="*{msg}"></td>
                 </tr>
 
 
+                <!--<tr>-->
+                    <!--<td>Birth Date:</td>-->
+                    <!--<td><input type="date" th:field="*{birthDate}"/></td>-->
+
+                <!--</tr>-->
 
 
 
                 <tr>
                     <td></td>
-                    <td><button type="submit">Save</button></td>
+                    <td><button type="submit">Save Data</button></td>
                 </tr>
 
             </table>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 
 @Controller
@@ -38,6 +39,7 @@ public class HomeController {
                 return "add";
 
             }
+//            student.setRegidate(new Date());
             this.repo.save(student);
             model.addAttribute("student", new Student());
 //            model.addAttribute("msgg", "Congratulations! Data save sucessfully");
@@ -59,8 +61,9 @@ public class HomeController {
                             return "edit";
 
                         }
+
                         this.repo.save(student);
-                        model.addAttribute("student", new Student());
+//                        model.addAttribute("student", new Student());
                         return "redirect:/";
                  }
 
