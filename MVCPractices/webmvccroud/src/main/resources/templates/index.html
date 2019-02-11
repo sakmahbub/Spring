@@ -53,6 +53,7 @@
                     <th>Message</th>
                     <th>Regi_Date</th>
                     <th>Last_Modified</th>
+                    <th>Photo</th>
                     <th colspan="2">Action</th>
                 </tr>
 
@@ -60,7 +61,11 @@
                     <td th:text="${s.id}"></td>
                     <td th:text="${s.name}"></td>
                     <td th:text="${s.gender}"></td>
-                    <td th:text="${s.subject}"></td>
+                    <td>
+                        <span th:each="c: ${s.subject}">
+                            <span th:text="${c}"></span>
+                        </span>
+                    </td>
                     <td th:text="${s.round}"></td>
                     <td th:text="${s.age}"></td>
                     <td th:text="${s.birthDate}"></td>
@@ -69,6 +74,7 @@
                     <td th:text="${s.msg}"></td>
                     <td th:text="${s.regiDate}"></td>
                     <td th:text="${s.lastModifiedDate}"></td>
+                    <td><img th:src="@{${s.getFilePath()}}" th:width="80" th:height="80"/></td>
                     <td><a th:href="@{'/edit/' + ${s.id}}">Edit</a></td>
                     <td><a th:href="@{'/del/' + ${s.id}}">Del</a></td>
 

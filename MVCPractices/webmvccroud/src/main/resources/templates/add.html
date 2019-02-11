@@ -38,7 +38,7 @@
 
     <span th:class="mm" th:text="${msgg}"></span>
 
-        <form action="#" th:object="${student}" th:action="@{/add}"  th:method="POST">
+        <form action="#" th:object="${student}" th:action="@{/add}"  th:method="POST" enctype="multipart/form-data">
             <table class="stable">
                 <tr>
                     <td>Name:</td>
@@ -125,6 +125,12 @@
                     <td th:class="err" th:if="${#fields.hasErrors('msg')}" th:errors="*{msg}"></td>
                 </tr>
 
+
+                <tr>
+                    <td>Photo:</td>
+                    <td><input type="file" name="file" /></td>
+
+                </tr>
 
 
 

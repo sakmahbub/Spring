@@ -23,8 +23,8 @@ public class Student {
     @NotBlank(message = "Select Your Gender")
     private String gender;
 
-    @NotBlank(message = "Select Your Subject")
-    private String subject;
+    @NotEmpty(message = "Select Your Subject")
+    private String[] subject;
 
 
     @NotBlank(message = "Select Your Round")
@@ -58,10 +58,20 @@ public class Student {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
 
+
+    //////File Upload==============
+    private long fileSize;
+    private String fileName;
+    //  @Lob
+    // private byte[] file;
+    private String filePath;
+    private String fileExtension;
+
+
     public Student() {
     }
 
-    public Student(@NotNull @Size(min = 2, max = 30, message = "Name at lest 2 character") String name, @NotBlank(message = "Select Your Gender") String gender, @NotBlank(message = "Select Your Subject") String subject, @NotBlank(message = "Select Your Round") String round, @Min(value = 18, message = "Hey, minimun Age is 18") byte age, @NotBlank(message = "Enter phone Number") String phone, @NotBlank(message = "Enter your email") String email, @NotNull @Size(min = 6, max = 2000, message = "Write massage limit 6-2000 letter") String msg, Date regiDate, Date lastModifiedDate, Date birthDate) {
+    public Student(@NotNull @Size(min = 2, max = 30, message = "Name at lest 2 character") String name, @NotBlank(message = "Select Your Gender") String gender, @NotBlank(message = "Select Your Subject") String[] subject, @NotBlank(message = "Select Your Round") String round, @Min(value = 18, message = "Hey, minimun Age is 18") byte age, @NotBlank(message = "Enter phone Number") String phone, @NotBlank(message = "Enter your email") String email, @NotNull @Size(min = 6, max = 2000, message = "Write massage limit 6-2000 letter") String msg, Date regiDate, Date lastModifiedDate, Date birthDate) {
         this.name = name;
         this.gender = gender;
         this.subject = subject;
@@ -74,7 +84,6 @@ public class Student {
         this.lastModifiedDate = lastModifiedDate;
         this.birthDate = birthDate;
     }
-
 
     public Long getId() {
         return id;
@@ -100,11 +109,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public String getSubject() {
+    public String[] getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    public void setSubject(String[] subject) {
         this.subject = subject;
     }
 
@@ -170,6 +179,38 @@ public class Student {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
     }
 
     @Override
