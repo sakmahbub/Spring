@@ -5,9 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Objects;
 
 
 @Entity
@@ -24,8 +22,8 @@ public class Student {
     @NotBlank(message = "Select Your Gender")
     private String gender;
 
-   @NotEmpty(message = "Select Your Subject")
-    private String[] subject;
+    @NotBlank(message = "Select Your Subject")
+    private String subject;
 
 
     @NotBlank(message = "Select Your Round")
@@ -41,24 +39,35 @@ public class Student {
     @NotBlank(message = "Enter your email")
     private String email;
 
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    private Date regidate;
-//
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-//    private Date lastModifireDate=new Date();
-
     @NotNull
     @Size(min = 6, max = 2000, message = "Write massage limit 6-2000 letter")
     private String msg;
 
 
-//    @Temporal(TemporalType.DATE)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private Date birthDate;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date regiDate;
 
     public Student() {
+    }
+
+    public Student(@NotNull @Size(min = 2, max = 30, message = "Name at lest 2 character") String name, @NotBlank(message = "Select Your Gender") String gender, @NotBlank(message = "Select Your Subject") String subject, @NotBlank(message = "Select Your Round") String round, @NotNull @Min(value = 18, message = "Hey, minimun Age is 18") byte age, @NotBlank(message = "Enter phone Number") String phone, @NotBlank(message = "Enter your email") String email, @NotNull @Size(min = 6, max = 2000, message = "Write massage limit 6-2000 letter") String msg) {
+        this.name = name;
+        this.gender = gender;
+        this.subject = subject;
+        this.round = round;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+        this.msg = msg;
+    }
+
+    public Date getRegiDate() {
+        return regiDate;
+    }
+
+    public void setRegiDate(Date regiDate) {
+        this.regiDate = regiDate;
     }
 
     public Long getId() {
@@ -85,11 +94,11 @@ public class Student {
         this.gender = gender;
     }
 
-    public String[] getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(String[] subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 
@@ -135,35 +144,12 @@ public class Student {
 
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return age == student.age &&
-                Objects.equals(id, student.id) &&
-                Objects.equals(name, student.name) &&
-                Objects.equals(gender, student.gender) &&
-                Arrays.equals(subject, student.subject) &&
-                Objects.equals(round, student.round) &&
-                Objects.equals(phone, student.phone) &&
-                Objects.equals(email, student.email) &&
-                Objects.equals(msg, student.msg);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(id, name, gender, round, age, phone, email, msg);
-        result = 31 * result + Arrays.hashCode(subject);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
-                ", subject=" + Arrays.toString(subject) +
+                ", subject='" + subject + '\'' +
                 ", round='" + round + '\'' +
                 ", age=" + age +
                 ", phone='" + phone + '\'' +
