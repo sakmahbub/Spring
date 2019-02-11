@@ -37,6 +37,7 @@
 <body>
     <h1 align="center">Student Data List</h1>
     <a th:href="@{/add}"><button><h3>Add Student</h3></button></a>
+    <a th:href="@{/addrole}"><button><h3>Add Role</h3></button></a>
         <form>
             <table id="customers">
                 <tr>
@@ -46,10 +47,12 @@
                     <th>Subject</th>
                     <th>Round</th>
                     <th>Age</th>
+                    <th>Birth_Date</th>
                     <th>Phone</th>
                     <th>Email</th>
                     <th>Message</th>
-                    <th>RegiDate</th>
+                    <th>Regi_Date</th>
+                    <th>Last_Modified</th>
                     <th colspan="2">Action</th>
                 </tr>
 
@@ -60,10 +63,12 @@
                     <td th:text="${s.subject}"></td>
                     <td th:text="${s.round}"></td>
                     <td th:text="${s.age}"></td>
+                    <td th:text="${s.birthDate}"></td>
                     <td th:text="${s.phone}"></td>
                     <td th:text="${s.email}"></td>
                     <td th:text="${s.msg}"></td>
                     <td th:text="${s.regiDate}"></td>
+                    <td th:text="${s.lastModifiedDate}"></td>
                     <td><a th:href="@{'/edit/' + ${s.id}}">Edit</a></td>
                     <td><a th:href="@{'/del/' + ${s.id}}">Del</a></td>
 

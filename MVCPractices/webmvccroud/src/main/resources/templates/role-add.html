@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <style>
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
+        .sform{
+            background-color: aqua;
+
+
+        }
+
+        .stable{
+            background-color: aquamarine;
+
+        }
+
+
+
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title> AddRole | Mahbub</title>
+</head>
+<body>
+<div class="sform" align="center">
+    <h1>Role ADD Form</h1>
+    <span th:class="mm" th:text="${success}"></span>
+    <span th:class="err" th:text="${exist}"></span>
+    <br/>
+    <a th:href="@{/rolelist}"><button>Role List</button></a>
+
+
+    <form action="#" th:object="${role}" th:action="@{/addrole}"  th:method="POST">
+        <table class="stable">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" th:field="*{roleName}"/></td>
+                <td th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"></td>
+
+            </tr>
+
+
+
+            <tr>
+                <td></td>
+                <td><button type="submit">Save</button></td>
+            </tr>
+
+        </table>
+
+    </form>
+</div>
+</body>
+</html>
