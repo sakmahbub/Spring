@@ -40,6 +40,19 @@
 
         <form action="#" th:object="${student}" th:action="@{/add}"  th:method="POST" enctype="multipart/form-data">
             <table class="stable">
+
+                <tr>
+                    <td>Roles:</td>
+                    <td>
+                       <select th:field="*{roles}" multiple>
+                           <option th:each="role : ${roleListHome}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>
+                       </select>
+
+                    </td>
+                    <td th:class="err" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></td>
+                </tr>
+
+
                 <tr>
                     <td>Name:</td>
                     <td><input type="text" th:field="*{name}"/></td>
@@ -130,6 +143,19 @@
                     <td>Photo:</td>
                     <td><input type="file" name="file" /></td>
 
+                </tr>
+
+                <tr>
+                    <td>UserName:</td>
+                    <td><input type="text" th:field="*{userName}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></td>
+                </tr>
+
+
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" th:field="*{password}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
                 </tr>
 
 

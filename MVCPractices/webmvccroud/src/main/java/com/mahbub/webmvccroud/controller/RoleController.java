@@ -58,6 +58,39 @@ public class RoleController {
     }
 
 
+    @GetMapping(value = "/editrole/{id}")
+public String showRoleEdit(Model model, @PathVariable("id") Long id){
+        model.addAttribute("role", this.roleRipo.getOne(id));
+        return "role-edit";
+
+}
+
+
+
+    @PostMapping(value ="/editrole/{id}")
+    public String roleEdit(@Valid Role role, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "role-edit";
+
+        } else {
+            if (role != null) {
+                Role role1 = this.roleRipo.findByRoleName(role.getRoleName());
+                if (role1 != null) {
+
+                    model.addAttribute("exist", "Role All ready exist");
+
+                } else {
+                    this.roleRipo.save(role);
+                    model.addAttribute("role", new Role());
+                    model.addAttribute("success", "Role Update Successfully");
+                }
+
+            }
+
+        }
+
+        return "role-edit";
+    }
 
 
     @GetMapping(value = "/roledel/{id}")

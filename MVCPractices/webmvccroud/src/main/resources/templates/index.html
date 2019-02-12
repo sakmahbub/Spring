@@ -54,6 +54,9 @@
                     <th>Regi_Date</th>
                     <th>Last_Modified</th>
                     <th>Photo</th>
+                    <th>Role_name</th>
+                    <th>UserName</th>
+                    <th>Password</th>
                     <th colspan="2">Action</th>
                 </tr>
 
@@ -75,6 +78,13 @@
                     <td th:text="${s.regiDate}"></td>
                     <td th:text="${s.lastModifiedDate}"></td>
                     <td><img th:src="@{${s.getFilePath()}}" th:width="80" th:height="80"/></td>
+                    <td>
+                        <span th:each="rr: ${s.roles}">
+                            <span th:text="${rr.roleName}"></span>
+                        </span>
+                    </td>
+                    <td th:text="${s.userName}"></td>
+                    <td th:text="${s.password}"></td>
                     <td><a th:href="@{'/edit/' + ${s.id}}">Edit</a></td>
                     <td><a th:href="@{'/del/' + ${s.id}}">Del</a></td>
 

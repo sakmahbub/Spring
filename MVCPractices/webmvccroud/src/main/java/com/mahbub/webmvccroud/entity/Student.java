@@ -3,10 +3,12 @@ package com.mahbub.webmvccroud.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.naming.Name;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -58,6 +60,10 @@ public class Student {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name ="student_role", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @NotEmpty(message = "Select at list One Role")
+    private Set<Role> roles;
 
     //////File Upload==============
     private long fileSize;
@@ -67,6 +73,13 @@ public class Student {
     private String filePath;
     private String fileExtension;
 
+    @NotNull
+    @Size(min = 4, max = 30, message = "UserName at lest 4 character")
+    private String UserName;
+
+    @NotNull
+    @Size(min = 6, max = 30, message = "Password at lest 6 character")
+    private String password;
 
     public Student() {
     }
@@ -83,6 +96,14 @@ public class Student {
         this.regiDate = regiDate;
         this.lastModifiedDate = lastModifiedDate;
         this.birthDate = birthDate;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -211,6 +232,22 @@ public class Student {
 
     public void setFileExtension(String fileExtension) {
         this.fileExtension = fileExtension;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
