@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="employeeBean" class="com.mahbub.aopone.entity.Employee">
+<property name="name" value="M"/>
+        <property name="id" value="1243838"/>
+    </bean>
+
+
+    <bean id="DoBeforeMethodBean" class="com.mahbub.aopone.entity.DoBeforeMethod"/>
+
+
+
+
+    <bean id="simpleServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+<property name="target" ref="employeeBean"/>
+        <property name="interceptorNames">
+            <list>
+                <value>DoBeforeMethodBean</value>
+            </list>
+
+        </property>
+
+    </bean>
+
+</beans>
