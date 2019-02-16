@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Home| Mahbub</title>
+</head>
+<body>
+<h1 align="center">User Data List</h1>
+        <form>
+            <table id="customers">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                   <th>Role_name</th>
+                 <th colspan="2">Action</th>
+                </tr>
+
+                <tr th:each="u : ${userlist}">
+                    <td th:text="${u.id}"></td>
+                    <td th:text="${u.name}"></td>
+                    <td th:text="${u.mobile}"></td>
+                    <td>
+                        <span th:each="rr: ${u.roles}">
+                            <span th:text="${rr.roleName}"></span>
+                        </span>
+                    </td>
+
+
+                    <td><a th:href="@{'/edit/' + ${u.id}}">Edit</a></td>
+                    <td><a th:href="@{'/del/' + ${u.id}}">Del</a></td>
+
+                </tr>
+
+
+            </table>
+        </form>
+
+</body>
+</html>

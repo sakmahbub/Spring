@@ -1,0 +1,42 @@
+package com.mahbub.loginlogout.conlroller;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomeController {
+
+    @GetMapping(value ={ "/", "/login"})
+    public String loginView(){
+       return "login" ;
+
+    }
+
+
+    @GetMapping(value = "/public/r")
+    public String regiView(){
+        return "public/regi" ;
+
+    }
+
+
+    @GetMapping(value = "/user/u")
+    public String userView(){
+        return "user/user" ;
+
+    }
+
+    @GetMapping(value = "/admin/h")
+    public String adminView(){
+        return "admin/home" ;
+
+    }
+
+
+    @GetMapping(value = "/service/s")
+    public String service(){
+        return "secure/service" ;
+
+    }
+}

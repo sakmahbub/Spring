@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
+        .sform{
+            background-color: aqua;
+
+
+        }
+
+        .stable{
+            background-color: aquamarine;
+
+        }
+
+
+
+
+    </style>
+    <meta charset="UTF-8">
+    <title>User | ADD</title>
+</head>
+<body>
+<div class="sform" align="center">
+    <h1>User Regestration Form</h1>
+    <form th:object="${user}" th:action="@{/add}" th:method="POST">
+       <table class="stable">
+           <tr>
+               <td>Roles:</td>
+               <td>
+                   <select th:field="*{roles}" multiple>
+                       <option th:each="role : ${roleListHome}" th:value="${role.roleId}"><span th:text="${role.roleName}"></span></option>
+                   </select>
+
+               </td>
+               <td th:class="err" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></td>
+           </tr>
+
+
+           <tr>
+               <td>Name:</td>
+               <td><input type="text" th:field="*{name}"/></td>
+               <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+           </tr>
+
+           <tr>
+               <td>Mobile:</td>
+               <td><input type="text" th:field="*{mobile}"/></td>
+               <td th:class="err" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></td>
+           </tr>
+
+
+           <tr>
+               <td></td>
+               <td><button type="submit">Save</button></td>
+           </tr>
+
+
+
+       </table>
+    </form>
+
+</div>
+
+
+</body>
+</html>
