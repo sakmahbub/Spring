@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:th="http://www.thymeleaf.org/">
+                xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,7 +9,7 @@
 <body>
 
     <div th:if="${param.error}">
-        <div class="alert alert-danger">Invalid username and password.</div>
+        <div class="alert alert-danger">Invalid username Or password.</div>
     </div>
     <div th:if="${param.logout}">
         <div class="alert alert-info">You have been logged out.</div>

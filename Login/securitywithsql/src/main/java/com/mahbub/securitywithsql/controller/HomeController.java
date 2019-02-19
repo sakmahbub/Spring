@@ -1,36 +1,47 @@
 package com.mahbub.securitywithsql.controller;
 
 
+import com.mahbub.securitywithsql.entity.User;
+import com.mahbub.securitywithsql.repo.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 
-
+    @Autowired
+private UserRepo repo;
 
     @GetMapping(value = "/sa")
-    public String superAdmin(){
+    public String superAdminView(){
         return "sadmin/sad";
 
     }
 
 
     @GetMapping(value = "/adm")
-    public String admin(){
+    public String adminView(){
         return "admin/admin";
 
     }
 
     @GetMapping(value = "/u")
-    public String user(){
+    public String userView(){
         return "user/u";
 
     }
 
 
     @GetMapping(value = "/se")
-    public String secure(){
+    public String secureView(Model model){
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("username",auth.getName());
+        User user=repo.findByUserName(auth.getName());
+        model.addAttribute("name", user.getName());
         return "secure/sec";
 
     }

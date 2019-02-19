@@ -26,14 +26,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private LoggingAccessDeniedHandler LoggingAccessDeniedHandler;
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
 
     @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
                 .userDetailsService(customUserDetailsService)
                 .passwordEncoder(passwordEncoder());
@@ -43,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
 
 
@@ -52,13 +55,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity
-                .authorizeRequests()
+        httpSecurity.authorizeRequests()
+
                 .antMatchers("/", "/login", "/public/**", "/user-save", "/role-save").permitAll()
-                .antMatchers( "/sa/**").hasRole("SUPERADMIN")
-                .antMatchers( "/adm/**").hasRole("ADMIN")
-                .antMatchers( "/u/**").hasRole("USER")
-                .antMatchers( "/se/**").hasAnyRole("ADMIN", "USER", "SUPERADMIN")
+                .antMatchers("/sa/**", "/role/**").hasRole("SUPERADMIN")
+                .antMatchers("/adm/**").hasRole("ADMIN")
+                .antMatchers("/u/**").hasRole("USER")
+                .antMatchers("/se/**").hasAnyRole("ADMIN", "USER", "SUPERADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -72,6 +75,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(LoggingAccessDeniedHandler);
+
     }
 }

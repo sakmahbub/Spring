@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:th="http://www.thymeleaf.org/">
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-ADMIN , SUPERADMIN and USER can Accrss me
+<h1><a th:href="@{/logout}">Logout</a></h1>
+<h1>You are Login as <span th:text="${name}"></span></h1>
+<h1>And your User name is: <span th:text="${username}"></span></h1>
+<span sec:authorize="hasRole('ROLE_SUPERADMIN')">
+    SUPERADMIN Only can Accrss me......
+</span>
+
+<span sec:authorize="hasRole('ROLE_ADMIN')">
+    ADMIN Only can Accrss me......
+</span>
+
+<span sec:authorize="hasRole('ROLE_USER')">
+    USER Only can Accrss me......
+</span>
+
 </body>
 </html>

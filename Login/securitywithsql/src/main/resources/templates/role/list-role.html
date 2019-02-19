@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1><a th:href="@{/logout}">Logout</a></h1>
+        <form>
+           <table id="customers">
+               <tr>
+                   <th>ID</th>
+                   <th>Role_name</th>
+                   <th colspan="2">Action</th>
+               </tr>
+
+               <tr th:each="rol : ${rolelist}">
+                   <td th:text="${rol.id}"></td>
+                   <td th:text="${rol.rolename}"></td>
+
+
+                   <td><a th:href="@{'/role/editrole/' + ${rol.id}}">Edit</a></td>
+                   <td><a th:href="@{'/role/delrole/' + ${rol.id}}">Del</a></td>
+               </tr>
+
+
+           </table>
+        </form>
+
+
+
+
+</body>
+</html>
