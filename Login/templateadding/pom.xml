@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mahbub</groupId>
-    <artifactId>loginlogout</artifactId>
+    <artifactId>templateadding</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>loginlogout</name>
+    <name>templateadding</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,10 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -37,11 +33,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
 
         <!-- layout dependency -->
@@ -51,17 +43,19 @@
             <version>2.3.0</version>
         </dependency>
 
-		 <!-- layout dependency End -->
-		 
-		 
-		 
-		 <!-- Login/security dependency  -->
+        <!-- layout dependency End -->
+
+
+
+        <!-- Login/security dependency  -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
             <version>3.0.4.RELEASE</version>
         </dependency>
         <!-- Login/security dependency End -->
+
+
 
 
 
