@@ -34,21 +34,35 @@
 </head>
 <body>
 <a th:href="@{/se}"><h3 class="err">GO >>Home Page</h3></a>
+
         <form>
            <table id="customers">
                <tr>
                    <th>ID</th>
-                   <th>Role_name</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>User_Name</th>
+                   <th>Password</th>
+                   <th>Role_Name</th>
                    <th colspan="2">Action</th>
                </tr>
 
-               <tr th:each="rol : ${rolelist}">
-                   <td th:text="${rol.id}"></td>
-                   <td th:text="${rol.rolename}"></td>
+               <tr th:each="u : ${userlist}">
+                   <td th:text="${u.id}"></td>
+                   <td th:text="${u.name}"></td>
+                   <td th:text="${u.email}"></td>
+                   <td th:text="${u.userName}"></td>
+                   <td th:text="${u.password}"></td>
+                   <td>
+                       <span th:each="r : ${u.roles}">
+                           <span th:text="${r.rolename}"></span>
+                       </span>
+
+                   </td>
 
 
-                   <td><a th:href="@{'/role/editrole/' + ${rol.id}}">Edit</a></td>
-                   <td><a th:href="@{'/role/delrole/' + ${rol.id}}">Del</a></td>
+                   <td><a th:href="@{'/user/edituser/' + ${u.id}}">Edit</a></td>
+                   <td><a th:href="@{'/user/deluser/' + ${u.id}}">Del</a></td>
                </tr>
 
 

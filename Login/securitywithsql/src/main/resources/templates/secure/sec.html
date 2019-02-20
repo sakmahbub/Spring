@@ -8,19 +8,22 @@
 </head>
 <body>
 <h1><a th:href="@{/logout}">Logout</a></h1>
+
+<a th:href="@{/role/addrole}"><button><h3>Add Role</h3></button></a>
+<a th:href="@{/role/listrole}"><button><h3>Role List</h3></button></a>
+<a th:href="@{/user/adduser}"><button><h3>Add User</h3></button></a>
+<a th:href="@{/user/listuser}"><button><h3>User List</h3></button></a>
+<a th:href="@{/u}"><button><h3>User Page</h3></button></a>
+<a th:href="@{/adm}"><button><h3>Admin Page</h3></button></a>
+<a th:href="@{/sa}"><button><h3>Supperadmin Page</h3></button></a>
+
+
 <h1>You are Login as <span th:text="${name}"></span></h1>
 <h1>And your User name is: <span th:text="${username}"></span></h1>
-<span sec:authorize="hasRole('ROLE_SUPERADMIN')">
-    SUPERADMIN Only can Accrss me......
-</span>
 
-<span sec:authorize="hasRole('ROLE_ADMIN')">
-    ADMIN Only can Accrss me......
-</span>
 
-<span sec:authorize="hasRole('ROLE_USER')">
-    USER Only can Accrss me......
-</span>
+<h3>Any role can Access me......</h3>
+
 
 </body>
 </html>

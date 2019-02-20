@@ -28,6 +28,7 @@ public class User {
     private String userName;
 
     @NotNull
+    @Size(min = 4, max = 300, message = "Password at lest 4 character")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

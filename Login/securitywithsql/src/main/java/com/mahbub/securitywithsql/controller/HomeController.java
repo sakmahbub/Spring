@@ -1,7 +1,9 @@
 package com.mahbub.securitywithsql.controller;
 
 
+import com.mahbub.securitywithsql.entity.Role;
 import com.mahbub.securitywithsql.entity.User;
+import com.mahbub.securitywithsql.repo.RoleRepo;
 import com.mahbub.securitywithsql.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,6 +17,9 @@ public class HomeController {
 
     @Autowired
 private UserRepo repo;
+
+    @Autowired
+    private RoleRepo roleRepo;
 
     @GetMapping(value = "/sa")
     public String superAdminView(){

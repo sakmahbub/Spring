@@ -22,14 +22,14 @@ public class RoleController {
     private RoleRepo roleRepo;
 
 
-    @GetMapping(value = "addrole")
+    @GetMapping(value = "/addrole")
     public String addShow(Role role) {
         return "role/add-role";
 
     }
 
 
-    @PostMapping(value = "addrole")
+    @PostMapping(value = "/addrole")
     public String roleSave(@Valid Role role, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "role/add-role";
