@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <style>
@@ -28,6 +29,7 @@
     <title>Title</title>
 </head>
 <body>
+<div layout:fragment="custom-content">
 <a th:href="@{/se}"><h3 class="err">GO >>Home Page</h3></a>
 <div class="sform" align="center">
     <h1>Role ADD Form</h1>
@@ -57,6 +59,7 @@
     </table>
 
 </form>
+</div>
 </div>
 </body>
 </html>

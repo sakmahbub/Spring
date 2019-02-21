@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:th="http://www.thymeleaf.org/"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <style>
@@ -33,9 +34,10 @@
     <title>Title</title>
 </head>
 <body>
-<a th:href="@{/se}"><h3 class="err">GO >>Home Page</h3></a>
+<div layout:fragment="custom-content">
 
-        <form>
+
+
            <table id="customers">
                <tr>
                    <th>ID</th>
@@ -67,10 +69,10 @@
 
 
            </table>
-        </form>
 
 
 
 
+</div>
 </body>
 </html>
