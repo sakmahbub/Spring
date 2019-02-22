@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="{% if page.rtl %}rtl{% else %}ltr{% endif %}">
+  {% include base/head.html %}
+
+  <body class="{{ page.bodyClass }}" id="body">
+    <script>
+      NProgress.configure({ showSpinner: false });
+      NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+
+    <div class="wrapper">
+      {% if page.activePage == 'sidebar-without-footer' %}
+      {% include base/left-sidebar-without-footer.html %}
+      {% else %}
+      {% include base/left-sidebar.html %}
+      {% endif %}
+
+      <div class="page-wrapper">
+        {% include base/header.html %}
+
+        <div class="content-wrapper">
+          <div class="content">{{ content }}</div>
+
+          {% if page.activePage == 'right-sidebar' %}
+          {% include base/right-sidebar.html %}
+          {% endif %}
+
+
+        </div>
+
+        {% include base/footer.html %}
+      </div>
+    </div>
+
+    {% include base/scripts.html %}
+  </body>
+</html>
