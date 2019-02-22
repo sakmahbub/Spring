@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+        .err {
+            color: red;
+        }
+
+        .mm {
+            color: green;
+        }
+
+        .sform {
+
+            width: 100%;
+            height: 800px;
+            background-color: #00A8B3;
+
+        }
+
+
+
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<div class="sform" align="center">
+
+    <div th:if="${param.error}">
+        <div class="err">Invalid username Or password.</div>
+    </div>
+    <div th:if="${param.logout}">
+        <div class="mm">You have been logged out.</div>
+    </div>
+
+
+    <h1>SIGN IN NOW</h1>
+
+<form th:action="@{/login}" method="post">
+    <table>
+        <tr>
+            <td>User Name: </td>
+            <td><input type="text" name="username" placeholder="Username" required="" /></td>
+        </tr>
+
+        <tr>
+           <td>Password:</td>
+            <td><input type="password" name="password" placeholder="Password" required=""/></td>
+
+        </tr>
+        <tr>
+            <td></td>
+
+            <td><input type="submit" value="Sign In"/></td>
+
+        </tr>
+    </table>
+
+</form>
+
+</div>
+</body>
+</html>

@@ -1,9 +1,6 @@
 package com.mahbub.securitywithsql.controller;
 
 
-import com.mahbub.securitywithsql.repo.RoleRepo;
-import com.mahbub.securitywithsql.repo.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +21,7 @@ public class LoginController {
             return "redirect:/se";
 
         }
-        return "public/login";
+        return "public/loginn";
     }
 
 
