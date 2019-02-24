@@ -21,7 +21,7 @@ public class LoginController {
             return "redirect:/se";
 
         }
-        return "public/loginn";
+        return "/public/loginn";
     }
 
 

@@ -22,14 +22,14 @@ public class RoleController {
     private RoleRepo roleRepo;
 
 
-    @GetMapping(value = "/addrole")
+    @GetMapping(value = "addrole")
     public String addShow(Role role) {
         return "role/add-role";
 
     }
 
 
-    @PostMapping(value = "/addrole")
+    @PostMapping(value = "addrole")
     public String roleSave(@Valid Role role, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "role/add-role";
@@ -50,11 +50,11 @@ public class RoleController {
         }
 
 
-        return "role/add-role";
+        return "role/add-rolee";
     }
 
 
-    @GetMapping(value = "/listrole")
+    @GetMapping(value = "listrole")
     public String roleIndex(Model model) {
         model.addAttribute("rolelist", roleRepo.findAll());
         return "role/list-role";
@@ -62,7 +62,7 @@ public class RoleController {
 
 
 
-    @GetMapping(value = "/editrole/{id}")
+    @GetMapping(value = "editrole/{id}")
     public String editShow(Model model, @PathVariable("id") Long id){
         model.addAttribute("role", this.roleRepo.getOne(id));
         return "role/edit-role";
@@ -70,7 +70,7 @@ public class RoleController {
     }
 
 
-    @PostMapping(value = "/editrole/{id}")
+    @PostMapping(value = "editrole/{id}")
     public String roleEdit(@Valid Role role, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             return "role/edit-role";
@@ -96,7 +96,7 @@ public class RoleController {
 
 
 
-    @GetMapping(value = "/delrole/{id}")
+    @GetMapping(value = "delrole/{id}")
     public String roledel(@PathVariable("id") Long id) {
         if(id != null){
             this.roleRepo.deleteById(id);
