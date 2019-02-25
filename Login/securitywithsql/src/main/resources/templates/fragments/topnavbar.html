@@ -86,7 +86,7 @@
                 </ul>
             </li>
 
-///////////////////////////////////////
+            <!-- ///////////////////////////////////////////////////-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">Role</a>
                 <ul class="dropdown-menu extended tasks-bar">
@@ -149,7 +149,7 @@
 
                 </ul>
             </li>
-////////////////////////////////////////////////////////////
+<!-- ///////////////////////////////////////////////////-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">Report</a>
                 <ul class="dropdown-menu extended tasks-bar">
@@ -202,18 +202,21 @@
             </li>
 
 
-            <li>
-                <a th:href="@{/}" >Contact us</a>
 
-            </li>
 
             <!-- notification dropdown end -->
         </ul>
         <!--  notification end -->
     </div>
+
     <div class="top-menu">
         <ul class="nav pull-right top-menu">
             <li><a class="logout" th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li> <a class="logout" th:href="@{/}" >Contact us</a></li>
         </ul>
     </div>
 </header>
