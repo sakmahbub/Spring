@@ -2,7 +2,7 @@ package com.mahbub.securitywithsql.controller;
 
 
 
-import com.mahbub.securitywithsql.entity.Role;
+
 import com.mahbub.securitywithsql.entity.User;
 import com.mahbub.securitywithsql.repo.RoleRepo;
 import com.mahbub.securitywithsql.repo.UserRepo;
@@ -17,12 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -118,6 +112,12 @@ public class UserController {
         return "redirect:/user/listuser";
 
     }
+
+
+
+
+
+
 
 
 
