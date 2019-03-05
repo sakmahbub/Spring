@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+        .err {
+            color: red;
+        }
+
+        .mm {
+            color: green;
+        }
+
+        .sform {
+
+            width: 100%;
+            height: 900px;
+            background-color: whitesmoke;
+
+        }
+
+
+
+
+    </style>
+
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="sform">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="darkModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog form-dark" role="document">
+            <!--Content-->
+            <div class="modal-content card card-image" style="background-image: url('https://stmed.net/sites/default/files/styles/225x120/public/red-white-wallpapers-25296-671227.jpg?itok=N-IgIgTJ');">
+                <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                    <!--Header-->
+                    <div class="modal-header text-center pb-4">
+                        <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel"><strong>SIGN</strong> <a
+                                class="green-text font-weight-bold"><strong> IN</strong></a></h3>
+                        <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+
+
+
+
+
+                    <form th:action="@{/login}" method="post">
+                    <!--Body-->
+                    <div class="modal-body">
+                        <!--Body-->
+                        <div class="md-form mb-5">
+                            <input type="text" id="Form-email5" class="form-control validate white-text" name="username" placeholder="Username" required="">
+                            <label data-error="wrong" data-success="right" for="Form-email5">Your UserName</label>
+                        </div>
+
+                        <div class="md-form pb-3">
+                            <input type="password" id="Form-pass5" class="form-control validate white-text" name="password" placeholder="Password" required="">
+                            <label data-error="wrong" data-success="right" for="Form-pass5">Your password</label>
+                            <div class="form-group mt-4">
+                                <input class="form-check-input" type="checkbox" id="checkbox624">
+                                <label for="checkbox624" class="white-text form-check-label">Accept the<a href="#" class="green-text font-weight-bold">
+                                    Terms and Conditions</a></label>
+                            </div>
+                        </div>
+
+                        <!--Grid row-->
+                        <div class="row d-flex align-items-center mb-4">
+
+                            <!--Grid column-->
+                            <div class="text-center mb-3 col-md-12">
+                                <button type="submit" class="btn btn-success btn-block btn-rounded z-depth-1">Login</button>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-12">
+                                <p class="font-small white-text d-flex justify-content-end">Don't Have account? <a href="#" class="green-text ml-1 font-weight-bold">
+                                    Sign Up</a></p>
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                    </div>
+
+
+                    </form>
+
+
+
+
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Modal -->
+
+
+    <div class="text-center">
+        <br>
+        <h2>Login in Another Click</h2>
+        <p>It is home page. You must click UNLOCK button And go login page.</p>
+
+        <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#darkModalForm">Unlock</a>
+        <div th:if="${param.error}">
+            <div class="err">Invalid username Or password.</div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="mm">You have been logged out.</div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

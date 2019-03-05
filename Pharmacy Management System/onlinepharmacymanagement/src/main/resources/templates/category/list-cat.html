@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+        <form>
+           <table id="customers">
+               <tr>
+                   <th>ID</th>
+                   <th>Category_name</th>
+                   <th colspan="2">Action</th>
+               </tr>
+
+               <tr th:each="cat : ${catlist}">
+                   <td th:text="${cat.categoryId}"></td>
+                   <td th:text="${cat.categoryName}"></td>
+
+
+                   <td><a th:href="@{'/cat/editcat/' + ${cat.categoryId}}">Edit</a></td>
+                   <td><a th:href="@{'/cat/delcat/' + ${cat.categoryId}}">Del</a></td>
+               </tr>
+
+
+           </table>
+        </form>
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+
+<!--<a th:href="@{/role/addrole}"><button><h3>Add Role</h3></button></a>-->
+<!--<a th:href="@{/role/listrole}"><button><h3>Role List</h3></button></a>-->
+<!--<a th:href="@{/user/adduser}"><button><h3>Add User</h3></button></a>-->
+<!--<a th:href="@{/user/listuser}"><button><h3>User List</h3></button></a>-->
+<!--<a th:href="@{/u}"><button><h3>User Page</h3></button></a>-->
+<!--<a th:href="@{/adm}"><button><h3>Admin Page</h3></button></a>-->
+<!--<a th:href="@{/sa}"><button><h3>Supperadmin Page</h3></button></a>-->
+
+
+<h1>You are Login as <span th:text="${name}"></span></h1>
+<h1>And your User name is: <span th:text="${username}"></span></h1>
+
+
+<h1>Any role can Access me......</h1>
+
+</div>
+</body>
+</html>

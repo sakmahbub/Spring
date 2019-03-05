@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <style>
+            .err{
+                color: red;
+            }
+            .mm{
+                color: green;
+            }
+        .sform{
+            background-color: aqua;
+
+
+        }
+
+
+
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title> Add | Mahbub</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+  <div class="sform" align="center">
+    <h1>User Adding Form</h1>
+
+        <span th:class="mm" th:text="${success}"></span>
+        <span th:class="err" th:text="${exist}"></span>
+        <br/>
+
+
+
+
+        <form action="#" th:object="${user}" th:action="@{/user/adduser}"  th:method="POST" enctype="multipart/form-data">
+            <table>
+
+                <tr>
+                    <td>Roles:</td>
+                    <td>
+                       <select th:field="*{roles}" multiple>
+                           <option th:each="role : ${rolelistAdd}" th:value="${role.id}"><span th:text="${role.rolename}"></span></option>
+                       </select>
+
+                    </td>
+                    <td th:class="err" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></td>
+                </tr>
+
+
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" th:field="*{email}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td>UserName:</td>
+                    <td><input type="text" th:field="*{userName}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></td>
+                </tr>
+
+
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" th:field="*{password}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                </tr>
+
+
+
+                <tr>
+                    <td></td>
+                    <td><button type="submit">Save</button></td>
+                </tr>
+
+            </table>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
