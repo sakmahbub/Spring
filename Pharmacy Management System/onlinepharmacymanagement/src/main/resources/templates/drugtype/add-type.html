@@ -38,7 +38,7 @@
 <form th:object="${type}" th:action="@{/type/addtype}" th:method="POST">
     <table>
         <tr>
-            <td>BrandName:</td>
+            <td>TypeName:</td>
             <td><input type="text" th:field="*{typeName}"/></td>
             <td th:class="err" th:if="${#fields.hasErrors('typeName')}" th:errors="*{typeName}"></td>
 

@@ -26,7 +26,7 @@ public class Summary {
 
 
     @OneToOne
-    @JoinColumn(name = "medicine_id", unique = true)
+    @JoinColumn(name = "drug_id", unique = true)
     private Drug drug;
 
     public Summary() {

@@ -84,6 +84,7 @@ public class CategoryController {
 
                 } else {
 //                    category.setCategoryName(category.getCategoryName().toUpperCase());
+                    category.setCategoryId(id);
                     this.categoryRepo.save(category);
                     model.addAttribute("category", new Category());
                     model.addAttribute("success", "Category Add Successfully");

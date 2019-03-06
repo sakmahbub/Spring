@@ -40,6 +40,11 @@ private UserRepo repo;
 
     }
 
+    @GetMapping(value = "/con")
+    public String contactView(){
+        return "secure/contact-us";
+
+    }
 
     @GetMapping(value = "/se")
     public String secureView(Model model){

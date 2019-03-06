@@ -42,7 +42,7 @@ public class BrandController {
                     model.addAttribute("exist", "Brand allready exist");
 
                 } else {
-                    brand.setBrandName(brand.getBrandName().toUpperCase());
+
                     this.brandRepo.save(brand);
                     model.addAttribute("brand", new Brand());
                     model.addAttribute("success", "Brand Add Successfully");
@@ -83,7 +83,7 @@ public class BrandController {
                     model.addAttribute("exist", "Brand allready exist");
 
                 } else {
-                    brand.setBrandName(brand.getBrandName().toUpperCase());
+                    brand.setBrandId(id);
                     this.brandRepo.save(brand);
                     model.addAttribute("brand", new Brand());
                     model.addAttribute("success", "Brand Add Successfully");

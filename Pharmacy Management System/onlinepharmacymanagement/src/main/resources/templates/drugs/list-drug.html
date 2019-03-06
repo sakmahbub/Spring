@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+
+
+           <table id="customers">
+               <tr>
+                   <th>ID</th>
+                   <th>Drug_Name</th>
+                   <th>Category</th>
+                   <th>Type</th>
+                   <th>Brand</th>
+                   <th>Quantity</th>
+                   <th>unitPrice</th>
+                   <th>totalPrice</th>
+                   <th>dimension</th>
+                   <th>antidote</th>
+                   <th colspan="2">Action</th>
+               </tr>
+
+               <tr th:each="d : ${druglist}">
+                   <td th:text="${d.drugId}"></td>
+                   <td th:text="${d.drugName}"></td>
+
+                   <td> <span th:each="c : ${d.categories}">
+                           <span th:text="${c.categoryName}"></span>
+                       </span> </td>
+
+                   <td> <span th:each="t : ${d.drugtypes}">
+                           <span th:text="${t.typeName}"></span>
+                       </span> </td>
+
+                   <td> <span th:each="b : ${d.brands}">
+                           <span th:text="${b.brandName}"></span>
+                       </span> </td>
+
+
+                   <td th:text="${d.qty}"></td>
+                   <td th:text="${d.unitPrice}"></td>
+                   <td th:text="${d.totalPrice}"></td>
+                   <td th:text="${d.dimension}"></td>
+                   <td th:text="${d.antidote}"></td>
+
+
+
+                   <td><a th:href="@{'/drug/editdrug/' + ${d.drugId}}">Edit</a></td>
+                   <td><a th:href="@{'/drug/deldrug/' + ${d.drugId}}">Del</a></td>
+               </tr>
+
+
+           </table>
+
+
+
+
+</div>
+</body>
+</html>

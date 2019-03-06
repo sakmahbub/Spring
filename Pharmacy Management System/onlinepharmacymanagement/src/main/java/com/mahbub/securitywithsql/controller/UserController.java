@@ -70,7 +70,7 @@ public class UserController {
 
     @GetMapping(value = "/listuser")
     public String userIndex(Model model) {
-        model.addAttribute("userlist", userRepo.findAll());
+        model.addAttribute("userlist", this.userRepo.findAll());
         return "user/list-user";
     }
 
@@ -92,6 +92,7 @@ public class UserController {
             return "user/edit-user";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setId(id);
         this.userRepo.save(user);
         model.addAttribute("user", new User());
         model.addAttribute("success", "Congratulations! Data save sucessfully");
