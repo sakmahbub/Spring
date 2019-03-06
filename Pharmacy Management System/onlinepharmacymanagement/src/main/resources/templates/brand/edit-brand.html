@@ -44,6 +44,19 @@
 
         </tr>
 
+        <tr>
+            <td>BrandLocation:</td>
+            <td><input type="text" th:field="*{brandLocation}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('brandLocation')}" th:errors="*{brandLocation}"></td>
+
+        </tr>
+
+        <tr>
+            <td>BrandTelNo:</td>
+            <td><input type="text" th:field="*{brandTelNo}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('brandTelNo')}" th:errors="*{brandTelNo}"></td>
+
+        </tr>
 
         <tr>
             <td></td>

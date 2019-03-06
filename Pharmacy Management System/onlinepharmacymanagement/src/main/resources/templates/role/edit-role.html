@@ -33,7 +33,6 @@
     <br/>
 
 <form th:object="${role}" th:action="@{/role/editrole/} + ${id}" th:method="POST">
-    <span><input type="hidden" th:field="*{id}" th:value="${role.id}"/></span>
 
     <table>
         <tr>

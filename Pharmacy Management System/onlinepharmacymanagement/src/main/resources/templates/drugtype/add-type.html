@@ -30,32 +30,17 @@
 
 <div class="sform" align="center">
 
-    <h1>Brand ADD Form</h1>
+    <h1>DrugType ADD Form</h1>
     <span th:class="mm" th:text="${success}"></span>
     <span th:class="err" th:text="${exist}"></span>
     <br/>
 
-<form th:object="${brand}" th:action="@{/brand/addbrand}" th:method="POST">
+<form th:object="${type}" th:action="@{/type/addtype}" th:method="POST">
     <table>
         <tr>
             <td>BrandName:</td>
-            <td><input type="text" th:field="*{brandName}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('brandName')}" th:errors="*{brandName}"></td>
-
-        </tr>
-
-
-        <tr>
-            <td>BrandLocation:</td>
-            <td><input type="text" th:field="*{brandLocation}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('brandLocation')}" th:errors="*{brandLocation}"></td>
-
-        </tr>
-
-        <tr>
-            <td>BrandTelNo:</td>
-            <td><input type="text" th:field="*{brandTelNo}"/></td>
-            <td th:class="err" th:if="${#fields.hasErrors('brandTelNo')}" th:errors="*{brandTelNo}"></td>
+            <td><input type="text" th:field="*{typeName}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('typeName')}" th:errors="*{typeName}"></td>
 
         </tr>
 

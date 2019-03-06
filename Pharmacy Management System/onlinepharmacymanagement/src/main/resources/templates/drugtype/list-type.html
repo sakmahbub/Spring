@@ -40,20 +40,18 @@
            <table id="customers">
                <tr>
                    <th>ID</th>
-                   <th>Brand_name</th>
-                   <th>Brand_Location</th>
-                   <th>Brand_TelNo</th>
+                   <th>DrugType_name</th>
+
                    <th colspan="2">Action</th>
                </tr>
 
-               <tr th:each="bran : ${brandlist}">
-                   <td th:text="${bran.brandId}"></td>
-                   <td th:text="${bran.brandName}"></td>
-                   <td th:text="${bran.brandLocation}"></td>
-                   <td th:text="${bran.brandTelNo}"></td>
+               <tr th:each="typ : ${typelist}">
+                   <td th:text="${typ.typeId}"></td>
+                   <td th:text="${typ.typeName}"></td>
 
-                   <td><a th:href="@{'/brand/editbrand/' + ${bran.brandId}}">Edit</a></td>
-                   <td><a th:href="@{'/brand/delbrand/' + ${bran.brandId}}">Del</a></td>
+
+                   <td><a th:href="@{'/type/edittype/' + ${typ.typeId}}">Edit</a></td>
+                   <td><a th:href="@{'/type/deltype/' + ${typ.typeId}}">Del</a></td>
                </tr>
 
 

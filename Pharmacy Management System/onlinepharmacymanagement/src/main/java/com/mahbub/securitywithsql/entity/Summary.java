@@ -15,7 +15,7 @@ public class Summary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String drugName;
+
     private int totalQty;
     private int soldQty;
     private int availableQty;
@@ -25,11 +25,15 @@ public class Summary {
     private Date lastUpdate;
 
 
+    @OneToOne
+    @JoinColumn(name = "medicine_id", unique = true)
+    private Drug drug;
+
     public Summary() {
     }
 
-    public Summary(String drugName, int totalQty, int soldQty, int availableQty, Date lastUpdate) {
-        this.drugName = drugName;
+    public Summary(int totalQty, int soldQty, int availableQty, Date lastUpdate) {
+
         this.totalQty = totalQty;
         this.soldQty = soldQty;
         this.availableQty = availableQty;
@@ -44,13 +48,9 @@ public class Summary {
         this.id = id;
     }
 
-    public String getDrugName() {
-        return drugName;
-    }
 
-    public void setDrugName(String drugName) {
-        this.drugName = drugName;
-    }
+
+
 
     public int getTotalQty() {
         return totalQty;
@@ -93,12 +93,12 @@ public class Summary {
                 soldQty == summary.soldQty &&
                 availableQty == summary.availableQty &&
                 Objects.equals(id, summary.id) &&
-                Objects.equals(drugName, summary.drugName) &&
-                Objects.equals(lastUpdate, summary.lastUpdate);
+                Objects.equals(lastUpdate, summary.lastUpdate) &&
+                Objects.equals(drug, summary.drug);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, drugName, totalQty, soldQty, availableQty, lastUpdate);
+        return Objects.hash(id, totalQty, soldQty, availableQty, lastUpdate, drug);
     }
 }

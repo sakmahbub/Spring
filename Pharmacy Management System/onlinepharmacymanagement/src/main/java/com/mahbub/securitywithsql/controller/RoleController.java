@@ -82,6 +82,7 @@ public class RoleController {
 
                 } else {
                     role.setRolename(role.getRolename().toUpperCase());
+
                     this.roleRepo.save(role);
                     model.addAttribute("role", new Role());
                     model.addAttribute("success", "Role Add Successfully");
