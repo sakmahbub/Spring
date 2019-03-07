@@ -14,8 +14,8 @@ public class Summary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
+    private String drugName;
+    private String drugCode;
     private int totalQty;
     private int soldQty;
     private int availableQty;
@@ -32,12 +32,15 @@ public class Summary {
     public Summary() {
     }
 
-    public Summary(int totalQty, int soldQty, int availableQty, Date lastUpdate) {
 
+    public Summary(String drugName, String drugCode, int totalQty, int soldQty, int availableQty, Date lastUpdate, Drug drug) {
+        this.drugName = drugName;
+        this.drugCode = drugCode;
         this.totalQty = totalQty;
         this.soldQty = soldQty;
         this.availableQty = availableQty;
         this.lastUpdate = lastUpdate;
+        this.drug = drug;
     }
 
     public Long getId() {
@@ -48,9 +51,21 @@ public class Summary {
         this.id = id;
     }
 
+    public String getDrugName() {
+        return drugName;
+    }
 
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
 
+    public String getDrugCode() {
+        return drugCode;
+    }
 
+    public void setDrugCode(String drugCode) {
+        this.drugCode = drugCode;
+    }
 
     public int getTotalQty() {
         return totalQty;
@@ -84,6 +99,14 @@ public class Summary {
         this.lastUpdate = lastUpdate;
     }
 
+    public Drug getDrug() {
+        return drug;
+    }
+
+    public void setDrug(Drug drug) {
+        this.drug = drug;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,12 +116,26 @@ public class Summary {
                 soldQty == summary.soldQty &&
                 availableQty == summary.availableQty &&
                 Objects.equals(id, summary.id) &&
+                Objects.equals(drugCode, summary.drugCode) &&
                 Objects.equals(lastUpdate, summary.lastUpdate) &&
                 Objects.equals(drug, summary.drug);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, totalQty, soldQty, availableQty, lastUpdate, drug);
+        return Objects.hash(id, drugCode, totalQty, soldQty, availableQty, lastUpdate, drug);
+    }
+
+    @Override
+    public String toString() {
+        return "Summary{" +
+                "id=" + id +
+                ", drugCode='" + drugCode + '\'' +
+                ", totalQty=" + totalQty +
+                ", soldQty=" + soldQty +
+                ", availableQty=" + availableQty +
+                ", lastUpdate=" + lastUpdate +
+                ", drug=" + drug +
+                '}';
     }
 }

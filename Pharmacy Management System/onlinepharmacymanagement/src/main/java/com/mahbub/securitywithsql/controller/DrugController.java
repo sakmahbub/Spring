@@ -1,15 +1,11 @@
 package com.mahbub.securitywithsql.controller;
 
 
-
-
 import com.mahbub.securitywithsql.entity.Drug;
+import com.mahbub.securitywithsql.entity.Summary;
 import com.mahbub.securitywithsql.entity.User;
-import com.mahbub.securitywithsql.repo.BrandRepo;
-import com.mahbub.securitywithsql.repo.CategoryRepo;
-import com.mahbub.securitywithsql.repo.DrugRepo;
+import com.mahbub.securitywithsql.repo.*;
 
-import com.mahbub.securitywithsql.repo.DrugtypeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -21,6 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Date;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/drug")
@@ -38,7 +38,8 @@ public class DrugController {
     @Autowired
     private DrugtypeRepo drugtypeRepo;
 
-
+    @Autowired
+    private SummaryRepo summaryRepo;
 
 
     @GetMapping(value = "/adddrug")
@@ -58,16 +59,18 @@ public class DrugController {
             model.addAttribute("typelist", this.drugtypeRepo.findAll());
             return "drugs/add-drug";
         }
-             this.drugRepo.save(drug);
-                    model.addAttribute("drug", new Drug());
-                    model.addAttribute("success", "Congratulations! Data save sucessfully");
-                    model.addAttribute("brandlist", this.brandRepo.findAll());
-                    model.addAttribute("categorylist", this.categoryRepo.findAll());
-                     model.addAttribute("typelist", this.drugtypeRepo.findAll());
+        String drugCode = drug.getCategories().getCategoryName().substring(0, 3) + "-" + drug.getDrugName().substring(0, 3) + "-" + UUID.randomUUID().toString();
+        drug.setDrugCode(drugCode);
+        this.drugRepo.save(drug);
+        model.addAttribute("drug", new Drug());
+        model.addAttribute("success", "Congratulations! Data save sucessfully");
+        model.addAttribute("brandlist", this.brandRepo.findAll());
+        model.addAttribute("categorylist", this.categoryRepo.findAll());
+        model.addAttribute("typelist", this.drugtypeRepo.findAll());
+
 
         return "drugs/add-drug";
     }
-
 
 
     @GetMapping(value = "/listdrug")
@@ -77,9 +80,8 @@ public class DrugController {
     }
 
 
-
     @GetMapping(value = "/editdrug/{id}")
-    public String editShow(Model model, @PathVariable("id") Long id){
+    public String editShow(Model model, @PathVariable("id") Long id) {
         model.addAttribute("drug", this.drugRepo.getOne(id));
         model.addAttribute("brandlist", this.brandRepo.findAll());
         model.addAttribute("categorylist", this.categoryRepo.findAll());
@@ -97,7 +99,7 @@ public class DrugController {
             model.addAttribute("typelist", this.drugtypeRepo.findAll());
             return "drugs/edit-drug";
         }
-        drug.setDrugId(id);
+        drug.setId(id);
         this.drugRepo.save(drug);
         model.addAttribute("drug", new Drug());
         model.addAttribute("success", "Congratulations! Data save sucessfully");
@@ -109,24 +111,15 @@ public class DrugController {
     }
 
 
-
-
     @GetMapping(value = "/deldrug/{id}")
     public String drugdel(@PathVariable("id") Long id) {
-        if(id != null){
+        if (id != null) {
             this.drugRepo.deleteById(id);
 
         }
         return "redirect:/drug/listdrug";
 
     }
-
-
-
-
-
-
-
 
 
 //    @GetMapping(value = "/user-save")

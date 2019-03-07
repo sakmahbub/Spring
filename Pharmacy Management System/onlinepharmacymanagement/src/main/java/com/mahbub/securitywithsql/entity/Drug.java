@@ -11,15 +11,18 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "drug")
+@Table(name = "drug",uniqueConstraints={@UniqueConstraint(columnNames = {"drug_name" , "category_id","drugtype_id","brand_id"})})
 public class Drug {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long drugId;
+    private Long id;
 
+@Column(name = "drug_name")
     private String drugName;
 
+    @Column(unique = true)
+    private String drugCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)
@@ -37,41 +40,32 @@ public class Drug {
     private Brand brands;
 
 
-
-    private Long qty;
-    private Long unitPrice;
-    private Long totalPrice;
     private String dimension;
     private String antidote;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date purchasedate;
+    private String note;
 
 
     public Drug() {
     }
 
-    public Drug(String drugName, Category categories, Drugtype drugtypes, Brand brands, Long qty, Long unitPrice, Long totalPrice, String dimension, String antidote, Date purchasedate) {
+    public Drug(String drugName, String drugCode, Category categories, Drugtype drugtypes, Brand brands, String dimension, String antidote, String note) {
         this.drugName = drugName;
+        this.drugCode = drugCode;
         this.categories = categories;
         this.drugtypes = drugtypes;
         this.brands = brands;
-        this.qty = qty;
-        this.unitPrice = unitPrice;
-        this.totalPrice = totalPrice;
         this.dimension = dimension;
         this.antidote = antidote;
-        this.purchasedate = purchasedate;
+        this.note = note;
     }
 
-
-    public Long getDrugId() {
-        return drugId;
+    public Long getId() {
+        return id;
     }
 
-    public void setDrugId(Long drugId) {
-        this.drugId = drugId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDrugName() {
@@ -80,6 +74,14 @@ public class Drug {
 
     public void setDrugName(String drugName) {
         this.drugName = drugName;
+    }
+
+    public String getDrugCode() {
+        return drugCode;
+    }
+
+    public void setDrugCode(String drugCode) {
+        this.drugCode = drugCode;
     }
 
     public Category getCategories() {
@@ -106,30 +108,6 @@ public class Drug {
         this.brands = brands;
     }
 
-    public Long getQty() {
-        return qty;
-    }
-
-    public void setQty(Long qty) {
-        this.qty = qty;
-    }
-
-    public Long getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Long unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Long getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Long totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public String getDimension() {
         return dimension;
     }
@@ -146,12 +124,12 @@ public class Drug {
         this.antidote = antidote;
     }
 
-    public Date getPurchasedate() {
-        return purchasedate;
+    public String getNote() {
+        return note;
     }
 
-    public void setPurchasedate(Date purchasedate) {
-        this.purchasedate = purchasedate;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     @Override
@@ -159,21 +137,19 @@ public class Drug {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Drug drug = (Drug) o;
-        return Objects.equals(drugId, drug.drugId) &&
+        return Objects.equals(id, drug.id) &&
                 Objects.equals(drugName, drug.drugName) &&
+                Objects.equals(drugCode, drug.drugCode) &&
                 Objects.equals(categories, drug.categories) &&
                 Objects.equals(drugtypes, drug.drugtypes) &&
                 Objects.equals(brands, drug.brands) &&
-                Objects.equals(qty, drug.qty) &&
-                Objects.equals(unitPrice, drug.unitPrice) &&
-                Objects.equals(totalPrice, drug.totalPrice) &&
                 Objects.equals(dimension, drug.dimension) &&
                 Objects.equals(antidote, drug.antidote) &&
-                Objects.equals(purchasedate, drug.purchasedate);
+                Objects.equals(note, drug.note);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(drugId, drugName, categories, drugtypes, brands, qty, unitPrice, totalPrice, dimension, antidote, purchasedate);
+        return Objects.hash(id, drugName, drugCode, categories, drugtypes, brands, dimension, antidote, note);
     }
 }

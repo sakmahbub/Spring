@@ -42,21 +42,20 @@
                <tr>
                    <th>ID</th>
                    <th>Drug_Name</th>
+                   <th>Drug_Code</th>
                    <th>Category</th>
                    <th>Type</th>
                    <th>Brand</th>
-                   <th>Quantity</th>
-                   <th>unitPrice</th>
-                   <th>totalPrice</th>
                    <th>dimension</th>
                    <th>antidote</th>
+                   <th>Note</th>
                    <th colspan="2">Action</th>
                </tr>
 
                <tr th:each="d : ${druglist}">
-                   <td th:text="${d.drugId}"></td>
+                   <td th:text="${d.id}"></td>
                    <td th:text="${d.drugName}"></td>
-
+                   <td th:text="${d.drugCode}"></td>
                    <td> <span th:each="c : ${d.categories}">
                            <span th:text="${c.categoryName}"></span>
                        </span> </td>
@@ -70,16 +69,13 @@
                        </span> </td>
 
 
-                   <td th:text="${d.qty}"></td>
-                   <td th:text="${d.unitPrice}"></td>
-                   <td th:text="${d.totalPrice}"></td>
                    <td th:text="${d.dimension}"></td>
                    <td th:text="${d.antidote}"></td>
+                   <td th:text="${d.note}"></td>
 
 
-
-                   <td><a th:href="@{'/drug/editdrug/' + ${d.drugId}}">Edit</a></td>
-                   <td><a th:href="@{'/drug/deldrug/' + ${d.drugId}}">Del</a></td>
+                   <td><a th:href="@{'/drug/editdrug/' + ${d.id}}">Edit</a></td>
+                   <td><a th:href="@{'/drug/deldrug/' + ${d.id}}">Del</a></td>
                </tr>
 
 

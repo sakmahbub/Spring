@@ -48,6 +48,8 @@
                     <td th:class="err" th:if="${#fields.hasErrors('drugName')}" th:errors="*{drugName}"></td>
                 </tr>
 
+
+
                 <tr>
                     <td>Categorie:</td>
                     <td>
@@ -83,34 +85,6 @@
 
 
 
-
-
-
-
-                <tr>
-                    <td>Quantity:</td>
-                    <td><input type="text" th:field="*{qty}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('qty')}" th:errors="*{qty}"></td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td>unitPrice:</td>
-                    <td><input type="text" th:field="*{unitPrice}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></td>
-                </tr>
-
-
-                <tr>
-                    <td>totalPrice:</td>
-                    <td><input type="text" th:field="*{totalPrice}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}"></td>
-                </tr>
-
-
-
                 <tr>
                     <td>Dimension:</td>
                     <td><input type="text" th:field="*{dimension}"/></td>
@@ -124,11 +98,13 @@
                     <td th:class="err" th:if="${#fields.hasErrors('antidote')}" th:errors="*{antidote}"></td>
                 </tr>
 
+
                 <tr>
-                    <td>Purchasedate:</td>
-                    <td><input type="date" th:field="*{purchasedate}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('purchasedate')}" th:errors="*{purchasedate}"></td>
+                    <td>Note:</td>
+                    <td><input type="text" th:field="*{note}"/></td>
+                    <td th:class="err" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></td>
                 </tr>
+
 
 
 
