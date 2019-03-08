@@ -80,23 +80,37 @@
                     <span>Drug</span>
                 </a>
                 <ul class="sub">
-                    <li><a th:href="@{/drug/adddrug}">Purchase Drug</a></li>
-                    <li><a th:href="@{/drug/listdrug}">DrugType List</a></li>
+                    <li><a th:href="@{/drug/adddrug}">Add Drug</a></li>
+                    <li><a th:href="@{/drug/listdrug}">Drug List</a></li>
 
                 </ul>
             </li>
 
             <li class="sub-menu">
                 <a href="javascript:;">
-                    <i class="fa fa-cogs"></i>
-                    <span>Components</span>
+                    <i class="fa fa-book"></i>
+                    <span>Purchase / Sales</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a th:href="@{/pur/addpurchase}">Purchase Drug</a></li>
+                    <li><a th:href="@{/pur/listpurchase}">Purchase List</a></li>
 
                 </ul>
             </li>
+
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>Summary</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/drug/adddrug}">Purchase Drug</a></li>
+                    <li><a th:href="@{/drug/listdrug}">DrugType List</a></li>
+
+                </ul>
+            </li>
+
 
 
 
@@ -107,17 +121,7 @@
                     <span class="label label-theme pull-right mail-info">3</span>
                 </a>
             </li>
-            <li class="sub-menu">
-                <a href="javascript:;">
-                    <i class=" fa fa-bar-chart-o"></i>
-                    <span>Charts</span>
-                </a>
-                <ul class="sub">
-                    <li><a href="#">Morris</a></li>
-                    <li><a href="#">Chartjs</a></li>
 
-                </ul>
-            </li>
 
 
         </ul>

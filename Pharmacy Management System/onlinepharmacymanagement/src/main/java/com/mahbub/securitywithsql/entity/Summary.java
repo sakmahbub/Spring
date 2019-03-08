@@ -26,21 +26,21 @@ public class Summary {
 
 
     @OneToOne
-    @JoinColumn(name = "drug_id", unique = true)
-    private Drug drug;
+    @JoinColumn(name = "drugPurchase_id", unique = true)
+    private DrugPurchase purchase;
 
     public Summary() {
     }
 
 
-    public Summary(String drugName, String drugCode, int totalQty, int soldQty, int availableQty, Date lastUpdate, Drug drug) {
+    public Summary(String drugName, String drugCode, int totalQty, int soldQty, int availableQty, Date lastUpdate, DrugPurchase purchase) {
         this.drugName = drugName;
         this.drugCode = drugCode;
         this.totalQty = totalQty;
         this.soldQty = soldQty;
         this.availableQty = availableQty;
         this.lastUpdate = lastUpdate;
-        this.drug = drug;
+        this.purchase = purchase;
     }
 
     public Long getId() {
@@ -99,12 +99,12 @@ public class Summary {
         this.lastUpdate = lastUpdate;
     }
 
-    public Drug getDrug() {
-        return drug;
+    public DrugPurchase getPurchase() {
+        return purchase;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setPurchase(DrugPurchase purchase) {
+        this.purchase = purchase;
     }
 
     @Override
@@ -116,26 +116,14 @@ public class Summary {
                 soldQty == summary.soldQty &&
                 availableQty == summary.availableQty &&
                 Objects.equals(id, summary.id) &&
+                Objects.equals(drugName, summary.drugName) &&
                 Objects.equals(drugCode, summary.drugCode) &&
                 Objects.equals(lastUpdate, summary.lastUpdate) &&
-                Objects.equals(drug, summary.drug);
+                Objects.equals(purchase, summary.purchase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, drugCode, totalQty, soldQty, availableQty, lastUpdate, drug);
-    }
-
-    @Override
-    public String toString() {
-        return "Summary{" +
-                "id=" + id +
-                ", drugCode='" + drugCode + '\'' +
-                ", totalQty=" + totalQty +
-                ", soldQty=" + soldQty +
-                ", availableQty=" + availableQty +
-                ", lastUpdate=" + lastUpdate +
-                ", drug=" + drug +
-                '}';
+        return Objects.hash(id, drugName, drugCode, totalQty, soldQty, availableQty, lastUpdate, purchase);
     }
 }

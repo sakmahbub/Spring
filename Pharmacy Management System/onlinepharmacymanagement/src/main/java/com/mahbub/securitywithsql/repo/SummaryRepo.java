@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface SummaryRepo extends JpaRepository<Summary, Long> {
-    Summary findByDrugCode(String dcode);
+    Summary findByDrugName(String drugName);
 
 
 }

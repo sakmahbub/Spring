@@ -1,7 +1,7 @@
 package com.mahbub.securitywithsql.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,7 +15,7 @@ public class DrugPurchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "drug_id", nullable = false)
@@ -42,11 +42,11 @@ public class DrugPurchase {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        id = id;
     }
 
     public Drug getDrug() {
@@ -97,13 +97,13 @@ public class DrugPurchase {
         return qty == that.qty &&
                 Double.compare(that.unitPrice, unitPrice) == 0 &&
                 Double.compare(that.totalPrice, totalPrice) == 0 &&
-                Objects.equals(Id, that.Id) &&
+                Objects.equals(id, that.id) &&
                 Objects.equals(drug, that.drug) &&
                 Objects.equals(purchasedate, that.purchasedate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, drug, qty, unitPrice, totalPrice, purchasedate);
+        return Objects.hash(id, drug, qty, unitPrice, totalPrice, purchasedate);
     }
 }

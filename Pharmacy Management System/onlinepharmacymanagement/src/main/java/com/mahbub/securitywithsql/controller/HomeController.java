@@ -46,6 +46,12 @@ private UserRepo repo;
 
     }
 
+    @GetMapping(value = "/succes")
+    public String successView(){
+        return "sucess";
+
+    }
+
     @GetMapping(value = "/se")
     public String secureView(Model model){
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
