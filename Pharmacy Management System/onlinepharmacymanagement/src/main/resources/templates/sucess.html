@@ -3,39 +3,15 @@
       xmlns:th="http://www.thymeleaf.org/"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
 <head>
-    <link th:href="@{lib/advanced-datatable/css/demo_page.css}" rel="stylesheet" />
-    <link th:href="@{lib/advanced-datatable/css/demo_table.css}" rel="stylesheet" />
-    <link rel="stylesheet" th:href="@{lib/advanced-datatable/css/DT_bootstrap.css}" />
-    <style>
+    <link th:href="@{/lib/advanced-datatable/css/demo_page.css}" rel="stylesheet" />
+    <link th:href="@{/lib/advanced-datatable/css/demo_table.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/lib/advanced-datatable/css/DT_bootstrap.css}" />
 
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        #customers td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-        #customers tr:hover {background-color: #ddd;}
-
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-    </style>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
+
 <body>
 <div layout:fragment="custom-content">
 
@@ -78,14 +54,10 @@
     </div>
 
 
-
 </div>
-
-
-
-<script type="text/javascript" language="javascript" th:src="@{lib/advanced-datatable/js/jquery.js}"></script>
-<script type="text/javascript" language="javascript" th:src="@{lib/advanced-datatable/js/jquery.dataTables.js}"></script>
-<script type="text/javascript" th:src="@{lib/advanced-datatable/js/DT_bootstrap.js}"></script>
+<script type="text/javascript" language="javascript" th:src="@{/lib/advanced-datatable/js/jquery.js}"></script>
+<script type="text/javascript" language="javascript" th:src="@{/lib/advanced-datatable/js/jquery.dataTables.js}"></script>
+<script type="text/javascript" th:src="@{/lib/advanced-datatable/js/DT_bootstrap.js}"></script>
 
 <script type="text/javascript">
     /* Formating function for row details */
@@ -149,4 +121,5 @@
     });
 </script>
 </body>
+
 </html>

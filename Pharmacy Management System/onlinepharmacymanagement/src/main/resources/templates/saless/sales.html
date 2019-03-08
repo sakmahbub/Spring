@@ -29,8 +29,10 @@
 <body>
 <div layout:fragment="custom-content">
 
+    purchase
+
   <div class="sform" align="center">
-    <h1>Drug Purchase Form</h1>
+    <h1>Drug Sales Form</h1>
 
 <!--
         <span th:class="mm" th:text="${success}"></span>
@@ -41,7 +43,7 @@
 
 
 
-        <form action="#" th:object="${purchase}" th:action="@{/pur/addpurchase}"  th:method="POST" enctype="multipart/form-data">
+        <form action="#" th:object="${sales}" th:action="@{/sales/addsales}"  th:method="POST" enctype="multipart/form-data">
             <table>
 
 
@@ -77,6 +79,11 @@
                     <td th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}"></td>
                 </tr>
 
+                <!--<tr>-->
+                    <!--<td>PurchaseDate:</td>-->
+                    <!--<td><input type="date" th:field="*{salseDate}"/></td>-->
+                    <!--<td th:class="err" th:if="${#fields.hasErrors('salseDate')}" th:errors="*{salseDate}"></td>-->
+                <!--</tr>-->
 
 
                 <tr>

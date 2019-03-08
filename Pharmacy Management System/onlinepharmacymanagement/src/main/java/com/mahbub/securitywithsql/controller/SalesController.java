@@ -2,9 +2,12 @@ package com.mahbub.securitywithsql.controller;
 
 
 
-import com.mahbub.securitywithsql.entity.DrugPurchase;
+import com.mahbub.securitywithsql.entity.Sales;
 import com.mahbub.securitywithsql.entity.Summary;
-import com.mahbub.securitywithsql.repo.*;
+
+import com.mahbub.securitywithsql.repo.DrugRepo;
+import com.mahbub.securitywithsql.repo.SalesRepo;
+import com.mahbub.securitywithsql.repo.SummaryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,86 +19,86 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.UUID;
 
 @Controller
-@RequestMapping(value = "/pur")
-public class DrugPurchaseController {
+@RequestMapping(value = "/sales")
+public class SalesController {
 
     @Autowired
     private DrugRepo drugRepo;
 
     @Autowired
-    private DrugPurchaseRepo purchaseRepo;
+    private SalesRepo salesRepo;
 
     @Autowired
     private SummaryRepo summaryRepo;
 
 
-    @GetMapping(value = "/addpurchase")
-    public String addShow(DrugPurchase purchase, Model model) {
-        model.addAttribute("purchase", new DrugPurchase());
+    @GetMapping(value = "/addsales")
+    public String addShow(Sales sales, Model model) {
+        model.addAttribute("sales", new Sales());
 
         model.addAttribute("druglist", this.drugRepo.findAll());
-        return "purchases/purchase";
+        return "saless/sales";
 
     }
 
-    @PostMapping(value = "/addpurchase")
-    public String purchaseSave(@Valid DrugPurchase purchase, BindingResult bindingResult, Model model) {
+    @PostMapping(value = "/addsales")
+    public String salesSave(@Valid Sales sales, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("druglist", this.drugRepo.findAll());
-            return "pruchases/purchase";
+            return "saless/sales";
         }
-        purchase.setPurchasedate(new Date());
-        this.purchaseRepo.save(purchase);
-        model.addAttribute("purchase", new DrugPurchase());
+
+        this.salesRepo.save(sales);
+        model.addAttribute("sales", new Sales());
         model.addAttribute("success", "Congratulations! Data save sucessfully");
         model.addAttribute("druglist", this.drugRepo.findAll());
         //Summar save
         try {
 
-            Summary summary = this.summaryRepo.findByDrugName(purchase.getDrug().getDrugName());
-            int avialQty = summary.getAvailableQty() + purchase.getQty();
+            Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
+            int avialQty = summary.getAvailableQty() - sales.getQty();
             summary.setAvailableQty(avialQty);
+            int totalSold=summary.getSoldQty() + sales.getQty();
+            summary.setSoldQty(totalSold);
             summary.setLastUpdate(new Date());
-            summary.setTotalQty(summary.getTotalQty() + purchase.getQty());
             summaryRepo.save(summary);
 
         } catch (NullPointerException ne) {
             Summary summary1 = new Summary();
-            summary1.setDrugName(purchase.getDrug().getDrugName());
-            summary1.setDrugCode(purchase.getDrug().getDrugCode());
-            summary1.setTotalQty(purchase.getQty());
-            summary1.setSoldQty(0);
-            summary1.setAvailableQty(purchase.getQty());
+            summary1.setDrugName(sales.getDrug().getDrugName());
+            summary1.setDrugCode(sales.getDrug().getDrugCode());
+            summary1.setTotalQty(sales.getQty());
+            summary1.setSoldQty(sales.getQty());
+            summary1.setAvailableQty(sales.getQty());
             summary1.setLastUpdate(new Date());
 
-//            summary1.setPurchase(purchase.getDrug().getId());
+//            summary1.setPurchase(sales.getDrug().getId());
             summaryRepo.save(summary1);
 
         }
 
 
-        return "redirect:/pur/listpurchase";
+        return "redirect:/sales/listsales";
     }
 
 
-    @GetMapping(value = "/listpurchase")
-    public String purchaseIndex(Model model) {
-        model.addAttribute("purchaselist", this.purchaseRepo.findAll());
-        return "purchases/list-purchase";
+    @GetMapping(value = "/listsales")
+    public String salesIndex(Model model) {
+        model.addAttribute("saleslist", this.salesRepo.findAll());
+        return "saless/list-sales";
     }
 
 
 
-    @GetMapping(value = "/delpurchase/{id}")
-    public String purchasedel(@PathVariable("id") Long id) {
+    @GetMapping(value = "/delsales/{id}")
+    public String salesDel(@PathVariable("id") Long id) {
         if (id != null) {
-            this.purchaseRepo.deleteById(id);
+            this.salesRepo.deleteById(id);
 
         }
-        return "redirect:/pur/listpurchase";
+        return "redirect:/sales/listsales";
 
     }
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+
+        #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+
+
+           <table id="customers">
+               <tr>
+                   <th>ID</th>
+                   <th>Drug_Name</th>
+                   <th>Quantity</th>
+                   <th>UnitPrice</th>
+                   <th>TotalPrice</th>
+                   <th>sales_date</th>
+                   <th>Action</th>
+               </tr>
+
+               <tr th:each="s : ${saleslist}">
+                   <td th:text="${s.id}"></td>
+
+                   <td> <span th:each="d : ${s.drug}">
+                           <span th:text="${d.drugName}"></span>
+                       </span> </td>
+
+                   <td th:text="${s.qty}"></td>
+                   <td th:text="${s.unitPrice}"></td>
+                   <td th:text="${s.totalPrice}"></td>
+                   <td th:text="${s.salseDate}"></td>
+
+                   <!--<td><a th:href="@{'/purchase/editpurchase/' + ${p.id}}">Edit</a></td>-->
+                   <td><a th:href="@{'/sales/delsales/' + ${s.id}}">Del</a></td>
+               </tr>
+
+
+           </table>
+
+
+
+
+</div>
+</body>
+</html>

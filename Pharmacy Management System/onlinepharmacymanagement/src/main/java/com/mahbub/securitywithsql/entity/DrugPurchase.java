@@ -25,8 +25,8 @@ public class DrugPurchase {
     private double unitPrice;
     private double totalPrice;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date purchasedate;
 
 

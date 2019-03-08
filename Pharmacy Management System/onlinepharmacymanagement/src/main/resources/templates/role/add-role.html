@@ -19,8 +19,6 @@
         }
 
 
-
-
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -36,13 +34,15 @@
 
             <div class="form-panel">
 
-                <form role="form" class="form-horizontal style-form" th:object="${role}" th:action="@{/role/addrole}" th:method="POST">
+                <form role="form" class="form-horizontal style-form" th:object="${role}" th:action="@{/role/addrole}"
+                      th:method="POST">
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Role Name</label>
                         <div class="col-lg-10">
                             <span th:class="mm" th:text="${success}"></span>
                             <span th:class="err" th:text="${exist}"></span>
-                            <input type="text" placeholder="Enter Unique Role Name" id="f-name" class="form-control" th:field="*{rolename}" required="true">
+                            <input type="text" placeholder="Enter Unique Role Name" id="f-name" class="form-control"
+                                   th:field="*{rolename}" required="true">
 
                         </div>
                     </div>
@@ -50,7 +50,10 @@
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
                             <button class="btn btn-theme" type="submit">Submit</button>
+                            <button class="btn btn-theme" type="reset">Reset</button>
                         </div>
+
+
                     </div>
                 </form>
             </div>

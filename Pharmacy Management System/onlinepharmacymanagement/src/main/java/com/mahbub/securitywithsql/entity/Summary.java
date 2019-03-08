@@ -29,11 +29,14 @@ public class Summary {
     @JoinColumn(name = "drugPurchase_id", unique = true)
     private DrugPurchase purchase;
 
+    @OneToOne
+    @JoinColumn(name = "sales_id", unique = true)
+    private Sales sales;
+
     public Summary() {
     }
 
-
-    public Summary(String drugName, String drugCode, int totalQty, int soldQty, int availableQty, Date lastUpdate, DrugPurchase purchase) {
+    public Summary(String drugName, String drugCode, int totalQty, int soldQty, int availableQty, Date lastUpdate, DrugPurchase purchase, Sales sales) {
         this.drugName = drugName;
         this.drugCode = drugCode;
         this.totalQty = totalQty;
@@ -41,6 +44,7 @@ public class Summary {
         this.availableQty = availableQty;
         this.lastUpdate = lastUpdate;
         this.purchase = purchase;
+        this.sales = sales;
     }
 
     public Long getId() {
@@ -107,6 +111,14 @@ public class Summary {
         this.purchase = purchase;
     }
 
+    public Sales getSales() {
+        return sales;
+    }
+
+    public void setSales(Sales sales) {
+        this.sales = sales;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -119,11 +131,12 @@ public class Summary {
                 Objects.equals(drugName, summary.drugName) &&
                 Objects.equals(drugCode, summary.drugCode) &&
                 Objects.equals(lastUpdate, summary.lastUpdate) &&
-                Objects.equals(purchase, summary.purchase);
+                Objects.equals(purchase, summary.purchase) &&
+                Objects.equals(sales, summary.sales);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, drugName, drugCode, totalQty, soldQty, availableQty, lastUpdate, purchase);
+        return Objects.hash(id, drugName, drugCode, totalQty, soldQty, availableQty, lastUpdate, purchase, sales);
     }
 }

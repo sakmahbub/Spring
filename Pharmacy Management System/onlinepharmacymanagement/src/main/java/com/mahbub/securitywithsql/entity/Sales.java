@@ -15,26 +15,28 @@ public class Sales {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "drug_id", nullable = false)
+    private Drug drug;
 
-    private String drugName;
-    private Long qty;
-    private Long unitPrice;
-    private Long totalPrice;
+    private int qty;
+    private double unitPrice;
+    private double totalPrice;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date SalseDate;
+    private Date salseDate=new Date();
 
 
     public Sales() {
     }
 
-    public Sales(String drugName, Long qty, Long unitPrice, Long totalPrice, Date salseDate) {
-        this.drugName = drugName;
+    public Sales(Drug drug, int qty, double unitPrice, double totalPrice, Date salseDate) {
+        this.drug = drug;
         this.qty = qty;
         this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
-        SalseDate = salseDate;
+        this.salseDate = salseDate;
     }
 
     public Long getId() {
@@ -45,44 +47,44 @@ public class Sales {
         this.id = id;
     }
 
-    public String getDrugName() {
-        return drugName;
+    public Drug getDrug() {
+        return drug;
     }
 
-    public void setDrugName(String drugName) {
-        this.drugName = drugName;
+    public void setDrug(Drug drug) {
+        this.drug = drug;
     }
 
-    public Long getQty() {
+    public int getQty() {
         return qty;
     }
 
-    public void setQty(Long qty) {
+    public void setQty(int qty) {
         this.qty = qty;
     }
 
-    public Long getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Long unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public Long getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Long totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 
     public Date getSalseDate() {
-        return SalseDate;
+        return salseDate;
     }
 
     public void setSalseDate(Date salseDate) {
-        SalseDate = salseDate;
+        this.salseDate = salseDate;
     }
 
     @Override
@@ -90,16 +92,16 @@ public class Sales {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sales sales = (Sales) o;
-        return Objects.equals(id, sales.id) &&
-                Objects.equals(drugName, sales.drugName) &&
-                Objects.equals(qty, sales.qty) &&
-                Objects.equals(unitPrice, sales.unitPrice) &&
-                Objects.equals(totalPrice, sales.totalPrice) &&
-                Objects.equals(SalseDate, sales.SalseDate);
+        return qty == sales.qty &&
+                Double.compare(sales.unitPrice, unitPrice) == 0 &&
+                Double.compare(sales.totalPrice, totalPrice) == 0 &&
+                Objects.equals(id, sales.id) &&
+                Objects.equals(drug, sales.drug) &&
+                Objects.equals(salseDate, sales.salseDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, drugName, qty, unitPrice, totalPrice, SalseDate);
+        return Objects.hash(id, drug, qty, unitPrice, totalPrice, salseDate);
     }
 }

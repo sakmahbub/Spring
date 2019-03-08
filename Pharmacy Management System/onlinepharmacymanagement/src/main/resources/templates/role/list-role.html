@@ -4,9 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <link th:href="@{lib/advanced-datatable/css/demo_page.css}" rel="stylesheet" />
-    <link th:href="@{lib/advanced-datatable/css/demo_table.css}" rel="stylesheet" />
-    <link rel="stylesheet" th:href="@{lib/advanced-datatable/css/DT_bootstrap.css}" />
+    <link th:href="@{/lib/advanced-datatable/css/demo_page.css}" rel="stylesheet" />
+    <link th:href="@{/lib/advanced-datatable/css/demo_table.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/lib/advanced-datatable/css/DT_bootstrap.css}" />
     <style>
 
         #customers {
@@ -102,6 +102,9 @@
 
 </div>
 
+<script type="text/javascript" language="javascript" th:src="@{/lib/advanced-datatable/js/jquery.js}"></script>
+<script type="text/javascript" language="javascript" th:src="@{/lib/advanced-datatable/js/jquery.dataTables.js}"></script>
+<script type="text/javascript" th:src="@{/lib/advanced-datatable/js/DT_bootstrap.js}"></script>
 
 <script type="text/javascript">
     /* Formating function for row details */
