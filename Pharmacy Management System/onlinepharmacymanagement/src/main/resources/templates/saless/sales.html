@@ -29,14 +29,12 @@
 <body>
 <div layout:fragment="custom-content">
 
-    purchase
-
   <div class="sform" align="center">
     <h1>Drug Sales Form</h1>
 
-<!--
-        <span th:class="mm" th:text="${success}"></span>
--->
+      <span th:class="err" th:text="${rejectMsg}"></span>
+      <span th:class="mm" th:text="${success}"></span>
+
 
         <br/>
 

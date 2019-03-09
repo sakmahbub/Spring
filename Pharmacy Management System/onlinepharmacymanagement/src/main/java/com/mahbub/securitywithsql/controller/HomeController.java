@@ -21,6 +21,14 @@ private UserRepo repo;
     @Autowired
     private RoleRepo roleRepo;
 
+
+    @GetMapping(value = "/tt")
+    public String suprAdminView(){
+        return "role/testlist";
+
+    }
+
+
     @GetMapping(value = "/sa")
     public String superAdminView(){
         return "sadmin/sad";

@@ -49,38 +49,34 @@ public class SalesController {
             model.addAttribute("druglist", this.drugRepo.findAll());
             return "saless/sales";
         }
-
-        this.salesRepo.save(sales);
-        model.addAttribute("sales", new Sales());
-        model.addAttribute("success", "Congratulations! Data save sucessfully");
-        model.addAttribute("druglist", this.drugRepo.findAll());
-        //Summar save
         try {
+        Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
+        if(sales.getQty() <= summary.getAvailableQty()) {
+            this.salesRepo.save(sales);
+            model.addAttribute("sales", new Sales());
+            model.addAttribute("success", "Congratulations! Data save sucessfully");
+            model.addAttribute("druglist", this.drugRepo.findAll());
+            //Summar save
 
-            Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
+
             int avialQty = summary.getAvailableQty() - sales.getQty();
             summary.setAvailableQty(avialQty);
-            int totalSold=summary.getSoldQty() + sales.getQty();
+            int totalSold = summary.getSoldQty() + sales.getQty();
             summary.setSoldQty(totalSold);
             summary.setLastUpdate(new Date());
             summaryRepo.save(summary);
-
-        } catch (NullPointerException ne) {
-            Summary summary1 = new Summary();
-            summary1.setDrugName(sales.getDrug().getDrugName());
-            summary1.setDrugCode(sales.getDrug().getDrugCode());
-            summary1.setTotalQty(sales.getQty());
-            summary1.setSoldQty(sales.getQty());
-            summary1.setAvailableQty(sales.getQty());
-            summary1.setLastUpdate(new Date());
-
-//            summary1.setPurchase(sales.getDrug().getId());
-            summaryRepo.save(summary1);
+        }else{
+            model.addAttribute("rejectMsg", "You don't have sufficient Qty");
+            model.addAttribute("druglist", this.drugRepo.findAll());
 
         }
 
+        } catch (NullPointerException ne) {
+            ne.printStackTrace();
+        }
 
-        return "redirect:/sales/listsales";
+
+        return "saless/sales";
     }
 
 

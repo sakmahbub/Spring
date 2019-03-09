@@ -70,8 +70,7 @@ public class DrugPurchaseController {
             summary1.setSoldQty(0);
             summary1.setAvailableQty(purchase.getQty());
             summary1.setLastUpdate(new Date());
-
-//            summary1.setPurchase(purchase.getDrug().getId());
+            summary1.setDrug(purchase.getDrug());
             summaryRepo.save(summary1);
 
         }

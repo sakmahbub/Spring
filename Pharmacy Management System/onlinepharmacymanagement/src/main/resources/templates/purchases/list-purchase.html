@@ -52,14 +52,17 @@
                <tr th:each="p : ${purchaselist}">
                    <td th:text="${p.id}"></td>
 
-                   <td> <span th:each="d : ${p.drug}">
-                           <span th:text="${d.drugName}"></span>
-                       </span> </td>
+                   <!--<td> <span th:each="d : ${p.drug}">-->
+                           <!--<span th:text="${d.drugName}"></span>-->
+                       <!--</span> </td>-->
+
+                   <td th:text="${p.drug.drugName}"></td>
 
                    <td th:text="${p.qty}"></td>
                    <td th:text="${p.unitPrice}"></td>
                    <td th:text="${p.totalPrice}"></td>
                    <td th:text="${p.purchasedate}"></td>
+
 
                    <!--<td><a th:href="@{'/purchase/editpurchase/' + ${p.id}}">Edit</a></td>-->
                    <td><a th:href="@{'/purchase/delpurchase/' + ${p.id}}">Del</a></td>

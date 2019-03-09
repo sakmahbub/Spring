@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface DrugRepo extends JpaRepository<Drug, Long> {
     Drug findByDrugName(String drugName);
-
+    Drug findByDrugCode(String dc);
 
 }

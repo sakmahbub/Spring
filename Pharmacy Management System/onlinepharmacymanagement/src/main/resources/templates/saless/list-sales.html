@@ -41,6 +41,8 @@
            <table id="customers">
                <tr>
                    <th>ID</th>
+                   <th>Brand</th>
+                   <th>Category</th>
                    <th>Drug_Name</th>
                    <th>Quantity</th>
                    <th>UnitPrice</th>
@@ -51,10 +53,9 @@
 
                <tr th:each="s : ${saleslist}">
                    <td th:text="${s.id}"></td>
-
-                   <td> <span th:each="d : ${s.drug}">
-                           <span th:text="${d.drugName}"></span>
-                       </span> </td>
+                   <td th:text="${s.drug.getBrands().getBrandName()}"></td>
+                   <td th:text="${s.drug.getCategories().getCategoryName()}"></td>
+                   <td th:text="${s.drug.drugName}"></td>
 
                    <td th:text="${s.qty}"></td>
                    <td th:text="${s.unitPrice}"></td>
