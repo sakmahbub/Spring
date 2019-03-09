@@ -6,18 +6,17 @@
 <head>
 
     <style>
-            .err{
-                color: red;
-            }
-            .mm{
-                color: green;
-            }
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
         .sform{
             background-color: aqua;
 
 
         }
-
 
 
 
@@ -30,74 +29,76 @@
 <body>
 <div layout:fragment="custom-content">
 
- <div class="sform" align="center">
-    <h1>User Adding Form</h1>
+    <h3><i class="fa fa-user"></i> Edit User</h3>
 
-        <span th:class="mm" th:text="${success}"></span>
+    <!-- BASIC FORM VALIDATION -->
+    <div class="row mt">
+        <div class="col-lg-12">
 
-        <br/>
+            <div class="form-panel">
 
+                <form role="form" class="form-horizontal style-form"  th:object="${user}" th:action="@{/user/edituser/} + ${id}"  th:method="POST">
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Roles</label>
+                        <div class="col-lg-10">
+                            <span th:class="mm" th:text="${success}"></span>
+                            <select th:field="*{roles}" multiple id="f-rname" class="form-control">
+                                <option th:each="role : ${rolelistAdd}" th:value="${role.id}"><span th:text="${role.rolename}"></span></option>
+                            </select>
 
+                        </div>
+                    </div>
 
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="Enter Name" id="f-name" class="form-control"
+                                   th:field="*{name}" required="true">
+                        </div>
+                    </div>
 
-        <form action="#" th:object="${user}" th:action="@{/user/edituser/} + ${id}"  th:method="POST" enctype="multipart/form-data">
-
-            <table>
-
-                <tr>
-                    <td>Roles:</td>
-                    <td>
-                       <select th:field="*{roles}" multiple>
-                           <option th:each="role : ${rolelistAdd}" th:value="${role.id}"><span th:text="${role.rolename}"></span></option>
-                       </select>
-
-                    </td>
-                    <td th:class="err" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></td>
-                </tr>
-
-
-                <tr>
-                    <td>Name:</td>
-                    <td><input type="text" th:field="*{name}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
-                </tr>
-
-
-
-
-                <tr>
-                    <td>Email:</td>
-                    <td><input type="email" th:field="*{email}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
-                </tr>
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="email" placeholder="Enter Valid Email" id="f-email" class="form-control"
+                                   th:field="*{email}" required="true">
+                        </div>
+                    </div>
 
 
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">UserName</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="Enter unique UserName" id="f-username" class="form-control"
+                                   th:field="*{userName}" required="true">
+                        </div>
+                    </div>
 
 
-                <tr>
-                    <td>UserName:</td>
-                    <td><input type="text" th:field="*{userName}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></td>
-                </tr>
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Password</label>
+                        <div class="col-lg-10">
+                            <input type="password" placeholder="Enter Password" id="f-password" class="form-control"
+                                   th:field="*{password}" required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-theme" type="submit">Submit</button>
+                            <button class="btn btn-theme" type="reset">Reset</button>
+                        </div>
 
 
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" th:field="*{password}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
-                </tr>
-
-
-
-                <tr>
-                    <td></td>
-                    <td><button type="submit">Save</button></td>
-                </tr>
-
-            </table>
-
-        </form>
+                    </div>
+                </form>
+            </div>
+            <!-- /form-panel -->
+        </div>
+        <!-- /col-lg-12 -->
     </div>
+
+
+
 </div>
 </body>
 </html>

@@ -1,77 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org/"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <style>
 
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        #customers td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-        #customers tr:hover {background-color: #ddd;}
-
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-    </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div layout:fragment="custom-content">
+    <h3><i class="fa fa-book"></i> Purchase list</h3>
+    <div class="row mb">
+        <!-- page start-->
+        <div class="content-panel">
+            <div class="adv-table">
+                <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered"
+                       id="hidden-table-info">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Drug_Name</th>
+                        <th>Quantity</th>
+                        <th>Unit_Price</th>
+                        <th>Total_Price</th>
+                        <th>Purchase_Date</th>
+                        <th>Action</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+
+                    <tr class="gradeA" th:each="p : ${purchaselist}">
+                        <td th:text="${p.id}"></td>
+
+                        <!--<td> <span th:each="d : ${p.drug}">-->
+                        <!--<span th:text="${d.drugName}"></span>-->
+                        <!--</span> </td>-->
+
+                        <td th:text="${p.drug.drugName}"></td>
+
+                        <td th:text="${p.qty}"></td>
+                        <td th:text="${p.unitPrice}"></td>
+                        <td th:text="${p.totalPrice}"></td>
+                        <td th:text="${p.purchasedate}"></td>
 
 
-
-           <table id="customers">
-               <tr>
-                   <th>ID</th>
-                   <th>Drug_Name</th>
-                   <th>Quantity</th>
-                   <th>UnitPrice</th>
-                   <th>TotalPrice</th>
-                   <th>PurchaseDate</th>
-                   <th>Action</th>
-               </tr>
-
-               <tr th:each="p : ${purchaselist}">
-                   <td th:text="${p.id}"></td>
-
-                   <!--<td> <span th:each="d : ${p.drug}">-->
-                           <!--<span th:text="${d.drugName}"></span>-->
-                       <!--</span> </td>-->
-
-                   <td th:text="${p.drug.drugName}"></td>
-
-                   <td th:text="${p.qty}"></td>
-                   <td th:text="${p.unitPrice}"></td>
-                   <td th:text="${p.totalPrice}"></td>
-                   <td th:text="${p.purchasedate}"></td>
+                        <td class="center">
+                            <a th:href="@{'/purchase/delpurchase/' + ${p.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                        </td>
 
 
-                   <!--<td><a th:href="@{'/purchase/editpurchase/' + ${p.id}}">Edit</a></td>-->
-                   <td><a th:href="@{'/purchase/delpurchase/' + ${p.id}}">Del</a></td>
-               </tr>
+                    </tr>
 
 
-           </table>
+                    </tbody>
+                </table>
 
-
+            </div>
+        </div>
+        <!-- page end-->
+    </div>
+    <!-- /row -->
 
 
 </div>

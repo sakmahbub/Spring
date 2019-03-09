@@ -29,94 +29,94 @@
 <body>
 <div layout:fragment="custom-content">
 
-  <div class="sform" align="center">
-    <h1>Drug Adding Form</h1>
+    <h3><i class="fa fa-ticket"></i> ADD Drug</h3>
 
-        <span th:class="mm" th:text="${success}"></span>
+    <!-- BASIC FORM VALIDATION -->
+    <div class="row mt">
+        <div class="col-lg-12">
 
-        <br/>
+            <div class="form-panel">
 
-
-
-
-        <form action="#" th:object="${drug}" th:action="@{/drug/adddrug}"  th:method="POST" enctype="multipart/form-data">
-            <table>
-
-                <tr>
-                    <td>DrugName:</td>
-                    <td><input type="text" th:field="*{drugName}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('drugName')}" th:errors="*{drugName}"></td>
-                </tr>
+                <form role="form" class="form-horizontal style-form" th:object="${drug}" th:action="@{/drug/adddrug}"  th:method="POST" >
 
 
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Name</label>
+                        <div class="col-lg-10">
+                            <span th:class="mm" th:text="${success}"></span>
+                            <input type="text" placeholder="Enter Name" id="f-name" class="form-control"
+                                   th:field="*{drugName}" required="true">
+                        </div>
+                    </div>
 
-                <tr>
-                    <td>Categorie:</td>
-                    <td>
-                       <select th:field="*{categories}">
-                           <option th:each="c : ${categorylist}" th:value="${c.categoryId}"><span th:text="${c.categoryName}"></span></option>
-                       </select>
-
-                    </td>
-                    <td th:class="err" th:if="${#fields.hasErrors('categories')}" th:errors="*{categories}"></td>
-                </tr>
-
-                <tr>
-                    <td>Drugtype:</td>
-                    <td>
-                        <select th:field="*{drugtypes}">
-                            <option th:each="t : ${typelist}" th:value="${t.typeId}"><span th:text="${t.typeName}"></span></option>
-                        </select>
-
-                    </td>
-                    <td th:class="err" th:if="${#fields.hasErrors('drugtypes')}" th:errors="*{drugtypes}"></td>
-                </tr>
-
-                <tr>
-                    <td>Brand:</td>
-                    <td>
-                        <select th:field="*{brands}">
-                            <option th:each="b : ${brandlist}" th:value="${b.brandId}"><span th:text="${b.brandName}"></span></option>
-                        </select>
-
-                    </td>
-                    <td th:class="err" th:if="${#fields.hasErrors('brands')}" th:errors="*{brands}"></td>
-                </tr>
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Categories</label>
+                        <div class="col-lg-10">
+                            <select th:field="*{categories}" id="f-cat" class="form-control">
+                                <option th:each="c : ${categorylist}" th:value="${c.categoryId}"><span th:text="${c.categoryName}"></span></option>
+                            </select>
+                        </div>
+                    </div>
 
 
-
-                <tr>
-                    <td>Dimension:</td>
-                    <td><input type="text" th:field="*{dimension}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('dimension')}" th:errors="*{dimension}"></td>
-                </tr>
-
-
-                <tr>
-                    <td>Antidote:</td>
-                    <td><input type="text" th:field="*{antidote}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('antidote')}" th:errors="*{antidote}"></td>
-                </tr>
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Drugtypes</label>
+                        <div class="col-lg-10">
+                            <select th:field="*{drugtypes}" id="f-dtype" class="form-control">
+                                <option th:each="t : ${typelist}" th:value="${t.typeId}"><span th:text="${t.typeName}"></span></option>
+                            </select>
+                        </div>
+                    </div>
 
 
-                <tr>
-                    <td>Note:</td>
-                    <td><input type="text" th:field="*{note}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></td>
-                </tr>
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Brands</label>
+                        <div class="col-lg-10">
+                            <select th:field="*{brands}" id="f-brand" class="form-control">
+                                <option th:each="b : ${brandlist}" th:value="${b.brandId}"><span th:text="${b.brandName}"></span></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Dimension</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="Enter Dimension" id="f-dimension" class="form-control"
+                                   th:field="*{dimension}" required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Antidote</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="Enter Antidote" id="f-antidote" class="form-control"
+                                   th:field="*{antidote}" required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Note</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="Write Note" id="f-note" class="form-control"
+                                   th:field="*{note}" required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-theme" type="submit">Submit</button>
+                            <button class="btn btn-theme" type="reset">Reset</button>
+                        </div>
 
 
-
-
-                <tr>
-                    <td></td>
-                    <td><button type="submit">Save</button></td>
-                </tr>
-
-            </table>
-
-        </form>
+                    </div>
+                </form>
+            </div>
+            <!-- /form-panel -->
+        </div>
+        <!-- /col-lg-12 -->
     </div>
+
+
 </div>
 </body>
 </html>

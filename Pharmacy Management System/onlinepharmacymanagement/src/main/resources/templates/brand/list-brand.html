@@ -1,64 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org/"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <style>
 
-        #customers {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        #customers td, #customers th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-        #customers tr:hover {background-color: #ddd;}
-
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-    </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div layout:fragment="custom-content">
-
-        <form>
-           <table id="customers">
+    <h3><i class="fa fa-home"></i> Brand list</h3>
+    <div class="row mb">
+        <!-- page start-->
+        <div class="content-panel">
+            <div class="adv-table">
+                <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
                <tr>
                    <th>ID</th>
                    <th>Brand_name</th>
                    <th>Brand_Location</th>
                    <th>Brand_TelNo</th>
-                   <th colspan="2">Action</th>
+                   <th>Action</th>
                </tr>
-
-               <tr th:each="bran : ${brandlist}">
+            </thead>
+            <tbody>
+               <tr class="gradeA" th:each="bran : ${brandlist}">
                    <td th:text="${bran.brandId}"></td>
                    <td th:text="${bran.brandName}"></td>
                    <td th:text="${bran.brandLocation}"></td>
                    <td th:text="${bran.brandTelNo}"></td>
 
-                   <td><a th:href="@{'/brand/editbrand/' + ${bran.brandId}}">Edit</a></td>
-                   <td><a th:href="@{'/brand/delbrand/' + ${bran.brandId}}">Del</a></td>
+                   <td class="center"><a th:href="@{'/brand/editbrand/' + ${bran.brandId}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
+                       <a th:href="@{'/brand/delbrand/' + ${bran.brandId}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                   </td>
+
                </tr>
 
 
+               </tbody>
            </table>
-        </form>
+
+</div>
+</div>
+<!-- page end-->
+</div>
+<!-- /row -->
 
 
 

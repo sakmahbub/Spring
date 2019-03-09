@@ -29,65 +29,68 @@
 <body>
 <div layout:fragment="custom-content">
 
-  <div class="sform" align="center">
-    <h1>Drug Purchase Form</h1>
+    <h3><i class="fa fa-book"></i> Drug Purchase</h3>
+
+    <!-- BASIC FORM VALIDATION -->
+    <div class="row mt">
+        <div class="col-lg-12">
+
+            <div class="form-panel">
+
+                <form role="form" class="form-horizontal style-form" th:object="${purchase}" th:action="@{/pur/addpurchase}"  th:method="POST">
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">DrugName</label>
+                        <div class="col-lg-10">
+                            <select th:field="*{drug}" id="f-dname" class="form-control">
+                                <option th:each="d : ${druglist}" th:value="${d.id}"><span th:text="${d.drugName}"></span></option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Quantity</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="0" id="f-qty" class="form-control"
+                                   th:field="*{qty}" required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">UnitPrice</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="0.0" id="f-unit" class="form-control"
+                                   th:field="*{unitPrice}" required="true">
+                        </div>
+                    </div>
 
 
-        <span th:class="mm" th:text="${success}"></span>
-
-
-        <br/>
-
-
-
-
-        <form action="#" th:object="${purchase}" th:action="@{/pur/addpurchase}"  th:method="POST" enctype="multipart/form-data">
-            <table>
-
-
-                <tr>
-                    <td>DrugName:</td>
-                    <td>
-                       <select th:field="*{drug}">
-                           <option th:each="d : ${druglist}" th:value="${d.id}"><span th:text="${d.drugName}"></span></option>
-                       </select>
-
-                    </td>
-                    <td th:class="err" th:if="${#fields.hasErrors('drug')}" th:errors="*{drug}"></td>
-                </tr>
-
-
-                <tr>
-                    <td>Quantity:</td>
-                    <td><input type="text" th:field="*{qty}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('qty')}" th:errors="*{qty}"></td>
-                </tr>
-
-
-                <tr>
-                    <td>UnitPrice:</td>
-                    <td><input type="text" th:field="*{unitPrice}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}"></td>
-                </tr>
-
-
-                <tr>
-                    <td>TotalPrice:</td>
-                    <td><input type="text" th:field="*{totalPrice}"/></td>
-                    <td th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}"></td>
-                </tr>
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">TotalPrice</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="0.0" id="f-tprice" class="form-control"
+                                   th:field="*{totalPrice}" required="true">
+                        </div>
+                    </div>
 
 
 
-                <tr>
-                    <td></td>
-                    <td><button type="submit">Save</button></td>
-                </tr>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-theme" type="submit">Submit</button>
+                            <button class="btn btn-theme" type="reset">Reset</button>
+                        </div>
 
-            </table>
 
-        </form>
+                    </div>
+                </form>
+            </div>
+            <!-- /form-panel -->
+        </div>
+        <!-- /col-lg-12 -->
     </div>
+
+
 </div>
 </body>
 </html>
