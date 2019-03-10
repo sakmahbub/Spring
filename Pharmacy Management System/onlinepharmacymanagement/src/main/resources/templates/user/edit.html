@@ -6,12 +6,12 @@
 <head>
 
     <style>
-            .err{
-                color: red;
-            }
-            .mm{
-                color: green;
-            }
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
         .sform{
             background-color: aqua;
 
@@ -29,7 +29,7 @@
 <body>
 <div layout:fragment="custom-content">
 
-    <h3><i class="fa fa-user"></i> Add User</h3>
+    <h3><i class="fa fa-user"></i> Edit User</h3>
 
     <!-- BASIC FORM VALIDATION -->
     <div class="row mt">
@@ -37,12 +37,11 @@
 
             <div class="form-panel">
 
-                <form role="form" class="form-horizontal style-form" th:object="${user}" th:action="@{/user/adduser}"  th:method="POST">
+                <form role="form" class="form-horizontal style-form"  th:object="${user}" th:action="@{/user/edit/} + ${id}"  th:method="POST">
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Roles</label>
                         <div class="col-lg-10">
                             <span th:class="mm" th:text="${success}"></span>
-                            <span th:class="err" th:text="${exist}"></span>
                             <select th:field="*{roles}" multiple id="f-rname" class="form-control">
                                 <option th:each="role : ${rolelistAdd}" th:value="${role.id}"><span th:text="${role.rolename}"></span></option>
                             </select>

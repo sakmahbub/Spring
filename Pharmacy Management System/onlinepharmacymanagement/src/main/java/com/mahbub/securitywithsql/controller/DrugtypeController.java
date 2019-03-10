@@ -24,19 +24,19 @@ public class DrugtypeController {
     private DrugtypeRepo drugtypeRepo;
 
 
-    @GetMapping(value = "addtype")
+    @GetMapping(value = "add")
     public String addShow(Model model) {
         model.addAttribute("type",new Drugtype());
 
-        return "drugtype/add-type";
+        return "drugtype/add";
 
     }
 
 
-    @PostMapping(value = "addtype")
+    @PostMapping(value = "add")
     public String DrugtypeSave(@Valid Drugtype drugtype, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "drugtype/add-type";
+            return "drugtype/add";
         } else {
             if (drugtype != null) {
                 Drugtype drugtype1 = this.drugtypeRepo.findByTypeName(drugtype.getTypeName());
@@ -54,31 +54,31 @@ public class DrugtypeController {
         }
 
 
-        return "drugtype/add-type";
+        return "drugtype/add";
     }
 
 
-    @GetMapping(value = "listtype")
+    @GetMapping(value = "list")
     public String DrugtypeIndex(Model model) {
         model.addAttribute("typelist", drugtypeRepo.findAll());
-        return "drugtype/list-type";
+        return "drugtype/list";
     }
 
 
 
-    @GetMapping(value = "edittype/{id}")
+    @GetMapping(value = "edit/{id}")
     public String editShow(Model model, @PathVariable("id") Long id){
         model.addAttribute("type", this.drugtypeRepo.getOne(id));
 
-        return "drugtype/edit-type";
+        return "drugtype/edit";
 
     }
 
 
-    @PostMapping(value = "edittype/{id}")
+    @PostMapping(value = "edit/{id}")
     public String DrugtypeEdit(@Valid Drugtype drugtype, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
-            return "drugtype/edit-type";
+            return "drugtype/edit";
         } else {
             if (drugtype != null) {
                 Drugtype drugtype1 = this.drugtypeRepo.findByTypeName(drugtype.getTypeName());
@@ -96,12 +96,12 @@ public class DrugtypeController {
         }
 
 
-        return "drugtype/edit-type";
+        return "drugtype/edit";
     }
 
 
 
-    @GetMapping(value = "deltype/{id}")
+    @GetMapping(value = "del/{id}")
     public String barnddel(@PathVariable("id") Long id) {
         if(id != null){
             this.drugtypeRepo.deleteById(id);

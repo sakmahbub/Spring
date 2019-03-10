@@ -22,17 +22,17 @@ public class RoleController {
     private RoleRepo roleRepo;
 
 
-    @GetMapping(value = "addrole")
+    @GetMapping(value = "add")
     public String addShow(Role role) {
-        return "role/add-role";
+        return "role/add";
 
     }
 
 
-    @PostMapping(value = "addrole")
+    @PostMapping(value = "add")
     public String roleSave(@Valid Role role, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "role/add-role";
+            return "role/add";
         } else {
             if (role != null) {
                 Role role1 = this.roleRepo.findByRolename(role.getRolename());
@@ -50,30 +50,30 @@ public class RoleController {
         }
 
 
-        return "role/add-role";
+        return "role/add";
     }
 
 
-    @GetMapping(value = "listrole")
+    @GetMapping(value = "list")
     public String roleIndex(Model model) {
         model.addAttribute("rolelist", roleRepo.findAll());
-        return "role/list-role";
+        return "role/list";
     }
 
 
 
-    @GetMapping(value = "editrole/{id}")
+    @GetMapping(value = "edit/{id}")
     public String editShow(Model model, @PathVariable("id") Long id){
         model.addAttribute("role", this.roleRepo.getOne(id));
-        return "role/edit-role";
+        return "role/edit";
 
     }
 
 
-    @PostMapping(value = "editrole/{id}")
+    @PostMapping(value = "edit/{id}")
     public String roleEdit(@Valid Role role, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
-            return "role/edit-role";
+            return "role/edit";
         } else {
             if (role != null) {
                 Role role1 = this.roleRepo.findByRolename(role.getRolename());
@@ -92,18 +92,18 @@ public class RoleController {
         }
 
 
-        return "role/edit-role";
+        return "role/edit";
     }
 
 
 
-    @GetMapping(value = "delrole/{id}")
+    @GetMapping(value = "del/{id}")
     public String roledel(@PathVariable("id") Long id) {
         if(id != null){
             this.roleRepo.deleteById(id);
 
         }
-        return "redirect:/role/listrole";
+        return "redirect:/role/list";
 
     }
 

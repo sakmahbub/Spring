@@ -42,22 +42,22 @@ public class DrugController {
     private SummaryRepo summaryRepo;
 
 
-    @GetMapping(value = "/adddrug")
+    @GetMapping(value = "/add")
     public String addShow(Drug drug, Model model) {
         model.addAttribute("brandlist", this.brandRepo.findAll());
         model.addAttribute("categorylist", this.categoryRepo.findAll());
         model.addAttribute("typelist", this.drugtypeRepo.findAll());
-        return "drugs/add-drug";
+        return "drugs/add";
 
     }
 
-    @PostMapping(value = "/adddrug")
+    @PostMapping(value = "/add")
     public String drugSave(@Valid Drug drug, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("brandlist", this.brandRepo.findAll());
             model.addAttribute("categorylist", this.categoryRepo.findAll());
             model.addAttribute("typelist", this.drugtypeRepo.findAll());
-            return "drugs/add-drug";
+            return "drugs/add";
         }
         String drugCode = drug.getCategories().getCategoryName().substring(0, 3) + "-" + drug.getDrugName().substring(0, 3) + "-" + UUID.randomUUID().toString();
         drug.setDrugCode(drugCode);
@@ -69,35 +69,35 @@ public class DrugController {
         model.addAttribute("typelist", this.drugtypeRepo.findAll());
 
 
-        return "drugs/add-drug";
+        return "drugs/add";
     }
 
 
-    @GetMapping(value = "/listdrug")
+    @GetMapping(value = "/list")
     public String drugIndex(Model model) {
         model.addAttribute("druglist", this.drugRepo.findAll());
-        return "drugs/list-drug";
+        return "drugs/list";
     }
 
 
-    @GetMapping(value = "/editdrug/{id}")
+    @GetMapping(value = "/edit/{id}")
     public String editShow(Model model, @PathVariable("id") Long id) {
         model.addAttribute("drug", this.drugRepo.getOne(id));
         model.addAttribute("brandlist", this.brandRepo.findAll());
         model.addAttribute("categorylist", this.categoryRepo.findAll());
         model.addAttribute("typelist", this.drugtypeRepo.findAll());
-        return "drugs/edit-drug";
+        return "drugs/edit";
 
     }
 
 
-    @PostMapping(value = "/editdrug/{id}")
+    @PostMapping(value = "/edit/{id}")
     public String drugEdit(@Valid Drug drug, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("brandlist", this.brandRepo.findAll());
             model.addAttribute("categorylist", this.categoryRepo.findAll());
             model.addAttribute("typelist", this.drugtypeRepo.findAll());
-            return "drugs/edit-drug";
+            return "drugs/edit";
         }
         drug.setId(id);
         this.drugRepo.save(drug);
@@ -107,17 +107,17 @@ public class DrugController {
         model.addAttribute("categorylist", this.categoryRepo.findAll());
         model.addAttribute("typelist", this.drugtypeRepo.findAll());
 
-        return "drugs/edit-drug";
+        return "drugs/edit";
     }
 
 
-    @GetMapping(value = "/deldrug/{id}")
+    @GetMapping(value = "/del/{id}")
     public String drugdel(@PathVariable("id") Long id) {
         if (id != null) {
             this.drugRepo.deleteById(id);
 
         }
-        return "redirect:/drug/listdrug";
+        return "redirect:/drug/list";
 
     }
 

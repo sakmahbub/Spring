@@ -24,17 +24,17 @@ public class BrandController {
     private BrandRepo brandRepo;
 
 
-    @GetMapping(value = "addbrand")
+    @GetMapping(value = "add")
     public String addShow(Brand brand) {
-        return "brand/add-brand";
+        return "brand/add";
 
     }
 
 
-    @PostMapping(value = "addbrand")
+    @PostMapping(value = "add")
     public String brandSave(@Valid Brand brand, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "brand/add-brand";
+            return "brand/add";
         } else {
             if (brand != null) {
                 Brand brand1 = this.brandRepo.findByBrandName(brand.getBrandName());
@@ -52,30 +52,30 @@ public class BrandController {
         }
 
 
-        return "brand/add-brand";
+        return "brand/add";
     }
 
 
-    @GetMapping(value = "listbrand")
+    @GetMapping(value = "list")
     public String brandIndex(Model model) {
         model.addAttribute("brandlist", brandRepo.findAll());
-        return "brand/list-brand";
+        return "brand/list";
     }
 
 
 
-    @GetMapping(value = "editbrand/{id}")
+    @GetMapping(value = "edit/{id}")
     public String editShow(Model model, @PathVariable("id") Long id){
         model.addAttribute("brand", this.brandRepo.getOne(id));
-        return "brand/edit-brand";
+        return "brand/edit";
 
     }
 
 
-    @PostMapping(value = "editbrand/{id}")
+    @PostMapping(value = "edit/{id}")
     public String brandEdit(@Valid Brand brand, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
-            return "brand/edit-brand";
+            return "brand/edit";
                  }
                     brand.setBrandId(id);
                     this.brandRepo.save(brand);
@@ -83,18 +83,18 @@ public class BrandController {
                     model.addAttribute("success", "Brand Edit Successfully");
 
 
-        return "redirect:/brand/listbrand";
+        return "redirect:/brand/list";
     }
 
 
 
-    @GetMapping(value = "delbrand/{id}")
+    @GetMapping(value = "del/{id}")
     public String barnddel(@PathVariable("id") Long id) {
         if(id != null){
             this.brandRepo.deleteById(id);
 
         }
-        return "redirect:/brand/listbrand";
+        return "redirect:/brand/list";
 
     }
 

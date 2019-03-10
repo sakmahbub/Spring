@@ -32,7 +32,7 @@ public class DrugPurchaseController {
     private SummaryRepo summaryRepo;
 
 
-    @GetMapping(value = "/addpurchase")
+    @GetMapping(value = "/add")
     public String addShow(DrugPurchase purchase, Model model) {
         model.addAttribute("purchase", new DrugPurchase());
 
@@ -41,7 +41,7 @@ public class DrugPurchaseController {
 
     }
 
-    @PostMapping(value = "/addpurchase")
+    @PostMapping(value = "/add")
     public String purchaseSave(@Valid DrugPurchase purchase, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("druglist", this.drugRepo.findAll());
@@ -76,25 +76,25 @@ public class DrugPurchaseController {
         }
 
 
-        return "redirect:/pur/listpurchase";
+        return "redirect:/pur/list";
     }
 
 
-    @GetMapping(value = "/listpurchase")
+    @GetMapping(value = "/list")
     public String purchaseIndex(Model model) {
         model.addAttribute("purchaselist", this.purchaseRepo.findAll());
-        return "purchases/list-purchase";
+        return "purchases/list";
     }
 
 
 
-    @GetMapping(value = "/delpurchase/{id}")
+    @GetMapping(value = "/del/{id}")
     public String purchasedel(@PathVariable("id") Long id) {
         if (id != null) {
             this.purchaseRepo.deleteById(id);
 
         }
-        return "redirect:/pur/listpurchase";
+        return "redirect:/pur/list";
 
     }
 

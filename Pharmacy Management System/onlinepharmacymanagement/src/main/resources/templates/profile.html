@@ -40,11 +40,21 @@
                 <form role="form" class="form-horizontal style-form"  th:object="${user}" th:action="@{/profile/} + ${id}"  th:method="POST">
 
 
+                    <div class="form-group has-success">
+
+                        <div class="col-lg-2">
+
+                            <select multiple id="f-rname" class="form-control">
+
+                            </select>
+
+                        </div>
+                    </div>
 
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">Roles</label>
-                        <div class="col-lg-10">
-                                 <span th:each="r : ${user.roles}">
+                        <label class="col-lg-4 control-label">Roles</label>
+                        <div class="col-lg-8">
+                                 <span th:each="r : ${user.roles}" class="form-control" multiple>
                            <span th:text="${r.rolename}"></span>
                        </span>
 
@@ -53,24 +63,24 @@
 
 
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">Name</label>
-                        <div class="col-lg-10">
-                            <span th:text="*{name}" ></span>
+                        <label class="col-lg-4 control-label">Name</label>
+                        <div class="col-lg-8">
+                            <span th:text="*{name}" class="form-control"></span>
                         </div>
                     </div>
 
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">Email</label>
-                        <div class="col-lg-10">
-                            <span th:text="*{email}" ></span>
+                        <label class="col-lg-4 control-label">Email</label>
+                        <div class="col-lg-8">
+                            <span th:text="*{email}" class="form-control"></span>
                         </div>
                     </div>
 
 
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">UserName</label>
-                        <div class="col-lg-10">
-                            <span th:text="*{userName}" ></span>
+                        <label class="col-lg-4 control-label">UserName</label>
+                        <div class="col-lg-8">
+                            <span th:text="*{userName}" class="form-control"></span>
                         </div>
                     </div>
 

@@ -33,18 +33,18 @@ public class UserController {
 
 
 
-    @GetMapping(value = "/adduser")
+    @GetMapping(value = "/add")
     public String addShow(User user, Model model) {
         model.addAttribute("rolelistAdd", this.roleRepo.findAll());
-        return "user/add-user";
+        return "user/add";
 
     }
 
-    @PostMapping(value = "/adduser")
+    @PostMapping(value = "/add")
     public String userSave(@Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("rolelistAdd", this.roleRepo.findAll());
-            return "user/add-user";
+            return "user/add";
         } else {
             if (user != null) {
 
@@ -63,33 +63,33 @@ public class UserController {
         }
         model.addAttribute("rolelistAdd", this.roleRepo.findAll());
 
-        return "user/add-user";
+        return "user/add";
     }
 
 
 
-    @GetMapping(value = "/listuser")
+    @GetMapping(value = "/list")
     public String userIndex(Model model) {
         model.addAttribute("userlist", this.userRepo.findAll());
-        return "user/list-user";
+        return "user/list";
     }
 
 
 
-    @GetMapping(value = "/edituser/{id}")
+    @GetMapping(value = "/edit/{id}")
     public String editShow(Model model, @PathVariable("id") Long id){
         model.addAttribute("user", this.userRepo.getOne(id));
         model.addAttribute("rolelistAdd", this.roleRepo.findAll());
-        return "user/edit-user";
+        return "user/edit";
 
     }
 
 
-    @PostMapping(value = "/edituser/{id}")
+    @PostMapping(value = "/edit/{id}")
     public String userEdit(@Valid User user, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("rolelistAdd", this.roleRepo.findAll());
-            return "user/edit-user";
+            return "user/edit";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setId(id);
@@ -98,19 +98,19 @@ public class UserController {
         model.addAttribute("success", "Congratulations! Data save sucessfully");
         model.addAttribute("rolelistAdd", this.roleRepo.findAll());
 
-        return "user/edit-user";
+        return "user/edit";
     }
 
 
 
 
-    @GetMapping(value = "/deluser/{id}")
+    @GetMapping(value = "/del/{id}")
     public String roledel(@PathVariable("id") Long id) {
         if(id != null){
             this.userRepo.deleteById(id);
 
         }
-        return "redirect:/user/listuser";
+        return "redirect:/user/list";
 
     }
 

@@ -34,7 +34,7 @@ public class SalesController {
     private SummaryRepo summaryRepo;
 
 
-    @GetMapping(value = "/addsales")
+    @GetMapping(value = "/add")
     public String addShow(Sales sales, Model model) {
         model.addAttribute("sales", new Sales());
 
@@ -43,7 +43,7 @@ public class SalesController {
 
     }
 
-    @PostMapping(value = "/addsales")
+    @PostMapping(value = "/add")
     public String salesSave(@Valid Sales sales, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("druglist", this.drugRepo.findAll());
@@ -80,21 +80,21 @@ public class SalesController {
     }
 
 
-    @GetMapping(value = "/listsales")
+    @GetMapping(value = "/list")
     public String salesIndex(Model model) {
         model.addAttribute("saleslist", this.salesRepo.findAll());
-        return "saless/list-sales";
+        return "saless/list";
     }
 
 
 
-    @GetMapping(value = "/delsales/{id}")
+    @GetMapping(value = "/del/{id}")
     public String salesDel(@PathVariable("id") Long id) {
         if (id != null) {
             this.salesRepo.deleteById(id);
 
         }
-        return "redirect:/sales/listsales";
+        return "redirect:/sales/list";
 
     }
 

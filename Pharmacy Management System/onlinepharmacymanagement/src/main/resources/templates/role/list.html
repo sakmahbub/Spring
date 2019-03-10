@@ -31,8 +31,8 @@
                         <td th:text="${rol.id}"></td>
                         <td th:text="${rol.rolename}"></td>
 
-                        <td class="center"><a th:href="@{'/role/editrole/' + ${rol.id}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
-                            <a th:href="@{'/role/delrole/' + ${rol.id}}"> <button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                        <td class="center"><a th:href="@{'/role/edit/' + ${rol.id}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
+                            <a th:href="@{'/role/del/' + ${rol.id}}"> <button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
                         </td>
                     </tr>
 

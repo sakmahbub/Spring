@@ -19,17 +19,14 @@
         }
 
 
-
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
-
 </head>
 <body>
 <div layout:fragment="custom-content">
 
-
-    <h3><i class="fa fa-medkit"></i> Edit Group</h3>
+    <h3><i class="fa fa-user"></i> Add Role </h3>
 
     <!-- BASIC FORM VALIDATION -->
     <div class="row mt">
@@ -37,14 +34,15 @@
 
             <div class="form-panel">
 
-                <form role="form" class="form-horizontal style-form" th:object="${category}" th:action="@{/cat/editcat/} + ${id}" th:method="POST">
+                <form role="form" class="form-horizontal style-form" th:object="${role}" th:action="@{/role/add}"
+                      th:method="POST">
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">Category Name</label>
+                        <label class="col-lg-2 control-label">Role Name</label>
                         <div class="col-lg-10">
                             <span th:class="mm" th:text="${success}"></span>
                             <span th:class="err" th:text="${exist}"></span>
-                            <input type="text" placeholder="Enter Unique Group" id="f-name" class="form-control"
-                                   th:field="*{categoryName}" required="true">
+                            <input type="text" placeholder="Enter Unique Role Name" id="f-name" class="form-control"
+                                   th:field="*{rolename}" required="true">
 
                         </div>
                     </div>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div layout:fragment="custom-content">
-    <h3><i class="fa fa-book"></i> Purchase list</h3>
+    <h3><i class="fa fa-book"></i> Sales list</h3>
     <div class="row mb">
         <!-- page start-->
         <div class="content-panel">
@@ -20,34 +20,32 @@
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Brand</th>
+                        <th>Category</th>
                         <th>Drug_Name</th>
+
                         <th>Quantity</th>
                         <th>Unit_Price</th>
                         <th>Total_Price</th>
-                        <th>Purchase_Date</th>
+                        <th>sales_date</th>
                         <th>Action</th>
                     </tr>
-
                     </thead>
                     <tbody>
 
-                    <tr class="gradeA" th:each="p : ${purchaselist}">
-                        <td th:text="${p.id}"></td>
+                    <tr class="gradeA" th:each="s : ${saleslist}">
+                        <td th:text="${s.id}"></td>
+                        <td th:text="${s.drug.getBrands().getBrandName()}"></td>
+                        <td th:text="${s.drug.getCategories().getCategoryName()}"></td>
+                        <td th:text="${s.drug.drugName}"></td>
 
-                        <!--<td> <span th:each="d : ${p.drug}">-->
-                        <!--<span th:text="${d.drugName}"></span>-->
-                        <!--</span> </td>-->
-
-                        <td th:text="${p.drug.drugName}"></td>
-
-                        <td th:text="${p.qty}"></td>
-                        <td th:text="${p.unitPrice}"></td>
-                        <td th:text="${p.totalPrice}"></td>
-                        <td th:text="${p.purchasedate}"></td>
-
+                        <td th:text="${s.qty}"></td>
+                        <td th:text="${s.unitPrice}"></td>
+                        <td th:text="${s.totalPrice}"></td>
+                        <td th:text="${s.salseDate}"></td>
 
                         <td class="center">
-                            <a th:href="@{'/purchase/delpurchase/' + ${p.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                            <a th:href="@{'/sales/del/' + ${s.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
                         </td>
 
 

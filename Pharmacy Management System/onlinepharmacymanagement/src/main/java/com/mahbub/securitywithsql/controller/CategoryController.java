@@ -24,17 +24,17 @@ public class CategoryController {
     private CategoryRepo categoryRepo;
 
 
-    @GetMapping(value = "addcat")
+    @GetMapping(value = "add")
     public String addShow(Category category) {
-        return "category/add-cat";
+        return "category/add";
 
     }
 
 
-    @PostMapping(value = "addcat")
+    @PostMapping(value = "add")
     public String categorySave(@Valid Category category, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "category/add-cat";
+            return "category/add";
         } else {
             if (category != null) {
                 Category category1 = this.categoryRepo.findByCategoryName(category.getCategoryName());
@@ -52,30 +52,30 @@ public class CategoryController {
         }
 
 
-        return "category/add-cat";
+        return "category/add";
     }
 
 
-    @GetMapping(value = "listcat")
+    @GetMapping(value = "list")
     public String categoryIndex(Model model) {
         model.addAttribute("catlist", categoryRepo.findAll());
-        return "category/list-cat";
+        return "category/list";
     }
 
 
 
-    @GetMapping(value = "editcat/{id}")
+    @GetMapping(value = "edit/{id}")
     public String editShow(Model model, @PathVariable("id") Long id){
         model.addAttribute("category", this.categoryRepo.getOne(id));
-        return "category/edit-cat";
+        return "category/edit";
 
     }
 
 
-    @PostMapping(value = "editcat/{id}")
+    @PostMapping(value = "edit/{id}")
     public String categoryEdit(@Valid Category category, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
-            return "category/edit-cat";
+            return "category/edit";
         } else {
             if (category != null) {
                 Category category1 = this.categoryRepo.findByCategoryName(category.getCategoryName());
@@ -94,18 +94,18 @@ public class CategoryController {
         }
 
 
-        return "category/edit-cat";
+        return "category/edit";
     }
 
 
 
-    @GetMapping(value = "delcat/{id}")
+    @GetMapping(value = "del/{id}")
     public String barnddel(@PathVariable("id") Long id) {
         if(id != null){
             this.categoryRepo.deleteById(id);
 
         }
-        return "redirect:/cat/listcat";
+        return "redirect:/cat/list";
 
     }
 

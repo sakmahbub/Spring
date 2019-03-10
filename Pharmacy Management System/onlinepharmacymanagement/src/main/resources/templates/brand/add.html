@@ -20,15 +20,16 @@
 
 
 
+
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
 <div layout:fragment="custom-content">
 
-
-    <h3><i class="fa fa-database"></i> DrugType Edit</h3>
+    <h3><i class="fa fa-home"></i> Add Brand</h3>
 
     <!-- BASIC FORM VALIDATION -->
     <div class="row mt">
@@ -36,15 +37,31 @@
 
             <div class="form-panel">
 
-                <form role="form" class="form-horizontal style-form" th:object="${type}" th:action="@{/type/edittype/} + ${id}" th:method="POST">
+                <form role="form" class="form-horizontal style-form" th:object="${brand}" th:action="@{/brand/add}" th:method="POST">
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">Drug Type</label>
+                        <label class="col-lg-2 control-label">Name</label>
                         <div class="col-lg-10">
                             <span th:class="mm" th:text="${success}"></span>
                             <span th:class="err" th:text="${exist}"></span>
-                            <input type="text" placeholder="Enter brand type" id="f-name" class="form-control"
-                                   th:field="*{typeName}" required="true">
+                            <input type="text" placeholder="Enter Unique Brand Name" id="f-name" class="form-control"
+                                   th:field="*{brandName}" required="true">
 
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Location</label>
+                        <div class="col-lg-10">
+                          <input type="text" placeholder="Enter Brand Location" id="f-location" class="form-control"
+                                   th:field="*{brandLocation}" required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Tel No</label>
+                        <div class="col-lg-10">
+                            <input type="text" placeholder="Enter Brand Tel No" id="f-tel" class="form-control"
+                                   th:field="*{brandTelNo}" required="true">
                         </div>
                     </div>
 

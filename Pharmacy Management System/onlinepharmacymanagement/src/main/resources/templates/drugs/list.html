@@ -42,8 +42,8 @@
                    <td th:text="${d.antidote}"></td>
                    <td th:text="${d.note}"></td>
 
-                   <td class="center"><a th:href="@{'/drug/editdrug/' + ${d.id}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
-                       <a th:href="@{'/drug/deldrug/' + ${d.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                   <td class="center"><a th:href="@{'/drug/edit/' + ${d.id}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
+                       <a th:href="@{'/drug/del/' + ${d.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
                    </td>
 
                </tr>

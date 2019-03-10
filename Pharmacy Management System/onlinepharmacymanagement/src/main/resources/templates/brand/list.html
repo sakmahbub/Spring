@@ -32,8 +32,8 @@
                    <td th:text="${bran.brandLocation}"></td>
                    <td th:text="${bran.brandTelNo}"></td>
 
-                   <td class="center"><a th:href="@{'/brand/editbrand/' + ${bran.brandId}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
-                       <a th:href="@{'/brand/delbrand/' + ${bran.brandId}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                   <td class="center"><a th:href="@{'/brand/edit/' + ${bran.brandId}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
+                       <a th:href="@{'/brand/del/' + ${bran.brandId}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
                    </td>
 
                </tr>

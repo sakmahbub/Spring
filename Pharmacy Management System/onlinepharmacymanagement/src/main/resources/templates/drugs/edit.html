@@ -6,12 +6,12 @@
 <head>
 
     <style>
-            .err{
-                color: red;
-            }
-            .mm{
-                color: green;
-            }
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
         .sform{
             background-color: aqua;
 
@@ -29,7 +29,7 @@
 <body>
 <div layout:fragment="custom-content">
 
-    <h3><i class="fa fa-ticket"></i> ADD Drug</h3>
+    <h3><i class="fa fa-ticket"></i> Edit Drug</h3>
 
     <!-- BASIC FORM VALIDATION -->
     <div class="row mt">
@@ -37,7 +37,7 @@
 
             <div class="form-panel">
 
-                <form role="form" class="form-horizontal style-form" th:object="${drug}" th:action="@{/drug/adddrug}"  th:method="POST" >
+                <form role="form" class="form-horizontal style-form"  th:object="${drug}" th:action="@{/drug/edit/} + ${id}"  th:method="POST">
 
 
                     <div class="form-group has-success">
@@ -81,7 +81,7 @@
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Dimension</label>
                         <div class="col-lg-10">
-                            <input type="text" placeholder="Ex: 500mg, 100ml" id="f-dimension" class="form-control"
+                            <input type="text" placeholder="Enter Dimension" id="f-dimension" class="form-control"
                                    th:field="*{dimension}" required="true">
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Antidote</label>
                         <div class="col-lg-10">
-                            <input type="text" placeholder="Ex: Fever, Headache etc.." id="f-antidote" class="form-control"
+                            <input type="text" placeholder="Enter Antidote" id="f-antidote" class="form-control"
                                    th:field="*{antidote}" required="true">
                         </div>
                     </div>
