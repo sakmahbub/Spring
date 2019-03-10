@@ -76,24 +76,14 @@ public class BrandController {
     public String brandEdit(@Valid Brand brand, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             return "brand/edit-brand";
-        } else {
-            if (brand != null) {
-                Brand role1 = this.brandRepo.findByBrandName(brand.getBrandName());
-                if (role1 != null) {
-                    model.addAttribute("exist", "Brand allready exist");
-
-                } else {
+                 }
                     brand.setBrandId(id);
                     this.brandRepo.save(brand);
                     model.addAttribute("brand", new Brand());
-                    model.addAttribute("success", "Brand Add Successfully");
-                }
-
-            }
-        }
+                    model.addAttribute("success", "Brand Edit Successfully");
 
 
-        return "brand/edit-brand";
+        return "redirect:/brand/listbrand";
     }
 
 
@@ -109,20 +99,5 @@ public class BrandController {
     }
 
 
-//    @GetMapping(value = "/role-save")
-//    public void saveRole(){
-//        Role role=new Role();
-//        role.setRolename("SUPERADMIN");
-//        roleRepo.save(role);
-//
-//        Role role1=new Role();
-//        role1.setRolename("ADMIN");
-//        roleRepo.save(role1);
-//
-//        Role role2=new Role();
-//        role2.setRolename("USER");
-//        roleRepo.save(role2);
-//        System.out.println("Role Successfully Saved");
-//    }
 
 }

@@ -29,7 +29,7 @@
 <div layout:fragment="custom-content">
 
 
-    <h3><i class="fa fa-medkit"></i> Edit Category</h3>
+    <h3><i class="fa fa-medkit"></i> Edit Group</h3>
 
     <!-- BASIC FORM VALIDATION -->
     <div class="row mt">
@@ -43,7 +43,7 @@
                         <div class="col-lg-10">
                             <span th:class="mm" th:text="${success}"></span>
                             <span th:class="err" th:text="${exist}"></span>
-                            <input type="text" placeholder="Enter Unique Role Name" id="f-name" class="form-control"
+                            <input type="text" placeholder="Enter Unique Group" id="f-name" class="form-control"
                                    th:field="*{categoryName}" required="true">
 
                         </div>
