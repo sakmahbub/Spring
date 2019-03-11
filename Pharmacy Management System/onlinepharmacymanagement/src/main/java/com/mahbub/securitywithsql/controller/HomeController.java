@@ -54,7 +54,7 @@ private UserRepo repo;
     }
 
     @GetMapping(value = "/das")
-    public String secureView(Model model){
+    public String dashboardView(Model model){
         return "dashboard";
 
     }
