@@ -53,13 +53,9 @@ private UserRepo repo;
 
     }
 
-    @GetMapping(value = "/se")
+    @GetMapping(value = "/das")
     public String secureView(Model model){
-        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("username",auth.getName());
-        User user=repo.findByUserName(auth.getName());
-        model.addAttribute("name", user.getName());
-        return "secure/sec";
+        return "dashboard";
 
     }
 

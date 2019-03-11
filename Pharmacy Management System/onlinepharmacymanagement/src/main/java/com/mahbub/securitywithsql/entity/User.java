@@ -1,10 +1,14 @@
 package com.mahbub.securitywithsql.entity;
 
 
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -30,6 +34,30 @@ public class User {
     @NotNull
     @Size(min = 4, max = 300, message = "Password at lest 4 character")
     private String password;
+
+
+    private String gender;
+
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date regiDate;
+
+    @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastModifiedDate=new Date();
+
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthDate;
+
+    private boolean enabled;
+
+    @Column(nullable = false)
+    private String confirmationToken;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name ="user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
