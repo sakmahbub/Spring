@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <h3><i class="fa fa-database"></i> DrugType list</h3>
+    <div class="row mb">
+        <!-- page start-->
+        <div class="content-panel">
+            <div class="adv-table">
+                <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+           <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>DrugType_name</th>
+
+                   <th>Action</th>
+               </tr>
+           </thead>
+            <tbody>
+
+               <tr class="gradeA" th:each="typ : ${typelist}">
+                   <td th:text="${typ.typeId}"></td>
+                   <td th:text="${typ.typeName}"></td>
+
+                   <td class="center"><a th:href="@{'/type/edit/' + ${typ.typeId}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
+                       <a th:href="@{'/type/del/' + ${typ.typeId}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                   </td>
+
+               </tr>
+
+
+
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+        <!-- page end-->
+    </div>
+    <!-- /row -->
+
+
+
+</div>
+</body>
+</html>

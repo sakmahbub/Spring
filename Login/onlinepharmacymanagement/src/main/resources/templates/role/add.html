@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <style>
+        .err {
+            color: red;
+        }
+
+        .mm {
+            color: green;
+        }
+
+        .sform {
+            background-color: aqua;
+
+        }
+
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+    <h3><i class="fa fa-user"></i> Add Role </h3>
+
+    <!-- BASIC FORM VALIDATION -->
+    <div class="row mt">
+        <div class="col-lg-12">
+
+            <div class="form-panel">
+
+                <form role="form" class="form-horizontal style-form" th:object="${role}" th:action="@{/role/add}"
+                      th:method="POST">
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Role Name</label>
+                        <div class="col-lg-10">
+                            <span th:class="mm" th:text="${success}"></span>
+                            <span th:class="err" th:text="${exist}"></span>
+                            <input type="text" placeholder="Enter Unique Role Name" id="f-name" class="form-control"
+                                   th:field="*{rolename}" required="true">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-theme" type="submit">Submit</button>
+                            <button class="btn btn-theme" type="reset">Reset</button>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+            <!-- /form-panel -->
+        </div>
+        <!-- /col-lg-12 -->
+    </div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <style>
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
+        .sform{
+            background-color: aqua;
+
+
+        }
+
+
+
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title> Add | Mahbub</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+
+    <h3><i class="fa fa-user"><h1>Profile Summary Of <span th:text="${name}"></span></h1></i></h3>
+
+    <!-- BASIC FORM VALIDATION -->
+    <div class="row mt">
+        <div class="col-lg-12">
+
+            <div class="form-panel">
+
+                <form role="form" class="form-horizontal style-form"  th:object="${user}" th:action="@{/profile/} + ${id}"  th:method="POST">
+
+
+                    <div class="form-group has-success">
+
+                        <div class="col-lg-2">
+
+                            <select multiple id="f-rname" class="form-control">
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-4 control-label">Roles</label>
+                        <div class="col-lg-8">
+                                 <span th:each="r : ${user.roles}" class="form-control" multiple>
+                           <span th:text="${r.rolename}"></span>
+                       </span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-4 control-label">Name</label>
+                        <div class="col-lg-8">
+                            <span th:text="*{name}" class="form-control"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-4 control-label">Email</label>
+                        <div class="col-lg-8">
+                            <span th:text="*{email}" class="form-control"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-4 control-label">UserName</label>
+                        <div class="col-lg-8">
+                            <span th:text="*{userName}" class="form-control"></span>
+                        </div>
+                    </div>
+
+
+
+
+                </form>
+            </div>
+            <!-- /form-panel -->
+        </div>
+        <!-- /col-lg-12 -->
+    </div>
+
+
+
+</div>
+</body>
+</html>

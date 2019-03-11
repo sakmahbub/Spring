@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <h3><i class="fa fa-ticket"></i> Drug list</h3>
+    <div class="row mb">
+        <!-- page start-->
+        <div class="content-panel">
+            <div class="adv-table">
+                <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>Drug_Name</th>
+                   <!--<th>Drug_Code</th>-->
+                   <th>Category</th>
+                   <th>Type</th>
+                   <th>Brand</th>
+                   <th>dimension</th>
+                   <th>antidote</th>
+                   <th>Note</th>
+                   <th>Action</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr class="gradeA" th:each="d : ${druglist}">
+                   <td th:text="${d.id}"></td>
+                   <td th:text="${d.drugName}"></td>
+                   <!--<td th:text="${d.drugCode}"></td>-->
+                   <td th:text="${d.categories.categoryName}"></td>
+                   <td th:text="${d.drugtypes.typeName}"></td>
+                   <td th:text="${d.brands.brandName}"></td>
+                   <td th:text="${d.dimension}"></td>
+                   <td th:text="${d.antidote}"></td>
+                   <td th:text="${d.note}"></td>
+
+                   <td class="center"><a th:href="@{'/drug/edit/' + ${d.id}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
+                       <a th:href="@{'/drug/del/' + ${d.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>
+                   </td>
+
+               </tr>
+
+
+
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+        <!-- page end-->
+    </div>
+    <!-- /row -->
+
+
+
+</div>
+</body>
+</html>

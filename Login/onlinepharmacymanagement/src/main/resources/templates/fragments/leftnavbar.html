@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="sidebar" class="nav-collapse " th:fragment="leftnav">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            <p class="centered"><a th:href="@{/profile}"><img src="/img/ui-sam.jpeg" class="img-circle" width="80"></a></p>
+            <h5 class="centered">Sakil Mahbub</h5>
+            <li class="mt">
+                <a th:href="@{/}">
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-user"></i>
+                    <span>User & Role</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/role/add}">Add Role</a></li>
+                    <li><a th:href="@{/role/list}">Role List</a></li>
+                    <li><a th:href="@{/user/add}">Add User</a></li>
+                    <li><a th:href="@{/user/list}">User List</a></li>
+                    <li><a th:href="@{/adm}">Admin Page</a></li>
+                    <li><a th:href="@{/u}">User Page</a></li>
+                    <li><a th:href="@{/sa}">Supperadmin Page</a></li>
+
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-home"></i>
+                    <span>Brand / Company</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/brand/add}">Add Brand</a></li>
+                    <li><a th:href="@{/brand/list}">Brand List</a></li>
+
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-medkit"></i>
+                    <span>Category / Group</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/cat/add}">Add Catagory</a></li>
+                    <li><a th:href="@{/cat/list}">Category List</a></li>
+
+                </ul>
+            </li>
+
+
+
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-database"></i>
+                    <span>Drug Type</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/type/add}">Add DrugType</a></li>
+                    <li><a th:href="@{/type/list}">DrugType List</a></li>
+
+                </ul>
+            </li>
+
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-ticket"></i>
+                    <span>Drug</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/drug/add}">Add Drug</a></li>
+                    <li><a th:href="@{/drug/list}">Drug List</a></li>
+
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>Purchase / Sales</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/pur/add}">Purchase Drug</a></li>
+                    <li><a th:href="@{/pur/list}">Purchase List</a></li>
+                    <li><a th:href="@{/sales/add}">Sales Drug</a></li>
+                    <li><a th:href="@{/sales/list}">Sales List</a></li>
+
+                </ul>
+            </li>
+
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>Summary</span>
+                </a>
+                <ul class="sub">
+                    <li><a th:href="@{/drug/adddrug}">Purchase Drug</a></li>
+                    <li><a th:href="@{/drug/listdrug}">DrugType List</a></li>
+
+                </ul>
+            </li>
+
+
+
+
+            <li>
+                <a class="active" href="#">
+                    <i class="fa fa-envelope"></i>
+                    <span>Mail </span>
+                    <span class="label label-theme pull-right mail-info">3</span>
+                </a>
+            </li>
+
+
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+
+<!--sidebar end-->
+</body>
+</html>

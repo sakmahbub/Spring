@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="header black-bg" th:fragment="topnav">
+    <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Quality Pharmacy Ltd"></div>
+    </div>
+    <!--logo start-->
+    <a th:href="@{/}" class="logo"><b>Q<span>PHARMA</span></b></a>
+    <!--logo end-->
+    <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+
+            <li>
+                <a th:href="@{/}" >Home</a>
+
+            </li>
+
+
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">User</a>
+                <ul class="dropdown-menu extended tasks-bar">
+                    <div class="notify-arrow notify-arrow-green"></div>
+                    <li>
+                        <p class="green">You can add, edit or remove user</p>
+                    </li>
+                    <li>
+                        <a th:href="@{/}">
+                            <div class="task-info">
+                                <div class="desc">Add User</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">User List</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+
+                                <div class="desc">Edit User</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Delete User</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <!-- ///////////////////////////////////////////////////-->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">Role</a>
+                <ul class="dropdown-menu extended tasks-bar">
+                    <div class="notify-arrow notify-arrow-green"></div>
+                    <li>
+                        <p class="green">You can add, edit or remove Role</p>
+                    </li>
+                    <li>
+                        <a th:href="@{/}">
+                            <div class="task-info">
+                                <div class="desc">Add Role</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Role List</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Edit Role</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="task-info">
+                                <div class="desc">Delete Role</div>
+
+                            </div>
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+<!-- ///////////////////////////////////////////////////-->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">Report</a>
+                <ul class="dropdown-menu extended tasks-bar">
+                    <div class="notify-arrow notify-arrow-green"></div>
+                    <li>
+                        <p class="green">You can Choose any report</p>
+                    </li>
+                    <li>
+                        <a th:href="@{/}">
+                            <div class="task-info">
+                                <div class="desc">Monthly Report</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/}">
+                            <div class="task-info">
+                                <div class="desc">Weekly Report</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/}">
+                            <div class="task-info">
+                                <div class="desc">Today</div>
+                            </div>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a th:href="@{/}">
+                            <div class="task-info">
+                                <div class="desc">Any Day</div>
+                            </div>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </li>
+
+
+            <li>
+                <a th:href="@{/}" >Service</a>
+
+            </li>
+
+
+
+
+            <!-- notification dropdown end -->
+        </ul>
+        <!--  notification end -->
+    </div>
+
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="logout" th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li> <a class="logout" th:href="@{/con}" >Contact us</a></li>
+        </ul>
+    </div>
+</header>
+<!--header end-->
+</body>
+</html>
