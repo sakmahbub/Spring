@@ -33,20 +33,16 @@ public class RoleController {
     public String roleSave(@Valid Role role, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "role/add";
+        }
+        if (roleRepo.existsRoleByRolename(role.getRolename())) {
+
+            model.addAttribute("exist", "Role allready exist");
+
         } else {
-            if (role != null) {
-                Role role1 = this.roleRepo.findByRolename(role.getRolename());
-                if (role1 != null) {
-                    model.addAttribute("exist", "Role allready exist");
-
-                } else {
-                    role.setRolename(role.getRolename().toUpperCase());
-                    this.roleRepo.save(role);
-                    model.addAttribute("role", new Role());
-                    model.addAttribute("success", "Role Add Successfully");
-                }
-
-            }
+            role.setRolename(role.getRolename().toUpperCase());
+            this.roleRepo.save(role);
+            model.addAttribute("role", new Role());
+            model.addAttribute("success", "Role Add Successfully");
         }
 
 
@@ -61,9 +57,8 @@ public class RoleController {
     }
 
 
-
     @GetMapping(value = "edit/{id}")
-    public String editShow(Model model, @PathVariable("id") Long id){
+    public String editShow(Model model, @PathVariable("id") Long id) {
         model.addAttribute("role", this.roleRepo.getOne(id));
         return "role/edit";
 
@@ -71,24 +66,20 @@ public class RoleController {
 
 
     @PostMapping(value = "edit/{id}")
-    public String roleEdit(@Valid Role role, BindingResult bindingResult,@PathVariable("id") Long id, Model model) {
+    public String roleEdit(@Valid Role role, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             return "role/edit";
+        }
+        if (roleRepo.existsRoleByRolename(role.getRolename())) {
+
+            model.addAttribute("exist", "Role allready exist");
+
         } else {
-            if (role != null) {
-                Role role1 = this.roleRepo.findByRolename(role.getRolename());
-                if (role1 != null) {
-                    model.addAttribute("exist", "Role allready exist");
-
-                } else {
-                    role.setRolename(role.getRolename().toUpperCase());
-                    role.setId(id);
-                    this.roleRepo.save(role);
-                    model.addAttribute("role", new Role());
-                    model.addAttribute("success", "Role Add Successfully");
-                }
-
-            }
+            role.setRolename(role.getRolename().toUpperCase());
+            role.setId(id);
+            this.roleRepo.save(role);
+            model.addAttribute("role", new Role());
+            model.addAttribute("success", "Role Add Successfully");
         }
 
 
@@ -96,10 +87,9 @@ public class RoleController {
     }
 
 
-
     @GetMapping(value = "del/{id}")
     public String roledel(@PathVariable("id") Long id) {
-        if(id != null){
+        if (id != null) {
             this.roleRepo.deleteById(id);
 
         }

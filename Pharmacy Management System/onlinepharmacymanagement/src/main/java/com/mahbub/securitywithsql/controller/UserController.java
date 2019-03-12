@@ -109,10 +109,8 @@ public class UserController {
             user.setFilePath("images/" + "new-" + file.getOriginalFilename());
             user.setFileExtension(file.getContentType());
             //////////////////////For Image Upload end/////////////////////
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setId(id);
-            user.setEnabled(true);
-            user.setConfirmationToken(UUID.randomUUID().toString());
+
+
             this.userRepo.save(user);
             model.addAttribute("user", new User());
             model.addAttribute("success", "Congratulations! Data save sucessfully");

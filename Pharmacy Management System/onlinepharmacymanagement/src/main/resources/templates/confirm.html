@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Mahbub - Bootstrap Admin Template</title>
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" th:href="@{lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!--external css-->
+  <link th:href="@{lib/font-awesome/css/font-awesome.css}" href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" th:href="@{css/style.css}" rel="stylesheet">
+  <link href="css/style-responsive.css" th:href="@{css/style-responsive.css}" rel="stylesheet">
+
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+<body>
+<!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+<div id="login-page">
+  <div class="container">
+    <form class="form-login" th:if="!${invalidToken}" th:object="${setPassword}" th:action="@{/confirm}" th:method="POST">
+      <input type="hidden" name="token" th:value="${confirmationToken}"/>
+      <h2 class="form-login-heading">Confirm Account</h2>
+      <div class="login-wrap">
+        <input name="password" type="password" id="password"
+               placeholder="Password" class="form-control" required/>
+        <br>
+        <input type="password" class="form-control" id="signup-password-confirm" placeholder="Confirm Password" name="ConfirmPassword" data-fv-notempty="true"
+               data-fv-notempty-message="Please confirm password"
+               data-fv-identical="true"
+               data-fv-identical-field="password"
+               data-fv-identical-message="Both passwords must be identical" />
+
+        <button class="btn btn-theme btn-block"  type="submit"><i class="fa fa-lock"></i> Confirm</button>
+        <hr>
+        <div class="login-social-link centered">
+          <p>or you can sign in via your social network</p>
+          <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
+          <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
+        </div>
+        <div class="registration">
+         Confirm? Sing in here<br/>
+          <a class="" th:href="@{/login}">
+            Sign in
+          </a>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="lib/jquery/jquery.min.js" th:src="@{lib/jquery/jquery.min.js}"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<!--BACKSTRETCH-->
+<!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+<script type="text/javascript" src="lib/jquery.backstretch.min.js" th:src="@{lib/jquery.backstretch.min.js}"></script>
+<script>
+    $.backstretch("img/login-bg.jpg", {
+        speed: 500
+    });
+</script>
+</body>
+
+</html>
+</html>

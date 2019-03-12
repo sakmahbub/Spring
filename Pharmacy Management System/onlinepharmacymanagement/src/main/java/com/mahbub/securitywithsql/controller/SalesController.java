@@ -39,7 +39,7 @@ public class SalesController {
         model.addAttribute("sales", new Sales());
 
         model.addAttribute("druglist", this.drugRepo.findAll());
-        return "saless/sales";
+        return "saless/sal";
 
     }
 
@@ -47,7 +47,7 @@ public class SalesController {
     public String salesSave(@Valid Sales sales, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("druglist", this.drugRepo.findAll());
-            return "saless/sales";
+            return "saless/sal";
         }
         try {
         Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());

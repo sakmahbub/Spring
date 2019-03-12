@@ -37,7 +37,21 @@
 
             <div class="form-panel">
 
-                <form role="form" class="form-horizontal style-form"  th:object="${user}" th:action="@{/user/edit/} + ${id}"  th:method="POST">
+                <form role="form" class="form-horizontal style-form"  th:object="${user}" th:action="@{/user/edit/} + ${id}"  th:method="POST" enctype="multipart/form-data">
+
+
+                    <div class="form-group has-success">
+
+                        <div class="col-lg-12">
+                            <input type="hidden" th:field="*{id}" th:value="${user.id}">
+                            <input type="hidden" th:field="*{regiDate}" th:value="${user.regiDate}">
+                            <input type="hidden" th:field="*{password}" th:value="${user.password}">
+                            <input type="hidden" th:field="*{enabled}" th:value="${user.enabled}">
+                            <input type="hidden" th:field="*{confirmationToken}" th:value="${user.confirmationToken}">
+
+                        </div>
+                    </div>
+
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Roles</label>
                         <div class="col-lg-10">
@@ -75,13 +89,30 @@
                     </div>
 
 
+                    <!--<div class="form-group has-success">-->
+                        <!--<label class="col-lg-2 control-label">Password</label>-->
+                        <!--<div class="col-lg-10">-->
+                            <!--<input type="password" placeholder="Enter Password" id="f-password" class="form-control"-->
+                                   <!--th:field="*{password}" required="true">-->
+                        <!--</div>-->
+                    <!--</div>-->
+
                     <div class="form-group has-success">
-                        <label class="col-lg-2 control-label">Password</label>
+                        <label class="col-lg-2 control-label">Birth Date</label>
                         <div class="col-lg-10">
-                            <input type="password" placeholder="Enter Password" id="f-password" class="form-control"
-                                   th:field="*{password}" required="true">
+                            <input type="date" placeholder="Enter Password" id="f-birth" class="form-control"
+                                   th:field="*{birthDate}" required="true">
                         </div>
                     </div>
+
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Photo</label>
+                        <div class="col-lg-10">
+                            <input type="file" name="file">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-lg-offset-2 col-lg-10">
                             <button class="btn btn-theme" type="submit">Submit</button>

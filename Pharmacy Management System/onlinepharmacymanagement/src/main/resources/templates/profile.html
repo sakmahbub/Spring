@@ -95,7 +95,7 @@
                 </form>
             </div>
             <div class="col-lg-4 pull-lg-8 text-xs-center">
-                <img src="//placehold.it/150" class="m-x-auto img-fluid img-circle" alt="avatar" />
+                <img th:src="@{${user.filePath}}" class="m-x-auto img-fluid img-circle" th:alt="${user.fileName}" />
                 <br>
                 <h4>Photo Of <span th:text="${name}"></span></h4>
 

@@ -53,7 +53,7 @@ private UserRepo repo;
 
     }
 
-    @GetMapping(value = "/das")
+    @GetMapping(value = "/")
     public String dashboardView(Model model){
         return "dashboard";
 
