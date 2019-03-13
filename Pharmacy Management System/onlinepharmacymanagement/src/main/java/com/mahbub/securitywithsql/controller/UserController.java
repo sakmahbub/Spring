@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.UUID;
 
 @Controller
@@ -58,6 +59,7 @@ public class UserController {
 
                 } else {
                     user.setPassword(passwordEncoder.encode(user.getPassword()));
+                    user.setRegiDate(new Date());
                     user.setEnabled(true);
                     user.setConfirmationToken(UUID.randomUUID().toString());
                     this.userRepo.save(user);
@@ -109,7 +111,6 @@ public class UserController {
             user.setFilePath("images/" + "new-" + file.getOriginalFilename());
             user.setFileExtension(file.getContentType());
             //////////////////////For Image Upload end/////////////////////
-
 
             this.userRepo.save(user);
             model.addAttribute("user", new User());

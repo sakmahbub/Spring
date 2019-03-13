@@ -37,7 +37,7 @@
 <div id="login-page">
   <div class="container">
     <form class="form-login" th:object="${user}" th:action="@{/sign-up}"  th:method="POST">
-      <h2 class="form-login-heading">sign in now</h2>
+      <h2 class="form-login-heading">sign up now</h2>
       <div class="login-wrap">
         Full Name: <input type="text" class="form-control" placeholder="Full Name" autofocus th:field="*{name}" required="true">
         <br>
@@ -46,13 +46,13 @@
         BirthDate<input type="date" class="form-control" th:field="*{birthDate}" required="true">
         <br>
         <label class="radio-inline">
-          <input type="radio" name="gender" th:value="m" th:field="*{gender}">Male
+          <input type="radio" name="gender" th:value="Male" th:field="*{gender}">Male
         </label>
         <label class="radio-inline">
-          <input type="radio" name="gender" th:value="f" th:field="*{gender}">Female
+          <input type="radio" name="gender" th:value="Female" th:field="*{gender}">Female
         </label>
         <label class="radio-inline">
-          <input type="radio" name="gender" th:value="o" th:field="*{gender}">Other
+          <input type="radio" name="gender" th:value="Others" th:field="*{gender}">Other
         </label>
         <br><br>
 
@@ -80,7 +80,7 @@
 <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
 <script type="text/javascript" src="lib/jquery.backstretch.min.js"></script>
 <script>
-    $.backstretch("img/login-bg.jpg", {
+    $.backstretch("img/login-bg1.jpg", {
         speed: 500
     });
 </script>

@@ -1,0 +1,30 @@
+	
+	@GetMapping("/")
+	public String test() {
+		try{
+            String to = "01730959439,01748567000"; //Recipient Phone Number multiple number must be separated by comma
+            String token = "4c7fbb7eb69dcbe230dc0d9d899d9b91"; //generate token from the control panel
+            String message = "Hi I am Java Developer";
+            String uri = "http://api.greenweb.com.bd/api.php?token=" + token + "&to=" + to + "&message=" + message;    
+            RestTemplate restTemplate = new RestTemplate();
+            String result = restTemplate.getForObject(uri, String.class);            
+            
+        System.out.println("Success");
+        
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return "tets";
+	}
+
+
+
+
+<script type="text/javascript" src="lib/jquery.backstretch.min.js" th:src="@{lib/jquery.backstretch.min.js}"></script>
+<script>
+    $.backstretch("img/login-bg1.jpg", {
+        speed: 500
+    });
+</script>

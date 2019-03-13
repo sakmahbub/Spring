@@ -57,7 +57,7 @@ public class LoginController {
     public String login(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(!(auth instanceof AnonymousAuthenticationToken)){
-            return "redirect:/das";
+            return "redirect:/";
 
         }
         return "login";

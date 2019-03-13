@@ -63,30 +63,56 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">UserName</label>
+                        <label class="col-lg-3 col-form-label form-control-label">User Name</label>
                         <div class="col-lg-9">
                             <span th:text="*{userName}"></span>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Gender</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="url" value="" />
+                            <span th:text="*{gender}"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Birth Date</label>
+                        <div class="col-lg-9">
+                            <span th:text="*{birthDate}"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Regi Date</label>
                         <div class="col-lg-9">
-                            <input class="form-control" type="text" value="" placeholder="Street" />
+                            <span th:text="*{regiDate}"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label"></label>
-                        <div class="col-lg-6">
-                            <input class="form-control" type="text" value="" placeholder="City" />
+                        <label class="col-lg-3 col-form-label form-control-label">Last Update</label>
+                        <div class="col-lg-9">
+                            <span th:text="*{lastModifiedDate}"></span>
                         </div>
-                        <div class="col-lg-3">
-                            <input class="form-control" type="text" value="" placeholder="State" />
+                    </div>
+
+
+                    <!--<div class="form-group row">-->
+                        <!--<label class="col-lg-3 col-form-label form-control-label">RegiDate</label>-->
+                        <!--<div class="col-lg-3">-->
+                            <!--<span th:text="*{regiDate}"></span>-->
+                        <!--</div>-->
+                        <!--<label class="col-lg-2 col-form-label form-control-label">lastModifiedDate</label>-->
+                        <!--<div class="col-lg-4">-->
+                            <!--<span th:text="*{lastModifiedDate}"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+                    <div class="form-group row">
+                        <label class="col-lg-3 col-form-label form-control-label">Status</label>
+                        <div class="col-lg-9">
+                            <span th:text="*{enabled}"></span>
                         </div>
                     </div>
 
