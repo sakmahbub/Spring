@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HAMS | Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/../dist/css/adminx.css}" media="screen"/>
+</head>
+<body>
+<div class="adminx-container d-flex justify-content-center align-items-center">
+    <div class="page-login">
+        <div class="text-center">
+            <a class="navbar-brand mb-4 h1" href="login.html">
+                <img th:src="@{/../demo/img/logoo.png}" class="navbar-brand-image d-inline-block align-top mr-2" alt="">
+                Set Your Password
+            </a>
+        </div>
+
+        <div class="card mb-0">
+            <div class="card-body" align="center">
+                <span th:class="succes" th:text="${successMessage}"></span>
+                <span th:class="err" th:text="${errorMessage}"></span>
+            </div>
+            <div class="card-seperator">
+
+            </div>
+            <div class="card-body">
+                <div th:if="${invalidToken}" class="alert alert-danger"
+                     role="alert" th:text=${invalidToken}></div>
+
+                <form th:if="!${invalidToken}" d="passwordForm" role="form" action="#"
+                      th:object="${setPassword}" th:action="@{/confirm}" method="post">
+
+                    <input type="hidden" name="token" th:value=${confirmationToken}>
+
+                    <!--<div class="form-group">
+                        <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                               placeholder="email@example.com or Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Remember me</label>
+                        </div>
+                    </div>-->
+                    <div class="form-group input-group">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+                        <input name="password" type="password" id="password"
+                               placeholder="Password" class="form-control" required/>
+                        <span class="glyphicon"
+                              aria-hidden="true"></span>
+                    </div>
+
+                    <div class="form-group input-group has-feedback">
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+                        <input type="password" class="form-control" id="signup-password-confirm"
+                               placeholder="Confirm Password" name="ConfirmPassword" data-fv-notempty="true"
+                               data-fv-notempty-message="Please confirm password"
+                               data-fv-identical="true"
+                               data-fv-identical-field="password"
+                               data-fv-identical-message="Both passwords must be identical"/>
+
+                        <button type="submit" class="btn btn-sm btn-block btn-primary">Save</button>
+                </form>
+            </div>
+            <!--<div class="card-footer text-center">
+                <a href="#">
+                    <small>Forgot your password?</small>
+                </a>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<!-- If you prefer jQuery these are the required scripts -->
+<script th:src="@{/https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js}"></script>
+<script th:src="@{/https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js}"></script>
+<script th:src="@{/../dist/js/vendor.js}"></script>
+<script th:src="@{/../dist/js/adminx.js}"></script>
+
+<!-- If you prefer vanilla JS these are the only required scripts -->
+<!-- script src="../dist/js/vendor.js"></script>
+<script src="../dist/js/adminx.vanilla.js"></script-->
+</body>
+</html>

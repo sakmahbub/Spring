@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<div class="adminx-main-content" layout:fragment="custom-content">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-grid">
+                <div class="table-responsive-md">
+                    <table class="table table-actions table-striped table-hover mb-0" data-table>
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="custom-control custom-checkbox m-0 p-0">
+                                    <input type="checkbox" class="custom-control-input table-select-all">
+                                    <span class="custom-control-indicator"></span>
+                                </label>
+                            </th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Userame</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Birthdate</th>
+                            <th scope="col">Reg. Date</th>
+                            <th scope="col">L M Date</th>
+                            <th scope="col">Roles</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${list}">
+                            <th scope="row">
+                                <label class="custom-control custom-checkbox m-0 p-0">
+                                    <input type="checkbox" class="custom-control-input table-select-row">
+                                    <span class="custom-control-indicator"></span>
+                                </label>
+                            </th>
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.firstName}"></td>
+                            <td th:text="${user.lastName}"></td>
+                            <td th:text="${user.userName}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td th:text="${user.mobile}"></td>
+                            <td th:text="${user.gender}"></td>
+                            <td th:text="${user.birthDate}"></td>
+                            <td th:text="${user.regiDate}"></td>
+                            <td th:text="${user.lastModifiedDate}"></td>
+                            <td>
+                       <span th:each="r : ${user.roles}">
+                           <span th:text="${r.roleName}"></span>
+                       </span>
+
+                            </td>
+                            <td>
+                                <!--
+                                                                <button type="button" class="btn btn-sm btn-primary" th:href="@{'/role/edit/'+${role.id}}">Edit</button>
+                                -->
+                                <a th:href="@{'/user/edit/'+${user.id}}">Edit</a>
+                            </td>
+                            <td>
+                                <!--<button type="button" class="btn btn-sm btn-danger" th:href="@{'/role/del/'+${role.id}}">Delete</button>-->
+                                <a th:href="@{'/user/del/'+${user.id}}">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

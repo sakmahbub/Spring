@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Package List</title>
+</head>
+<body>
+<div class="adminx-main-content" layout:fragment="custom-content">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-grid">
+                <div class="table-responsive-md">
+                    <table class="table table-actions table-striped table-hover mb-0" data-table>
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="custom-control custom-checkbox m-0 p-0">
+                                    <input type="checkbox" class="custom-control-input table-select-all">
+                                    <span class="custom-control-indicator"></span>
+                                </label>
+                            </th>
+                            <th scope="col">Package Id</th>
+                            <th scope="col">Package Name</th>
+                            <th scope="col">Package Value</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="packag : ${list}">
+                            <th scope="row">
+                                <label class="custom-control custom-checkbox m-0 p-0">
+                                    <input type="checkbox" class="custom-control-input table-select-row">
+                                    <span class="custom-control-indicator"></span>
+                                </label>
+                            </th>
+                            <td th:text="${packag.id}"></td>
+                            <td th:text="${packag.name}"></td>
+                            <td th:text="${packag.price}"></td>
+                            <td>
+                                <!--
+                                                                <button type="button" class="btn btn-sm btn-primary" th:href="@{'/role/edit/'+${role.id}}">Edit</button>
+                                -->
+                                <a th:href="@{'/package/edit/'+${packag.id}}" class="btn btn-sm btn-primary">Edit</a>
+                            </td>
+                            <td>
+                                <!--<button type="button" class="btn btn-sm btn-danger" th:href="@{'/role/del/'+${role.id}}">Delete</button>-->
+                                <a th:href="@{'/package/del/'+${packag.id}}" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

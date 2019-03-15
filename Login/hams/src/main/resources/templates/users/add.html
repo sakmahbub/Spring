@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Role</title>
+</head>
+<body>
+<div class="adminx-main-content" layout:fragment="custom-content">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="card mb-grid">
+                <div class="card-header">
+                    <div class="card-header-title">Add User</div>
+                </div>
+                <div class="card-body">
+                    <span th:class="succes" th:text="${successMsg}"></span>
+                    <span th:class="err" th:text="${rejectMsg}"></span>
+                    <form th:object="${user}" th:action="@{/user/add}" th:method="POST">
+
+                        <div class="form-group row">
+                            <label for="roles" class="col-sm-3 col-form-label form-label">First Name</label>
+                            <div class="col-sm-9">
+                                <select th:field="*{roles}" multiple id="roles">
+                                    <option th:each="role : ${rolelist}"
+                                            th:value="${role.id}">
+                                        <span th:text="${role.roleName}"></span>
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-3 col-form-label form-label">First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{firstName}"  id="firstName" placeholder="First Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lastName" class="col-sm-3 col-form-label form-label">First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{lastName}"  id="lastName" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="userName" class="col-sm-3 col-form-label form-label">First Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{userName}"  id="userName" placeholder="Username">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-3 col-form-label form-label">Password</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" th:field="*{password}"  id="password" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-3 col-form-label form-label">Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" th:field="*{email}"  id="email" placeholder="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="mobile" class="col-sm-3 col-form-label form-label">Mobile</label>
+                            <div class="col-sm-9">
+                                <input type="number" class="form-control" th:field="*{mobile}"  id="mobile" placeholder="Mobile">
+                            </div>
+                        </div>
+
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <legend class="col-form-legend col-sm-3 form-label">Gender</legend>
+                                <div class="col-sm-9">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="gender" id="Male"
+                                                   value="Male" checked th:field="*{gender}"> Male &nbsp&nbsp&nbsp&nbsp
+                                            <input class="form-check-input" type="radio" name="gender" id="Female"
+                                                   value="Female" th:field="*{gender}"> Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group row">
+                            <label for="birthDate" class="col-sm-3 col-form-label form-label">Birth Date</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" th:field="*{birthDate}"  id="birthDate" placeholder="Birth Date">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

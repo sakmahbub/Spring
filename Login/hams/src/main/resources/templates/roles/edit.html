@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Role</title>
+</head>
+<body>
+<div class="adminx-main-content" layout:fragment="custom-content">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-grid">
+                <div class="card-header">
+                    <div class="card-header-title">Edit Role</div>
+                </div>
+                <div class="card-body">
+                    <span th:class="err" th:text="${rejectMsg}"></span>
+                    <form th:object="${role}" th:action="@{/role/edit/}+${id}" th:method="POST">
+                        <div class="form-group row">
+                            <label for="rolename" class="col-sm-3 col-form-label form-label">Role Name</label>
+                            <div class="col-sm-9">
+
+                                <input type="text" class="form-control" th:field="*{roleName}"  id="rolename" placeholder="Role Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

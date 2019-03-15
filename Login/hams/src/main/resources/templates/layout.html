@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/dist/css/adminx.css" th:href="@{/dist/css/adminx.css}"
+          media="screen"/>
+    <link rel="stylesheet" href="/demo/demo.css" th:href="@{/demo/demo.css}">
+</head>
+<body>
+<div class="adminx-container">
+    <!--============Top Nav Will Go Here===========-->
+    <div th:replace="~{fragments/topnavbar.html :: topnavbar}"></div>
+
+    <!--============Left  Nav Will Go Here===========-->
+    <div th:replace="~{fragments/leftnavbar.html :: leftnav}"></div>
+
+    <!--============Body Content Go Here===========-->
+    <div class="adminx-content">
+
+        <div class="adminx-main-content" layout:fragment="custom-content">
+            <!--body will go here-->
+            Your content will go here
+        </div>
+
+    </div>
+
+    <!--============Footer Will Go Here===========-->
+    <!--<div th:replace="~{fragments/footer.html :: footernav}"></div>-->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        th:src="@{/https://code.jquery.com/jquery-3.2.1.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        th:src="@{/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        th:src="@{/https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js}"></script>
+<script src="/dist/js/vendor.js" th:src="@{/dist/js/vendor.js}"></script>
+<script src="/dist/js/adminx.js" th:src="@{/dist/js/adminx.js}"></script>
+
+<script src="/dist/js/vendor.js" th:src="@{/dist/js/vendor.js}"></script>
+<script src="/dist/js/adminx.vanilla.js" th:src="@{/dist/js/adminx.vanilla.js}"></script>
+</body>
+</html>
