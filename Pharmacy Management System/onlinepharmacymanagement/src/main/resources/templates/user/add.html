@@ -14,13 +14,7 @@
             }
         .sform{
             background-color: aqua;
-
-
         }
-
-
-
-
     </style>
 
     <meta charset="UTF-8">
@@ -83,6 +77,17 @@
                                    th:field="*{password}" required="true">
                         </div>
                     </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-lg-2 control-label">Gender</label>
+                        <div class="col-lg-10">
+                            <input type="radio" name="gender" th:value="Male" th:field="*{gender}" > Male
+                            <input type="radio" name="gender" th:value="Female" th:field="*{gender}"> Female
+                            <input type="radio" name="gender" th:value="Others" th:field="*{gender}"> Other
+
+                        </div>
+                    </div>
+
 
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Birth Date</label>

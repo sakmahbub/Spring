@@ -1,13 +1,12 @@
 package com.mahbub.securitywithsql.controller;
 
 
-import com.mahbub.securitywithsql.entity.Role;
-import com.mahbub.securitywithsql.entity.User;
+
 import com.mahbub.securitywithsql.repo.RoleRepo;
+import com.mahbub.securitywithsql.repo.SalesRepo;
+import com.mahbub.securitywithsql.repo.SummaryRepo;
 import com.mahbub.securitywithsql.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,50 +15,45 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @Autowired
-private UserRepo repo;
+    private UserRepo repo;
 
     @Autowired
     private RoleRepo roleRepo;
 
+    @Autowired
+    private SummaryRepo summaryRepo;
 
-    @GetMapping(value = "/sa")
-    public String superAdminView(){
-        return "sadmin/sad";
+    @Autowired
+    private SalesRepo salesRepo;
 
-    }
-
-
-    @GetMapping(value = "/adm")
-    public String adminView(){
-        return "admin/admin";
-
-    }
-
-    @GetMapping(value = "/u")
-    public String userView(){
-        return "user/u";
-
-    }
-
-    @GetMapping(value = "/con")
-    public String contactView(){
-        return "secure/contact-us";
-
-    }
-
-    @GetMapping(value = "/succes")
-    public String successView(){
-        return "sucess";
-
-    }
 
     @GetMapping(value = "/")
-    public String dashboardView(Model model){
+    public String dashboardView(Model model) {
         return "dashboard";
 
     }
 
 
+    @GetMapping(value = "/con")
+    public String contactView() {
+        return "secure/contact-us";
+
+    }
+
+
+    @GetMapping(value = "/order")
+    public String orderView() {
+        return "secure/order";
+
+    }
+
+
+    @GetMapping(value = "/summary")
+    public String summaryView(Model model) {
+        model.addAttribute("summarylist", this.summaryRepo.findAll());
+        return "summary/summary";
+
+    }
 
 
 }

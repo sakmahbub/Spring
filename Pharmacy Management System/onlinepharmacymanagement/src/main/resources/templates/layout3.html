@@ -9,6 +9,7 @@
             min-height: 1000px;
             max-height: available;
         }
+
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,12 +37,12 @@
 </head>
 <body>
         <section id="container">
-            <div th:replace="~{fragments/topnavbar.html :: topnav}"></div>
-
-            <div th:replace="~{fragments/leftnavbar.html :: leftnav}"></div>
+            <div th:replace="~{fragments/topnavbarpublic.html :: topnavpublic}"></div>
 
             <section id="main-content" class="mm">
+
                 <section class="wrapper">
+                    <div class="nn" th:replace="~{fragments/top-sub.html :: topsubnav}"></div>
                     <div layout:fragment="custom-content">
                         Write Your content here.........
                     </div>
@@ -71,26 +72,7 @@
         <!--script for this page-->
         <script src="/lib/sparkline-chart.js" th:src="@{/lib/sparkline-chart.js}"></script>
         <script src="/lib/zabuto_calendar.js" th:src="@{/lib/zabuto_calendar.js}"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var unique_id = $.gritter.add({
-                    // (string | mandatory) the heading of the notification
-                    title: 'Hi, I am Mahbub!',
-                    // (string | mandatory) the text inside the notification
-                    text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
-                    // (string | optional) the image to display on the left
-                    image: '/img/ui-sam1.jpg',
-                    // (bool | optional) if you want it to fade out on its own or just sit there
-                    sticky: false,
-                    // (int | optional) the time you want it to be alive for before fading out
-                    time: 8000,
-                    // (string | optional) the class name you want to apply to that specific message
-                    class_name: 'my-sticky-class'
-                });
 
-                return false;
-            });
-        </script>
         <script type="application/javascript">
             $(document).ready(function() {
                 $("#date-popover").popover({

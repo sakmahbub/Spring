@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <h3><i class="fa fa-book"></i> Summary</h3>
+    <div class="row mb">
+        <!-- page start-->
+        <div class="content-panel">
+            <div class="adv-table">
+                <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered"
+                       id="hidden-table-info">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Drug_Name</th>
+                        <th>Drug_code</th>
+                        <th>TotalQty</th>
+                        <th>SoldQty</th>
+                        <th>AvailableQty</th>
+                        <th>Last_Update</th>
+                        <th>Drug_Id</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr class="gradeA" th:each="s : ${summarylist}">
+                        <td th:text="${s.id}"></td>
+                        <td th:text="${s.drugName}"></td>
+                        <td th:text="${s.drugCode}"></td>
+
+                        <!--<td th:text="${s.drug.getBrands().getBrandName()}"></td>-->
+
+                        <td th:text="${s.totalQty}"></td>
+                        <td th:text="${s.soldQty}"></td>
+                        <td th:text="${s.availableQty}"></td>
+                        <td th:text="${s.lastUpdate}"></td>
+                        <td th:text="${s.drug.id}"></td>
+
+
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!-- page end-->
+    </div>
+    <!-- /row -->
+
+
+</div>
+</body>
+</html>

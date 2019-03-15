@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout3.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
@@ -22,23 +23,18 @@
     <link href="css/style.css" th:href="@{css/style.css}" rel="stylesheet">
     <link href="css/style-responsive.css" th:href="@{css/style-responsive.css}" rel="stylesheet">
 
-    <!-- =======================================================
-      Template Name: Dashio
-      Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-      Author: TemplateMag.com
-      License: https://templatemag.com/license/
-    ======================================================= -->
+
 </head>
 <body>
-<!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
+
+<div layout:fragment="custom-content">
+
 <div id="login-page">
     <div class="container">
         <form class="form-login" th:action="@{/login}" th:method="POST">
             <h2 class="form-login-heading">sign in now</h2>
             <div class="login-wrap">
-                <input type="text" name="username" class="form-control" placeholder="User ID" autofocus>
+                <input type="text" name="username" class="form-control" placeholder="UserName Or Email" autofocus>
                 <br>
                 <input type="password" name="password" class="form-control" placeholder="Password">
                 <label class="checkbox">
@@ -61,6 +57,7 @@
                     </a>
                 </div>
             </div>
+
             <!-- Modal -->
             <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
                 <div class="modal-dialog">
@@ -82,6 +79,8 @@
             </div>
             <!-- modal -->
         </form>
+
+
     </div>
 </div>
 <!-- js placed at the end of the document so the pages load faster -->
@@ -91,10 +90,12 @@
 <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
 <script type="text/javascript" src="lib/jquery.backstretch.min.js" th:src="@{lib/jquery.backstretch.min.js}"></script>
 <script>
-    $.backstretch("img/login-bg1.jpg", {
+    $.backstretch("img/login-bg3.jpeg", {
         speed: 500
     });
 </script>
+
+</div>
 </body>
 
 </html>

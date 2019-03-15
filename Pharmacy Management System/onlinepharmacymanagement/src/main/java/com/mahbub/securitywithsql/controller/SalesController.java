@@ -76,7 +76,7 @@ public class SalesController {
         }
 
 
-        return "saless/sales";
+        return "saless/sal";
     }
 
 

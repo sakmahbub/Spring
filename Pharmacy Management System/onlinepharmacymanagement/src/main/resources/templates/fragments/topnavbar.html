@@ -7,12 +7,45 @@
 <body>
 <header class="header black-bg" th:fragment="topnav">
     <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Quality Pharmacy Ltd"></div>
+        <div class="fa fa-bars tooltips" style="font-size:27px;color:lightyellow"  data-placement="right" data-original-title="Quality Pharmacy Ltd"></div>
+
     </div>
     <!--logo start-->
-    <a th:href="@{/}" class="logo"><b>Q<span>PHARMA</span></b></a>
+    <a th:href="@{/}" class="logo"><b>Q<span>PHAR</span>MA</b></a>
     <!--logo end-->
-    <div class="nav notify-row" id="top_menu">
+
+    <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+            <li><a class="logout fa fa-sign-out" style="border-radius:99px; font-size:20px;color:red" th:href="@{/logout}">logout</a></li>
+        </ul>
+    </div>
+    <!--<div class="top-menu">-->
+        <!--<ul class="nav pull-right top-menu">-->
+            <!--<li> <a class="logout" style="border-radius:99px; font-size:14px;color:red" th:href="@{/con}" >Contact us</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="top-menu">-->
+        <!--<ul class="nav pull-right top-menu">-->
+            <!--<li> <a class="logout fa fa-envelope"  style="border-radius:99px; font-size:20px;color:red" href="mailto:sakmahbub@gmail.com" ></a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
+    <!--<div class="top-menu">-->
+        <!--<ul class="nav pull-right top-menu">-->
+            <!--<li><a class="logout fa fa-map-marker" style="border-radius:99px; font-size:20px;color:red" href="https://www.google.com/maps/place/Lazz+Pharma/@23.7513897,90.3790431,16.75z/data=!4m5!3m4!1s0x3755b8adf5e8df15:0xed5e12def8a94f00!8m2!3d23.750837!4d90.3786853"></a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
+    <!--<div class="top-menu">-->
+        <!--<ul class="nav pull-right top-menu">-->
+            <!--<li> <a class="logout" style="border-radius:99px; font-size:14px;color:white; background-color: red" th:href="@{/order}" >Order Now</a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
+
+
+
+
 
 
             <!--&lt;!&ndash;  notification start &ndash;&gt;-->
@@ -394,18 +427,7 @@
             <!--&lt;!&ndash; notification dropdown end &ndash;&gt;-->
         <!--</ul>-->
 
-    </div>
 
-    <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-            <li><a class="logout" th:href="@{/logout}">Logout</a></li>
-        </ul>
-    </div>
-    <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-            <li> <a class="logout" th:href="@{/con}" >Contact us</a></li>
-        </ul>
-    </div>
 </header>
 <!--header end-->
 </body>
