@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout3.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+<br><br>
+    h3><i class="fa fa-map-marker"></i> Location page</h3>
+
+    <div class="row mt">
+        <div class="col-lg-12">
+            <h4 class="title">Address</h4>
+           <ul class="contact_details">
+                <li><i class="fa fa-home"></i>
+                     IDB-BISEW
+                    IDB Bhaban (4th Floor)
+                    E/8-A, Rokeya Sharani
+                    Sher-e-Bangla Nagar
+                    Dhaka-1207
+                    Banglades</li>
+            </ul>
+        </div>
+    </div>
+
+<h4 class="logout fa fa-map-marker" style="border-radius:99px; font-size:20px;color:red"> Map Details</h4>
+<div  class="float-right">
+    <iframe class="float-right" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.134669348271!2d90.37733191498191!3d23.778218334575687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c74e8282b185%3A0x5e029ded49de5bfc!2sIDB+Bhaban%2C+Dhaka+1207%2C+Bangladesh!5e0!3m2!1sen!2s!4v1463767272231" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> </div>
+</div>
+</body>
+</html>

@@ -48,6 +48,12 @@ public class HomeController {
     }
 
 
+    @GetMapping(value = "/location")
+    public String locationView() {
+        return "secure/location";
+
+    }
+
     @GetMapping(value = "/summary")
     public String summaryView(Model model) {
         model.addAttribute("summarylist", this.summaryRepo.findAll());
