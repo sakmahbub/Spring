@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout3.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mm {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="custom-content">
+ <h3><i class="fa fa-table"></i> Contact Form</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+    <span th:class="mm" th:text="${success}"></span>
+        <div class="row mt">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h4 class="title">Contact Form</h4>
+                <div id="message"></div>
+                <form class="contact-form php-mail-form" role="form" th:object="${contact}" th:action="@{/con/add}" th:method="POST">
+
+                    <div class="form-group">
+                        <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" th:field="*{name}" required="true">
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" th:field="*{email}" required="true">
+                        <div class="validate"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" th:field="*{subject}" required="true">
+                        <div class="validate"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us" th:field="*{message}" required="true"></textarea>
+                        <div class="validate"></div>
+                    </div>
+
+                    <div class="loading"></div>
+                    <div class="error-message"></div>
+                    <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                    <div class="form-send">
+                        <button type="submit" class="btn btn-large btn-primary">Send Message</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h4 class="title">Contact Details</h4>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <ul class="contact_details">
+                    <li><i class="fa fa-envelope-o"></i> sakmahbub@gmail.com</li>
+                    <li><i class="fa fa-phone-square"></i> +880 1722928984</li>
+                    <li><i class="fa fa-home"></i>272- Kathalbagan, Dhaka-1205</li>
+                </ul>
+                <!-- contact_details -->
+            </div>
+        </div>
+
+</div>
+</body>
+</html>
