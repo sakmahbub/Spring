@@ -43,11 +43,16 @@
 
 <div id="login-page">
   <div class="container">
+
+
+
     <form class="form-login" th:object="${user}" th:action="@{/sign-up}"  th:method="POST">
       <h2 class="form-login-heading">sign up now</h2>
-      <span th:class="mm" th:text="${successMsg}"></span>
-      <span th:class="err" th:text="${rejectMsg}"></span>
+
       <div class="login-wrap">
+        <span th:class="mm" th:text="${successMsg}"></span>
+        <span th:class="err" th:text="${rejectMsg}"></span>
+        <br>
         Full Name: <input type="text" class="form-control" placeholder="Full Name" autofocus th:field="*{name}" required="true">
         <br>
         Email: <input type="email" class="form-control" placeholder="Enter Your Email" th:field="*{email}" required="true">

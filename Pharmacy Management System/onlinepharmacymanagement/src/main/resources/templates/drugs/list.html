@@ -26,7 +26,7 @@
                    <th>Brand</th>
                    <th>dimension</th>
                    <th>antidote</th>
-                   <th>Note</th>
+                   <th>Price</th>
                    <th>Action</th>
                </tr>
                </thead>
@@ -40,7 +40,7 @@
                    <td th:text="${d.brands.brandName}"></td>
                    <td th:text="${d.dimension}"></td>
                    <td th:text="${d.antidote}"></td>
-                   <td th:text="${d.note}"></td>
+                   <td th:text="${d.unitPrice}"></td>
 
                    <td class="center"><a th:href="@{'/drug/edit/' + ${d.id}}"><button type="button" class="btn btn-round btn-success fa fa-edit"></button></a>
                        <a th:href="@{'/drug/del/' + ${d.id}}"><button type="button" class="btn btn-round btn-danger fa fa-times"></button></a>

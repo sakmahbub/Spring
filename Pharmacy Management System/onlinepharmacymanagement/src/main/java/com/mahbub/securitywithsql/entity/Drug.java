@@ -18,7 +18,7 @@ public class Drug {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-@Column(name = "drug_name")
+    @Column(name = "drug_name")
     private String drugName;
 
     @Column(unique = true)
@@ -43,13 +43,13 @@ public class Drug {
     private String dimension;
     private String antidote;
 
-    private String note;
+    private String unitPrice;
 
 
     public Drug() {
     }
 
-    public Drug(String drugName, String drugCode, Category categories, Drugtype drugtypes, Brand brands, String dimension, String antidote, String note) {
+    public Drug(String drugName, String drugCode, Category categories, Drugtype drugtypes, Brand brands, String dimension, String antidote, String unitPrice) {
         this.drugName = drugName;
         this.drugCode = drugCode;
         this.categories = categories;
@@ -57,7 +57,7 @@ public class Drug {
         this.brands = brands;
         this.dimension = dimension;
         this.antidote = antidote;
-        this.note = note;
+        this.unitPrice = unitPrice;
     }
 
     public Long getId() {
@@ -124,12 +124,12 @@ public class Drug {
         this.antidote = antidote;
     }
 
-    public String getNote() {
-        return note;
+    public String getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setUnitPrice(String unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     @Override
@@ -145,11 +145,11 @@ public class Drug {
                 Objects.equals(brands, drug.brands) &&
                 Objects.equals(dimension, drug.dimension) &&
                 Objects.equals(antidote, drug.antidote) &&
-                Objects.equals(note, drug.note);
+                Objects.equals(unitPrice, drug.unitPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, drugName, drugCode, categories, drugtypes, brands, dimension, antidote, note);
+        return Objects.hash(id, drugName, drugCode, categories, drugtypes, brands, dimension, antidote, unitPrice);
     }
 }

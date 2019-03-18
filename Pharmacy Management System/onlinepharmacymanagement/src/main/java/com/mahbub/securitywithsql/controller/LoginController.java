@@ -48,7 +48,7 @@ public class LoginController {
     @Autowired
     private PasswordEncoder passwordEncoder;
     private static String USER_NAME = "mahbubj2ee";  // GMail user name (just the part before "@gmail.com")
-    private static String PASSWORD = ""; // GMail password
+    private static String PASSWORD = "J2ee01722"; // GMail password
 
 
 
@@ -138,7 +138,7 @@ public class LoginController {
         MimeMessage message = new MimeMessage(session);
 
         try {
-            message.setFrom(new InternetAddress("mahbubj2ee@gmail.com", "phrma LLC."));
+            message.setFrom(new InternetAddress("mahbubj2ee@gmail.com", "Q-phrma Ltd."));
             InternetAddress[] toAddress = new InternetAddress[to.length];
 
             // To get the array of addresses

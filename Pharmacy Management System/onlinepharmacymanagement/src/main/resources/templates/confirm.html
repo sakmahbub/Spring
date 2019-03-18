@@ -22,12 +22,17 @@
   <link href="css/style.css" th:href="@{css/style.css}" rel="stylesheet">
   <link href="css/style-responsive.css" th:href="@{css/style-responsive.css}" rel="stylesheet">
 
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
+  <style>
+    .err{
+      color: red;
+    }
+    .mm{
+      color: green;
+    }
+    .sform{
+      background-color: aqua;
+    }
+  </style>
 </head>
 <body>
 <!-- **********************************************************************************************************************************************************
@@ -36,6 +41,10 @@
 <div id="login-page">
   <div class="container">
     <form class="form-login" th:if="!${invalidToken}" th:object="${setPassword}" th:action="@{/confirm}" th:method="POST">
+
+      <span th:class="mm" th:text="${successMessage}"></span>
+      <span th:class="err" th:text="${errorMessage}"></span>
+
       <input type="hidden" name="token" th:value="${confirmationToken}"/>
       <h2 class="form-login-heading">Confirm Account</h2>
       <div class="login-wrap">
