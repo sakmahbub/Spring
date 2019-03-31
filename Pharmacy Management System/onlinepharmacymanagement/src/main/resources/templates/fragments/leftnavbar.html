@@ -9,7 +9,7 @@
     <div id="sidebar" class="nav-collapse " th:fragment="leftnav">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <p class="centered"><a th:href="@{/profile}"><img src="/img/ui-sam.jpeg" class="img-circle" width="80"></a></p>
+            <p class="centered"><a th:href="@{/profile}"><img th:src="${dynamicuser?.filePath}" class="img-circle" width="80"></a></p>
             <h5 class="centered">User Profile</h5>
             <li class="mt">
                 <a th:href="@{/}">
@@ -27,10 +27,6 @@
                     <li><a th:href="@{/role/list}">Role List</a></li>
                     <li><a th:href="@{/user/add}">Add User</a></li>
                     <li><a th:href="@{/user/list}">User List</a></li>
-                    <li><a th:href="@{/adm}">Admin Page</a></li>
-                    <li><a th:href="@{/u}">User Page</a></li>
-                    <li><a th:href="@{/sa}">Supperadmin Page</a></li>
-
                 </ul>
             </li>
 

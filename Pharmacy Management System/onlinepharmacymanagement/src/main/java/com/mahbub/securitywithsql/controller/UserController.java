@@ -108,7 +108,7 @@ public class UserController {
             user.setFileName("new-" + file.getOriginalFilename());
             user.setFileSize(file.getSize());
             // user.setFile(file.getBytes());
-            user.setFilePath("images/" + "new-" + file.getOriginalFilename());
+            user.setFilePath("/images/" + "new-" + file.getOriginalFilename());
             user.setFileExtension(file.getContentType());
             //////////////////////For Image Upload end/////////////////////
 
