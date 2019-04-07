@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,52 +24,30 @@
     </style>
 </head>
 <body>
-
-<!--<h1>List Save</h1>-->
-<!--<form action="#" th:action="@{/save}" th:object="${form}"-->
-<!--method="post">-->
-<!--<fieldset>-->
-<!--<input type="submit" id="submitButton" th:value="Save">-->
-<!--<input type="reset" id="resetButton" name="reset" th:value="Reset"/>-->
-<!--<table>-->
-<!--<thead>-->
-<!--<tr>-->
-<!--<th> Title</th>-->
-<!--<th> Author</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tbody>-->
-<!--<tr th:each="book, itemStat : *{books}">-->
-<!--<td><input th:field="*{books[__${itemStat.index}__].title}" /></td>-->
-<!--<td><input th:field="*{books[__${itemStat.index}__].author}" /></td>-->
-<!--</tr>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--</fieldset>-->
-<!--</form>-->
-
-
+<div layout:fragment="custom-content">
 <div class="container-fluid">
     <h2>Drug Sales</h2>
 
     <div class="row">
         <div class="col-10 bg-success">
-            <form action="#" th:action="@{/save}" th:object="${sales}"
+            <form action="#" th:action="@{/save}" th:object="${form}"
                   method="post">
 
                 <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')"/>
                 <TABLE id="dataTable" width="350px" border="1">
                     <tr>
                         <th> <input onClick="checkAll(this);" type="checkbox" /></th>
-                        <th>S.L</th>
-                        <th>Book Name</th>
-                        <th>Author</th>
+                        <th>SI</th>
+                       <th>Drug Name</th>
+                        <th>Qty</th>
+                        <th>Unit Price</th>
                     </tr>
-                    <TR th:each="book, itemStat : *{books}">
+                    <TR th:each="sal, itemStat : *{salesLi}">
                         <TD id="all"><INPUT type="checkbox" name="chk"/>   </TD>
-                        <TD> 1</TD>
-                        <TD><INPUT type="text" th:field="*{books[__${itemStat.index}__].title}"/></TD>
-                        <TD><INPUT type="text" th:field="*{books[__${itemStat.index}__].author}"/></TD>
+                        <TD>1</TD>
+                        <TD><INPUT type="text" th:field="*{salesLi[__${itemStat.index}__].drug.drugName}"/></TD>
+                        <TD><INPUT type="text" th:field="*{salesLi[__${itemStat.index}__].qty}"/></TD>
+                        <TD><INPUT type="text" th:field="*{salesLi[__${itemStat.index}__].unitPrice}"/></TD>
 
                     </TR>
                 </TABLE>
@@ -103,17 +84,24 @@
         cell2.innerHTML = rowCount + 1;
         var rowIndex = table.rows.length ;
         rowIndex-=2;
+
         var cell3 = row.insertCell(2);
         var element2 = document.createElement("input");
         element2.type = "text";
-        element2.name = "books["+rowIndex+"].author";
+        element2.name = "salesLi["+rowIndex+"].name";
         cell3.appendChild(element2);
 
-        var cell4 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
         var element3 = document.createElement("input");
         element3.type = "text";
-        element3.name = "books["+rowIndex+"].title";
+        element3.name = "salesLi["+rowIndex+"].qty";
         cell4.appendChild(element3);
+
+        var cell5 = row.insertCell(4);
+        var element4 = document.createElement("input");
+        element4.type = "text";
+        element4.name = "salesLi["+rowIndex+"].unitPrice";
+        cell5.appendChild(element4);
         callurl();
     }
 
@@ -166,7 +154,7 @@
 
             }
         };
-        xhttp.open("GET", "/del", true);
+        xhttp.open("GET", "/delete", true);
         xhttp.send();
     }
 
@@ -188,6 +176,6 @@
         }
     }
 </script>
-
+</div>
 </body>
 </html>

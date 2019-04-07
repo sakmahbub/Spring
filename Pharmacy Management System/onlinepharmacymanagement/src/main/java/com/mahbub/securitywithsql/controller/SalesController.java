@@ -1,7 +1,6 @@
 package com.mahbub.securitywithsql.controller;
 
 
-
 import com.mahbub.securitywithsql.entity.Sales;
 import com.mahbub.securitywithsql.entity.Summary;
 
@@ -12,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -32,6 +28,8 @@ public class SalesController {
 
     @Autowired
     private SummaryRepo summaryRepo;
+
+    SalesDto dto = new SalesDto();
 
 
     @GetMapping(value = "/add")
@@ -50,26 +48,26 @@ public class SalesController {
             return "saless/saless";
         }
         try {
-        Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
-        if(sales.getQty() <= summary.getAvailableQty()) {
-            this.salesRepo.save(sales);
-            model.addAttribute("sales", new Sales());
-            model.addAttribute("success", "Congratulations! Data save sucessfully");
-            model.addAttribute("druglist", this.drugRepo.findAll());
-            //Summar save
+            Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
+            if (sales.getQty() <= summary.getAvailableQty()) {
+                this.salesRepo.save(sales);
+                model.addAttribute("sales", new Sales());
+                model.addAttribute("success", "Congratulations! Data save sucessfully");
+                model.addAttribute("druglist", this.drugRepo.findAll());
+                //Summar save
 
 
-            int avialQty = summary.getAvailableQty() - sales.getQty();
-            summary.setAvailableQty(avialQty);
-            int totalSold = summary.getSoldQty() + sales.getQty();
-            summary.setSoldQty(totalSold);
-            summary.setLastUpdate(new Date());
-            summaryRepo.save(summary);
-        }else{
-            model.addAttribute("rejectMsg", "You don't have sufficient Qty");
-            model.addAttribute("druglist", this.drugRepo.findAll());
+                int avialQty = summary.getAvailableQty() - sales.getQty();
+                summary.setAvailableQty(avialQty);
+                int totalSold = summary.getSoldQty() + sales.getQty();
+                summary.setSoldQty(totalSold);
+                summary.setLastUpdate(new Date());
+                summaryRepo.save(summary);
+            } else {
+                model.addAttribute("rejectMsg", "You don't have sufficient Qty");
+                model.addAttribute("druglist", this.drugRepo.findAll());
 
-        }
+            }
 
         } catch (NullPointerException ne) {
             ne.printStackTrace();
@@ -87,7 +85,6 @@ public class SalesController {
     }
 
 
-
     @GetMapping(value = "/del/{id}")
     public String salesDel(@PathVariable("id") Long id) {
         if (id != null) {
@@ -96,6 +93,42 @@ public class SalesController {
         }
         return "redirect:/sales/list";
 
+    }
+
+
+
+
+
+    @GetMapping("/delete/{index}")
+    public String delFromList(@PathVariable("index") int index) {
+        dto.removeSales(index);
+        System.out.println("size at create: " + dto.getSalesLi().size());
+        return "saless/saless";
+    }
+
+    @GetMapping("/create")
+    public String showCreateForm(Model model) {
+
+
+//        for (int i = 1; i <= 3; i++) {
+        //   booksForm.addBook(new Book());
+        // }
+        dto.addSales(new Sales());
+
+        System.out.println("size at create: "+ dto.getSalesLi().size());
+        model.addAttribute("form", dto);
+        return "saless/saless";
+    }
+
+
+    @PostMapping("/save")
+    public String saveBooks(@ModelAttribute SalesDto salesDto, Model model) {
+        System.out.println(salesDto.getSalesLi().size());
+        salesRepo.saveAll(salesDto.getSalesLi());
+        model.addAttribute("form", new SalesDto());
+
+        model.addAttribute("books", salesRepo.findAll());
+        return "redirect:/sales/list";
     }
 
 //
@@ -128,8 +161,6 @@ public class SalesController {
 //
 //        return "drugs/edit-drug";
 //    }
-
-
 
 
 }
