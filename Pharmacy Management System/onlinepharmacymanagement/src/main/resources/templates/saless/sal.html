@@ -4,89 +4,86 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <title>Q-pharma | sales</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
-
-    <meta charset="UTF-8">
-    <title> Add | Mahbub</title>
-
-
-    <style type="text/css">
-        form{
-            margin: 20px 0;
+    <style>
+        .err{
+            color: red;
         }
-        form input, button{
-            padding: 5px;
+        .mm{
+            color: green;
         }
-        table{
-            width: 100%;
-            margin-bottom: 20px;
-            border-collapse: collapse;
-        }
-        table, th, td{
-            border: 1px solid #cdcdcd;
-        }
-        table th, table td{
-            padding: 10px;
-            text-align: left;
+        .sform{
+            background-color: aqua;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $(".add-row").click(function(){
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var price = $("#price").val();
-                var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td><td>"+ price +"</td></tr>";
-                $("table tbody").append(markup);
-            });
-
-            // Find and remove selected table rows
-            $(".delete-row").click(function(){
-                $("table tbody").find('input[name="record"]').each(function(){
-                    if($(this).is(":checked")){
-                        $(this).parents("tr").remove();
-                    }
-                });
-            });
-        });
-    </script>
 
 </head>
 <body>
 <div layout:fragment="custom-content">
+    <div class="container">
+        <br />
+        <br />
+        <h3><i class="fa fa-book"></i> Drug Sales</h3>
+        <div class="form-group bg-success">
+            <form name="add_name" id="add_name" th:object="${sales}" th:action="@{/sales/add}"  th:method="POST">
 
-    <h3><i class="fa fa-book"></i> Drug Sales</h3>
+                <span th:class="err" th:text="${rejectMsg}"></span>
+                <span th:class="mm" th:text="${success}"></span>
 
-    <form>
-        <input type="text" id="name" placeholder="Drug Name">
-        <input type="text" id="email" placeholder="Qty">
-        <input type="text" id="price" placeholder="Price">
-        <input type="button" class="add-row" value="Add Row">
-    </form>
-    <table>
-        <thead>
-        <tr>
-            <th>Select</th>
-            <th>DrugName</th>
-            <th>Qty</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <!--<td><input type="checkbox" name="record"></td>-->
-            <!--<td>M-20</td>-->
-            <!--<td>10</td>-->
-            <!--<td>150</td>-->
-        </tr>
-        </tbody>
-    </table>
-    <button type="button" class="delete-row">Delete Row</button>
-    <button type="submit" class="delete-row">Submit</button>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dynamic_field">
+                        <tr>
+                            <th>Drug</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr>
+                            <td> <select th:field="*{drug}" id="f-dname" class="form-control">
+                                <option th:each="d : ${druglist}" th:value="${d.id}"><span th:text="${d.drugName}"></span></option>
+                            </select></td>
+                            <td><input type="text" name="qty[]" placeholder="Qty" class="form-control qty_list" th:field="*{qty}" required="true"/></td>
+                            <td><input type="text" name="price[]" placeholder="Price" class="form-control price_list" th:field="*{unitPrice}" required="true"/></td>
+                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                        </tr>
+                    </table>
+                    <button type="submit" name="submit" id="submit" class="btn btn-info">Submit</button>
+                </div>
+            </form>
+        </div>
 
+    </div>
 
 
 </div>
+</div>
 </body>
 </html>
+<script>
+    $(document).ready(function(){
+        var i=1;
+        $('#add').click(function(){
+            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="drug[]" placeholder="" class="form-control drug_list" /></td><td><input type="text" name="qty[]" placeholder="" class="form-control qty_list" /></td><td><input type="text" name="price[]" placeholder="" class="form-control price_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
+        $(document).on('click', '.btn_remove', function(){
+            var button_id = $(this).attr("id");
+            $('#row'+button_id+'').remove();
+        });
+        $('#submit').click(function(){
+            $.ajax({
+                url:"name.php",
+                method:"POST",
+                data:$('#add_name').serialize(),
+                success:function(data)
+                {
+                    alert(data);
+                    $('#add_name')[0].reset();
+                }
+            });
+        });
+    });
+</script>

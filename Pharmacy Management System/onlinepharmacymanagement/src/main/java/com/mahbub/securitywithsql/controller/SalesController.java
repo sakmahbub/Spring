@@ -37,7 +37,7 @@ public class SalesController {
         model.addAttribute("sales", new Sales());
 
         model.addAttribute("druglist", this.drugRepo.findAll());
-        return "saless/saless";
+        return "saless/sal";
 
     }
 
@@ -45,7 +45,7 @@ public class SalesController {
     public String salesSave(@Valid Sales sales, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("druglist", this.drugRepo.findAll());
-            return "saless/saless";
+            return "saless/sal";
         }
         try {
             Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
@@ -74,7 +74,7 @@ public class SalesController {
         }
 
 
-        return "saless/saless";
+        return "saless/sal";
     }
 
 
@@ -103,7 +103,7 @@ public class SalesController {
     public String delFromList(@PathVariable("index") int index) {
         dto.removeSales(index);
         System.out.println("size at create: " + dto.getSalesLi().size());
-        return "saless/saless";
+        return "saless/sal";
     }
 
     @GetMapping("/create")
