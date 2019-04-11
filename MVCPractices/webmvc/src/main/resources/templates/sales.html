@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org/"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,38 +18,23 @@
         th, td {
             padding: 5px;
         }
-
-        .err{
-            color: red;
-        }
-        .mm{
-            color: green;
-        }
-        .sform{
-            background-color: aqua;
-        }
     </style>
 </head>
 <body>
-<div layout:fragment="custom-content">
 
 <div class="container-fluid">
-    <h2>Sales Drug</h2>
+    <h2>Three Equal Columns</h2>
 
     <div class="row">
         <div class="col-10 bg-success">
-            <form action="#" th:action="@{/sales/add}" th:object="${form}"
+            <form action="#" th:action="@{/save}" th:object="${form}"
                   method="post">
-
-                <span th:class="err" th:text="${rejectMsg}"></span>
-                <span th:class="mm" th:text="${success}"></span>
 
                 <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')"/>
                 <TABLE id="dataTable" width="350px" border="1">
                     <tr>
                         <th> <input onClick="checkAll(this);" type="checkbox" /></th>
                         <th>S.L</th>
-                        <th>Drug Name</th>
                         <th>Qty</th>
                         <th>UnitPrice</th>
                         <th>TotalPrice</th>
@@ -60,7 +42,6 @@
                     <TR th:each="sal, itemStat : *{saless}">
                         <TD id="all"><INPUT type="checkbox" name="chk"/>   </TD>
                         <TD> 1</TD>
-                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].drugName}"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].qty}"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].unitPrice}"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].totalPrice}"/></TD>
@@ -103,27 +84,21 @@
         var cell3 = row.insertCell(2);
         var element2 = document.createElement("input");
         element2.type = "text";
-        element2.name = "saless["+rowIndex+"].drugName";
+        element2.name = "saless["+rowIndex+"].qty";
         cell3.appendChild(element2);
 
         var cell4 = row.insertCell(3);
         var element3 = document.createElement("input");
         element3.type = "text";
-        element3.name = "saless["+rowIndex+"].qty";
+        element3.name = "saless["+rowIndex+"].unitPrice";
         cell4.appendChild(element3);
 
 
         var cell5 = row.insertCell(4);
         var element4 = document.createElement("input");
         element4.type = "text";
-        element4.name = "saless["+rowIndex+"].unitPrice";
+        element4.name = "saless["+rowIndex+"].totalPrice";
         cell5.appendChild(element4);
-
-        var cell6 = row.insertCell(5);
-        var element5 = document.createElement("input");
-        element5.type = "text";
-        element5.name = "saless["+rowIndex+"].totalPrice";
-        cell6.appendChild(element5);
         callurl();
     }
 
@@ -198,6 +173,6 @@
         }
     }
 </script>
-</div>
+
 </body>
 </html>

@@ -19,6 +19,9 @@ public class Sales {
     @JoinColumn(name = "drug_id", nullable = false)
     private Drug drug;
 
+    @Transient
+    private String drugName;
+
     private int qty;
     private double unitPrice;
     private double totalPrice;
@@ -37,6 +40,14 @@ public class Sales {
         this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
         this.salseDate = salseDate;
+    }
+
+    public String getDrugName() {
+        return drugName;
+    }
+
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
     }
 
     public Long getId() {

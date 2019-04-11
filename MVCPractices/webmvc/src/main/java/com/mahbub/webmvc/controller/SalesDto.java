@@ -1,8 +1,6 @@
-package com.mahbub.securitywithsql.controller;
+package com.mahbub.webmvc.controller;
 
-
-
-import com.mahbub.securitywithsql.entity.Sales;
+import com.mahbub.webmvc.entity.Sales;
 
 import java.util.ArrayList;
 import java.util.List;

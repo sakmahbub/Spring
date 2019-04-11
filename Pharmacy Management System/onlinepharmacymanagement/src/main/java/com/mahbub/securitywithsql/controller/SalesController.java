@@ -1,6 +1,7 @@
 package com.mahbub.securitywithsql.controller;
 
 
+import com.mahbub.securitywithsql.entity.Drug;
 import com.mahbub.securitywithsql.entity.Sales;
 import com.mahbub.securitywithsql.entity.Summary;
 
@@ -34,47 +35,46 @@ public class SalesController {
 
     @GetMapping(value = "/add")
     public String addShow(Sales sales, Model model) {
-        model.addAttribute("sales", new Sales());
-
-        model.addAttribute("druglist", this.drugRepo.findAll());
-        return "saless/sal";
+          model.addAttribute("form", dto);
+        return "saless/saless";
 
     }
 
     @PostMapping(value = "/add")
-    public String salesSave(@Valid Sales sales, BindingResult bindingResult, Model model) {
+    public String salesSave(@Valid Sales sales, @ModelAttribute SalesDto salesDto,  BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("druglist", this.drugRepo.findAll());
-            return "saless/sal";
+            return "saless/saless";
         }
         try {
-            Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
-            if (sales.getQty() <= summary.getAvailableQty()) {
-                this.salesRepo.save(sales);
-                model.addAttribute("sales", new Sales());
-                model.addAttribute("success", "Congratulations! Data save sucessfully");
-                model.addAttribute("druglist", this.drugRepo.findAll());
-                //Summar save
 
 
-                int avialQty = summary.getAvailableQty() - sales.getQty();
-                summary.setAvailableQty(avialQty);
-                int totalSold = summary.getSoldQty() + sales.getQty();
-                summary.setSoldQty(totalSold);
-                summary.setLastUpdate(new Date());
-                summaryRepo.save(summary);
-            } else {
-                model.addAttribute("rejectMsg", "You don't have sufficient Qty");
-                model.addAttribute("druglist", this.drugRepo.findAll());
 
+            for(int i=0; i < salesDto.getSaless().size(); i++) {
+                Sales sales1=new Sales(drugRepo.findByDrugName(salesDto.getSaless().get(i).getDrugName()), salesDto.getSaless().get(i).getQty(), salesDto.getSaless().get(i).getUnitPrice(), salesDto.getSaless().get(i).getTotalPrice(), new Date());
+                salesRepo.save(sales1);
+                Summary summary = this.summaryRepo.findByDrugName(salesDto.getSaless().get(i).getDrugName());
+
+                if (sales.getQty() <= summary.getAvailableQty()) {
+                    //Summar save
+                    int avialQty = summary.getAvailableQty() - sales.getQty();
+                    summary.setAvailableQty(avialQty);
+                    int totalSold = summary.getSoldQty() + sales.getQty();
+                    summary.setSoldQty(totalSold);
+                    summary.setLastUpdate(new Date());
+                    summaryRepo.save(summary);
+                } else {
+                    model.addAttribute("rejectMsg", "You don't have sufficient Qty");
+                    model.addAttribute("druglist", this.drugRepo.findAll());
+
+                }
             }
-
-        } catch (NullPointerException ne) {
+        }catch(NullPointerException ne) {
             ne.printStackTrace();
         }
 
 
-        return "saless/sal";
+        return "saless/saless";
     }
 
 
@@ -96,26 +96,16 @@ public class SalesController {
     }
 
 
-
-
-
     @GetMapping("/delete/{index}")
     public String delFromList(@PathVariable("index") int index) {
         dto.removeSales(index);
-        System.out.println("size at create: " + dto.getSalesLi().size());
-        return "saless/sal";
+        System.out.println("size at create: " + dto.getSaless().size());
+        return "saless/saless";
     }
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
-
-
-//        for (int i = 1; i <= 3; i++) {
-        //   booksForm.addBook(new Book());
-        // }
-        dto.addSales(new Sales());
-
-        System.out.println("size at create: "+ dto.getSalesLi().size());
+        System.out.println("size at create: " + dto.getSaless().size());
         model.addAttribute("form", dto);
         return "saless/saless";
     }
@@ -123,11 +113,11 @@ public class SalesController {
 
     @PostMapping("/save")
     public String saveBooks(@ModelAttribute SalesDto salesDto, Model model) {
-        System.out.println(salesDto.getSalesLi().size());
-        salesRepo.saveAll(salesDto.getSalesLi());
+        System.out.println(salesDto.getSaless().size());
+        salesRepo.saveAll(salesDto.getSaless());
         model.addAttribute("form", new SalesDto());
 
-        model.addAttribute("books", salesRepo.findAll());
+        model.addAttribute("druglist", salesRepo.findAll());
         return "redirect:/sales/list";
     }
 
