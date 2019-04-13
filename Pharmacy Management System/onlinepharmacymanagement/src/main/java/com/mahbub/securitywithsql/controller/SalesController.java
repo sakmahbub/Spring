@@ -33,6 +33,22 @@ public class SalesController {
     SalesDto dto = new SalesDto();
 
 
+
+
+    @GetMapping(value = "/searchdrug")
+    public String searchDrugName(Model model, @RequestParam("drugName") String drugName) {
+        System.out.println("==========Called=====on====Input====="+drugName);
+        model.addAttribute("drugaftersearch", drugRepo.findByDrugNameIsLikeOrAndDrugNameIsContainingOrDrugNameIsEndingWithOrDrugCodeStartsWith(drugName,drugName,drugName,drugName));
+        return "saless/saless";
+
+    }
+
+
+
+
+
+
+
     @GetMapping(value = "/add")
     public String addShow(Sales sales, Model model) {
           model.addAttribute("form", dto);
@@ -55,14 +71,15 @@ public class SalesController {
                 salesRepo.save(sales1);
                 Summary summary = this.summaryRepo.findByDrugName(salesDto.getSaless().get(i).getDrugName());
 
-                if (sales.getQty() <= summary.getAvailableQty()) {
+                if (sales1.getQty() <= summary.getAvailableQty()) {
                     //Summar save
-                    int avialQty = summary.getAvailableQty() - sales.getQty();
+                    int avialQty = summary.getAvailableQty() - sales1.getQty();
                     summary.setAvailableQty(avialQty);
-                    int totalSold = summary.getSoldQty() + sales.getQty();
+                    int totalSold = summary.getSoldQty() + sales1.getQty();
                     summary.setSoldQty(totalSold);
                     summary.setLastUpdate(new Date());
                     summaryRepo.save(summary);
+                    model.addAttribute("success", " Drug Sales Successfully");
                 } else {
                     model.addAttribute("rejectMsg", "You don't have sufficient Qty");
                     model.addAttribute("druglist", this.drugRepo.findAll());
@@ -103,7 +120,7 @@ public class SalesController {
         return "saless/saless";
     }
 
-    @GetMapping("/create")
+    /*@GetMapping("/create")
     public String showCreateForm(Model model) {
         System.out.println("size at create: " + dto.getSaless().size());
         model.addAttribute("form", dto);
@@ -120,7 +137,7 @@ public class SalesController {
         model.addAttribute("druglist", salesRepo.findAll());
         return "redirect:/sales/list";
     }
-
+*/
 //
 //    @GetMapping(value = "/editdrug/{id}")
 //    public String editShow(Model model, @PathVariable("id") Long id) {

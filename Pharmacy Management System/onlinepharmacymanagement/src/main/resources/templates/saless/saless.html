@@ -60,7 +60,8 @@
                     <TR th:each="sal, itemStat : *{saless}">
                         <TD id="all"><INPUT type="checkbox" name="chk"/>   </TD>
                         <TD> 1</TD>
-                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].drugName}"/></TD>
+
+                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].drugName}" oninput="callSearchUrl(this)" name="drugName"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].qty}"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].unitPrice}"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].totalPrice}"/></TD>
@@ -196,6 +197,21 @@
                 }
             }
         }
+    }
+
+
+    function callSearchUrl(drugName) {
+        var xhttp;
+
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+
+            }
+        };
+        xhttp.open("GET", "/searchdrug", true);
+        xhttp.send();
     }
 </script>
 </div>

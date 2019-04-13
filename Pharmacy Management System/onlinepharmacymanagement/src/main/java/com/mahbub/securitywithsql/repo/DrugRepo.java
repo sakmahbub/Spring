@@ -12,4 +12,6 @@ public interface DrugRepo extends JpaRepository<Drug, Long> {
     Drug findByDrugName(String drugName);
     Drug findByDrugCode(String dc);
 
+    Drug findByDrugNameIsLikeOrAndDrugNameIsContainingOrDrugNameIsEndingWithOrDrugCodeStartsWith(String drugName1,String drugName2,String drugName3,String drugName4);
+
 }
