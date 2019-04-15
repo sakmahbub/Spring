@@ -62,9 +62,9 @@
                         <TD> 1</TD>
 
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].drugName}" oninput="callSearchUrl(this)" name="drugName"/></TD>
-                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].qty}"/></TD>
-                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].unitPrice}"/></TD>
-                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].totalPrice}"/></TD>
+                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].qty}" id="text7" value="20" oninput="callToatl()"/></TD>
+                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].unitPrice}" id="text8" oninput="callToatl()" value="2"/></TD>
+                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].totalPrice}" id="text99" /></TD>
 
                     </TR>
                 </TABLE>
@@ -122,7 +122,7 @@
 
         var cell6 = row.insertCell(5);
         var element5 = document.createElement("input");
-        element5.type = "text";
+        element5.type = "text" ;
         element5.name = "saless["+rowIndex+"].totalPrice";
         cell6.appendChild(element5);
         callurl();
@@ -214,6 +214,12 @@
         xhttp.send();
     }
 </script>
+
+    <script>
+        function callToatl() {
+            document.getElementById("text99").value = document.getElementById("text7").value * document.getElementById("text8").value;
+        }
+    </script>
 </div>
 </body>
 </html>
