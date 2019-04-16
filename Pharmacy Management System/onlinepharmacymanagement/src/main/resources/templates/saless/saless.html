@@ -32,13 +32,21 @@
             background-color: aqua;
         }
     </style>
+    <script src="${pageContext.request.contextPath }/resources/js/jquery-ui-1.8.2.custom.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#drugName').autocomplete({
+                source : '${pageContext.request.contextPath }/sales/search'
+            });
+        });
+    </script>
 </head>
 <body>
 <div layout:fragment="custom-content">
 
 <div class="container-fluid">
     <h2>Sales Drug</h2>
-
+    <input type="text" id="drugName">
     <div class="row">
         <div class="col-10 bg-success">
             <form action="#" th:action="@{/sales/add}" th:object="${form}"

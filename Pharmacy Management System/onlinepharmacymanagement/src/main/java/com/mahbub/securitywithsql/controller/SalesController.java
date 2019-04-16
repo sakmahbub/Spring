@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/sales")
@@ -43,7 +45,11 @@ public class SalesController {
 
     }
 
-
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> search(HttpServletRequest request) {
+        return drugRepo.search(request.getParameter("term"));
+    }
 
 
 
