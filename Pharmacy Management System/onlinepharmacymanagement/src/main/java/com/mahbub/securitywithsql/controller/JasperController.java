@@ -1,6 +1,7 @@
 package com.mahbub.securitywithsql.controller;
 
 
+import com.mahbub.securitywithsql.jasper.MediaTypeUtils;
 import com.mahbub.securitywithsql.jasper.SummaryService;
 import com.mahbub.securitywithsql.repo.SummaryRepo;
 import net.sf.jasperreports.engine.*;
@@ -8,15 +9,20 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.HtmlExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
-import net.sf.jasperreports.repo.InputStreamResource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +32,9 @@ public class JasperController {
 
     @Autowired
     private SummaryService summaryService;
+
+    @Autowired
+    ServletContext context;
 
 
     @RequestMapping(value = "report", method = RequestMethod.GET)
@@ -41,26 +50,20 @@ public class JasperController {
         exporter.exportReport();
     }
 
+    ////////////////pdf//////////////////////
 
-    @RequestMapping(value = "/pdf", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_PDF_VALUE)
-    public void reportPdf(HttpServletResponse response) throws Exception {
-        String source = "E:\\Mahbubur_Rahman-37\\My-Document\\Spring\\Pharmacy Management System\\onlinepharmacymanagement\\src\\main\\resources\\report.jrxml";
+    //    @RequestMapping(value = "/pdf", method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_PDF_VALUE)
+    public void reportPdf() throws Exception {
+        String source = "src\\main\\resources\\report.jrxml";
         try {
-                JasperCompileManager.compileReportToFile(source);
+            JasperCompileManager.compileReportToFile(source);
         } catch (JRException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-        String sourceFileName = "E:\\Mahbubur_Rahman-37\\My-Document\\Spring\\Pharmacy Management System\\onlinepharmacymanagement\\src\\main\\resources\\report1.jasper";
-
-
+        String sourceFileName = "src\\main\\resources\\report1.jasper";
         String printFileName = null;
-        String destFileName = "E:\\Mahbubur_Rahman-37\\My-Document\\Spring\\Pharmacy Management System\\onlinepharmacymanagement\\src\\main\\resources\\report.pdf";
+        String destFileName = "src\\main\\resources\\report.pdf";
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(summaryService.report());
         Map parameters = new HashMap();
         try {
@@ -69,12 +72,71 @@ public class JasperController {
             if (printFileName != null) {
                 JasperExportManager.exportReportToPdfFile(printFileName,
                         destFileName);
-
-
             }
         } catch (JRException e) {
             e.printStackTrace();
         }
+
+    }
+
+    @RequestMapping("/pdf")
+    public ResponseEntity<InputStreamResource> downloadFile1() throws IOException {
+        try {
+            reportPdf();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String fileName="src\\\\main\\\\resources\\\\report.pdf";
+        MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.context, fileName);
+
+        File file = new File(fileName);
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                // Content-Disposition
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+                // Content-Type
+                .contentType(mediaType)
+                // Contet-Length
+                .contentLength(file.length()) //
+                .body(resource);
+    }
+
+
+//
+//    @RequestMapping(value = "/pdf", method = RequestMethod.GET,
+//            produces = MediaType.APPLICATION_PDF_VALUE)
+//    public void reportPdf(HttpServletResponse response) throws Exception {
+//        String source = "E:\\Mahbubur_Rahman-37\\My-Document\\Spring\\Pharmacy Management System\\onlinepharmacymanagement\\src\\main\\resources\\report.jrxml";
+//        try {
+//                JasperCompileManager.compileReportToFile(source);
+//        } catch (JRException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//
+//
+//        String sourceFileName = "E:\\Mahbubur_Rahman-37\\My-Document\\Spring\\Pharmacy Management System\\onlinepharmacymanagement\\src\\main\\resources\\report1.jasper";
+//
+//
+//        String printFileName = null;
+//        String destFileName = "E:\\Mahbubur_Rahman-37\\My-Document\\Spring\\Pharmacy Management System\\onlinepharmacymanagement\\src\\main\\resources\\report.pdf";
+//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(summaryService.report());
+//        Map parameters = new HashMap();
+//        try {
+//            printFileName = JasperFillManager.fillReportToFile(sourceFileName,
+//                    parameters, dataSource);
+//            if (printFileName != null) {
+//                JasperExportManager.exportReportToPdfFile(printFileName,
+//                        destFileName);
+//
+//
+//            }
+//        } catch (JRException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        /////////////////download
@@ -92,4 +154,4 @@ public class JasperController {
     }
 
 
-}
+

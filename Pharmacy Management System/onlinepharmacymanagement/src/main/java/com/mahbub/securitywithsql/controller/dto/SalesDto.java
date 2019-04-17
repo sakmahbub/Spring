@@ -1,4 +1,4 @@
-package com.mahbub.securitywithsql.controller;
+package com.mahbub.securitywithsql.controller.dto;
 
 
 

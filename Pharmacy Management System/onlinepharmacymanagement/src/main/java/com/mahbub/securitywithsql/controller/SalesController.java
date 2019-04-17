@@ -1,7 +1,7 @@
 package com.mahbub.securitywithsql.controller;
 
 
-import com.mahbub.securitywithsql.entity.Drug;
+import com.mahbub.securitywithsql.controller.dto.SalesDto;
 import com.mahbub.securitywithsql.entity.Sales;
 import com.mahbub.securitywithsql.entity.Summary;
 
@@ -174,6 +174,5 @@ public class SalesController {
 //
 //        return "drugs/edit-drug";
 //    }
-
 
 }

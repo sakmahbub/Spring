@@ -40,13 +40,21 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(function() {
+            $(".drug_name").autocomplete({
+                source: "drugAutocomplete",
+                minLength: 3
+            });
+        });
+    </script>
 </head>
 <body>
 <div layout:fragment="custom-content">
 
 <div class="container-fluid">
     <h2>Sales Drug</h2>
-    <input type="text" id="drugName">
+
     <div class="row">
         <div class="col-10 bg-success">
             <form action="#" th:action="@{/sales/add}" th:object="${form}"
@@ -69,7 +77,7 @@
                         <TD id="all"><INPUT type="checkbox" name="chk"/>   </TD>
                         <TD> 1</TD>
 
-                        <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].drugName}" oninput="callSearchUrl(this)" name="drugName"/></TD>
+                        <TD><INPUT class="drug_name" type="text" th:field="*{saless[__${itemStat.index}__].drugName}" oninput="callSearchUrl(this)" name="term"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].qty}" id="text7" value="20" oninput="callToatl()"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].unitPrice}" id="text8" oninput="callToatl()" value="2"/></TD>
                         <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].totalPrice}" id="text99" /></TD>
