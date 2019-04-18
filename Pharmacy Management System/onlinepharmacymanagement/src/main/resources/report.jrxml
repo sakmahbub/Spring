@@ -4,6 +4,7 @@
         <![CDATA[]]>
     </queryString>
     <field name="id" class="java.lang.Long"/>
+    <field name="drugName" class="java.lang.String"/>
     <field name="totalQty" class="java.lang.Integer"/>
     <field name="soldQty" class="java.lang.Integer"/>
     <field name="availableQty" class="java.lang.Integer"/>
@@ -42,31 +43,26 @@
                 <textElement>
                     <font size="11" isBold="true"/>
                 </textElement>
+                <text><![CDATA[Drug Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="210" y="10" width="100" height="20" uuid="faf9b9ee-7cf2-4ea5-80b8-d371c3c753b9"/>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
                 <text><![CDATA[Total Qty]]></text>
             </staticText>
             <staticText>
-                <reportElement x="210" y="10" width="70" height="20" uuid="93727672-9f69-4856-aa26-33837e8dc417"/>
+                <reportElement x="310" y="10" width="70" height="20" uuid="93727672-9f69-4856-aa26-33837e8dc417"/>
                 <textElement>
                     <font fontName="SansSerif" isBold="true"/>
                 </textElement>
                 <text><![CDATA[Sold Qty]]></text>
             </staticText>
-            <!--<staticText>-->
-                <!--<reportElement x="314" y="10" width="70" height="20" uuid="09b47abe-09b2-479a-bb76-9770e361a23c"/>-->
-                <!--<textElement>-->
-                    <!--<font isBold="true"/>-->
-                <!--</textElement>-->
-                <!--<text><![CDATA[Task Critical Level]]></text>-->
-            <!--</staticText>-->
-            <!--<staticText>-->
-                <!--<reportElement x="410" y="10" width="100" height="20" uuid="c258f47b-da6a-418d-a5e0-892388ec65c5"/>-->
-                <!--<textElement>-->
-                    <!--<font isBold="true"/>-->
-                <!--</textElement>-->
-                <!--<text><![CDATA[Project Module]]></text>-->
-            <!--</staticText>-->
+
+
             <staticText>
-                <reportElement x="310" y="10" width="100" height="20" uuid="c258f47b-da6a-418d-a5e0-892388ec65c5"/>
+                <reportElement x="410" y="10" width="100" height="20" uuid="c258f47b-da6a-418d-a5e0-892388ec65c5"/>
                 <textElement>
                     <font isBold="true"/>
                 </textElement>
@@ -82,33 +78,19 @@
             </textField>
             <textField>
                 <reportElement x="90" y="4" width="70" height="16" uuid="ba6e9cfa-6d4c-470b-8bc4-eb2e3411c21e"/>
+                <textFieldExpression><![CDATA[$F{drugName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="210" y="4" width="70" height="16" uuid="ba6e9cfa-6d4c-470b-8bc4-eb2e3411c21e"/>
                 <textFieldExpression><![CDATA[$F{totalQty}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="210" y="4" width="70" height="16" uuid="447253d3-d268-4873-b0b7-9c174c6a7c9f"/>
+                <reportElement x="310" y="4" width="70" height="16" uuid="447253d3-d268-4873-b0b7-9c174c6a7c9f"/>
                 <textFieldExpression><![CDATA[$F{soldQty}]]></textFieldExpression>
             </textField>
-            <!--<textField>-->
-                <!--<reportElement x="410" y="4" width="100" height="16" uuid="8992d0ad-1f5e-4210-b50b-1e29dc66f119"/>-->
-                <!--<textFieldExpression><![CDATA[$F{taskCriticalLevel}]]></textFieldExpression>-->
-            <!--</textField>-->
-            <!--<line>-->
-                <!--<reportElement x="-3" y="27" width="521" height="1" uuid="9b493a65-a499-4199-90bb-b3fedbe45f85"/>-->
-            <!--</line>-->
-            <!--<textField>-->
-                <!--<reportElement x="90" y="4" width="100" height="16" uuid="fcdd8979-dc44-46e3-be56-11e5f33b8e0c">-->
-                    <!--<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73fad7b3-74b5-4436-bd46-d2b9c3c113fd"/>-->
-                <!--</reportElement>-->
-                <!--<textFieldExpression><![CDATA[$F{projectModule}]]></textFieldExpression>-->
-            <!--</textField>-->
-            <!--<textField>-->
-                <!--<reportElement x="90" y="4" width="100" height="16" uuid="fcdd8979-dc44-46e3-be56-11e5fabc8e0c">-->
-                    <!--<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73fad7b3-74b5-4436-bd46-d2b9abcd13fd"/>-->
-                <!--</reportElement>-->
-                <!--<textFieldExpression><![CDATA[$F{company}]]></textFieldExpression>-->
-            <!--</textField>-->
+
             <textField>
-                <reportElement x="310" y="4" width="100" height="16" uuid="fcdabc18-dc44-46e3-be56-11e5f33b8e0c">
+                <reportElement x="410" y="4" width="100" height="16" uuid="fcdabc18-dc44-46e3-be56-11e5f33b8e0c">
                     <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73fad7b3-74b5-4436-bd46-d2b9c3c1cdba"/>
                 </reportElement>
                 <textFieldExpression><![CDATA[$F{availableQty}]]></textFieldExpression>

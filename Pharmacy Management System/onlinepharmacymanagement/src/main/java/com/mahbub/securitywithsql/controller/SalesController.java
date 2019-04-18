@@ -45,14 +45,6 @@ public class SalesController {
 
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    @ResponseBody
-    public List<String> search(HttpServletRequest request) {
-        return drugRepo.search(request.getParameter("term"));
-    }
-
-
-
 
 
     @GetMapping(value = "/add")

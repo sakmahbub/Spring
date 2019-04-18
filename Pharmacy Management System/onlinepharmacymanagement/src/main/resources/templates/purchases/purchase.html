@@ -51,16 +51,16 @@
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">Quantity</label>
                         <div class="col-lg-10">
-                            <input type="text" placeholder="0" id="f-qty" class="form-control"
-                                   th:field="*{qty}" required="true">
+                            <input type="text" placeholder="0" class="form-control"
+                                   th:field="*{qty}" required="true" id="text7" value="20" oninput="callToatl()">
                         </div>
                     </div>
 
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">UnitPrice</label>
                         <div class="col-lg-10">
-                            <input type="text" placeholder="0.0" id="f-unit" class="form-control"
-                                   th:field="*{unitPrice}" required="true">
+                            <input type="text" placeholder="0.0" class="form-control"
+                                   th:field="*{unitPrice}" required="true" id="text8" oninput="callToatl()" value="2">
                         </div>
                     </div>
 
@@ -68,8 +68,8 @@
                     <div class="form-group has-success">
                         <label class="col-lg-2 control-label">TotalPrice</label>
                         <div class="col-lg-10">
-                            <input type="text" placeholder="0.0" id="f-tprice" class="form-control"
-                                   th:field="*{totalPrice}" required="true">
+                            <input type="text" placeholder="0.0"  class="form-control"
+                                   th:field="*{totalPrice}" required="true" id="text99" >
                         </div>
                     </div>
 
@@ -91,6 +91,12 @@
     </div>
 
 
+    <script>
+        function callToatl() {
+            document.getElementById("text99").value = document.getElementById("text7").value * document.getElementById("text8").value;
+        }
+    </script>
 </div>
+
 </body>
 </html>

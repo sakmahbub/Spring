@@ -22,11 +22,9 @@ public class SummaryServiceImpl implements SummaryService {
         for (Summary summary : summaryRepo.findAll()) {
             Map<String, Object> item = new HashMap<String, Object>();
             item.put("id", summary.getId());
+            item.put("drugName", summary.getDrugName());
             item.put("totalQty", summary.getTotalQty());
             item.put("soldQty", summary.getSoldQty());
-            //item.put("taskCriticalLevel", task.getTaskCriticalLevel().getLevel());
-            // item.put("projectModule", task.getProjectModule().getTitle());
-            // item.put("company", task.getCompany().getCompanyName());
             item.put("availableQty", summary.getAvailableQty());
             result.add(item);
         }

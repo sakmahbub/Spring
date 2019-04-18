@@ -105,7 +105,7 @@ public class LoginController {
 
             this.repo.save(user);
             //email sending
-            String appUrl = request.getScheme() + "://" + request.getServerName()+":"+"8008";
+            String appUrl = request.getScheme() + "://" + request.getServerName()+":"+"8084";
             String from = USER_NAME;
             String pass = PASSWORD;
             String[] to = {user.getEmail()}; // list of recipient email addresses
