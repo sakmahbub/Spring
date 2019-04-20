@@ -5,95 +5,241 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title> Add | Mahbub</title>
-
-
-    <style type="text/css">
-        form{
-            margin: 20px 0;
-        }
-        form input, button{
-            padding: 5px;
-        }
-        table{
-            width: 100%;
-            margin-bottom: 20px;
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
             border-collapse: collapse;
         }
-        table, th, td{
-            border: 1px solid #cdcdcd;
+
+        th, td {
+            padding: 5px;
         }
-        table th, table td{
-            padding: 10px;
-            text-align: left;
+
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
+        .sform{
+            background-color: aqua;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/jquery-ui-1.8.2.custom.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $(".add-row").click(function(){
-                var name = $("#name").val();
-                var email = $("#email").val();
-                var price = $("#price").val();
-                var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td><td>"+ price +"</td></tr>";
-                $("table tbody").append(markup);
-            });
-
-            // Find and remove selected table rows
-            $(".delete-row").click(function(){
-                $("table tbody").find('input[name="record"]').each(function(){
-                    if($(this).is(":checked")){
-                        $(this).parents("tr").remove();
-                    }
-                });
+        $(document).ready(function() {
+            $('#drugName').autocomplete({
+                source : '${pageContext.request.contextPath }/sales/search'
             });
         });
     </script>
-
+    <script type="text/javascript">
+        $(function() {
+            $(".drug_name").autocomplete({
+                source: "drugAutocomplete",
+                minLength: 3
+            });
+        });
+    </script>
 </head>
 <body>
 <div layout:fragment="custom-content">
-<br><br><br>
-    <h3><i class="fa fa-book"></i> Drug Order</h3>
 
-    <form>
-        <input type="text" id="name" placeholder="Drug Name">
-        <input type="text" id="email" placeholder="Qty">
-        <input type="text" id="price" placeholder="Price">
-        <input type="button" class="add-row" value="Add Row">
-    </form>
-    <table>
-        <thead>
-        <tr>
-            <th>Select</th>
-            <th>DrugName</th>
-            <th>Qty</th>
-            <th>Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td><input type="checkbox" name="record"></td>
-            <td>M-20</td>
-            <td>10</td>
-            <td>150</td>
-        </tr>
-        </tbody>
+    <br>
+    <br>
+    <br>
+    <br>
 
-        <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th>Total</th>
-            <th>245</th>
-        </tr>
-        </thead>
-    </table>
-    <button type="button" class="delete-row">Delete Row</button>
-    <button type="button" class="delete-row">Add to card</button>
+    <div class="container-fluid">
+        <h2>Order Drug</h2>
+
+        <div class="row">
+            <div class="col-10 bg-success">
+                <form action="#" th:action="@{/con/add}" th:object="${form}"
+                      method="post">
+
+                    <span th:class="mm" th:text="${success}"></span>
+
+                    <INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')"/>
+                    <TABLE id="dataTable" width="350px" border="1">
+                        <tr>
+                            <th> <input onClick="checkAll(this);" type="checkbox" /></th>
+                            <th>S.L</th>
+                            <th>Drug Name</th>
+                            <th>Qty</th>
+                            <th>UnitPrice</th>
+                            <th>TotalPrice</th>
+                        </tr>
+                        <TR th:each="sal, itemStat : *{saless}">
+                            <TD id="all"><INPUT type="checkbox" name="chk"/>   </TD>
+                            <TD> 1</TD>
+
+                            <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].drugName}" oninput="callSearchUrl(this)" name="term"/></TD>
+                            <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].qty}" id="text7" value="20" oninput="callToatl()"/></TD>
+                            <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].unitPrice}" id="text8" oninput="callToatl()" value="2"/></TD>
+                            <TD><INPUT type="text" th:field="*{saless[__${itemStat.index}__].totalPrice}" id="text99" /></TD>
+
+                        </TR>
+                    </TABLE>
+                    <hr/>
+                    <input type="submit" id="submitButton" th:value="AddToCard">
+                    <input type="reset" id="resetButton" name="reset" th:value="Reset"/>
+                </form>
+            </div>
+            <div class="col-2 bg-warning">
+
+                <INPUT style="position: absolute; bottom: 0" type="button" value="Add Row" onclick="addRow('dataTable')" />
+            </div>
+
+
+        </div>
+    </div>
+
+    <script language="javascript">
+        function addRow(tableID) {
+
+
+            var table = document.getElementById(tableID);
+
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "checkbox";
+            element1.name = "chkbox[]";
+            cell1.appendChild(element1);
+
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = rowCount + 1;
+            var rowIndex = table.rows.length ;
+            rowIndex-=2;
+            var cell3 = row.insertCell(2);
+            var element2 = document.createElement("input");
+            element2.type = "text";
+            element2.name = "saless["+rowIndex+"].drugName";
+            cell3.appendChild(element2);
+
+            var cell4 = row.insertCell(3);
+            var element3 = document.createElement("input");
+            element3.type = "text";
+            element3.name = "saless["+rowIndex+"].qty";
+            cell4.appendChild(element3);
+
+
+            var cell5 = row.insertCell(4);
+            var element4 = document.createElement("input");
+            element4.type = "text";
+            element4.name = "saless["+rowIndex+"].unitPrice";
+            cell5.appendChild(element4);
+
+            var cell6 = row.insertCell(5);
+            var element5 = document.createElement("input");
+            element5.type = "text" ;
+            element5.name = "saless["+rowIndex+"].totalPrice";
+            cell6.appendChild(element5);
+            callurl();
+        }
+
+        function deleteRow(tableID) {
+            try {
+                var table = document.getElementById(tableID);
+                var rowCount = table.rows.length;
+
+                for (var i = 0; i < rowCount; i++) {
+                    var row = table.rows[i];
+                    var chkbox = row.cells[0].childNodes[0];
+                    if (null != chkbox && true == chkbox.checked) {
+                        table.deleteRow(i);
+                        rowCount--;
+                        i--;
+                        console.log("row no: "+row+" chkbox: "+chkbox);
+                        callDelurl(i);
+                    }
+
+
+                }
+            } catch (e) {
+                alert(e);
+            }
+        }
 
 
 
+        ///////////////////
+        function callurl() {
+            var xhttp;
+
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+
+                }
+            };
+            xhttp.open("GET", "/create", true);
+            xhttp.send();
+        }
+        function callDelurl(index) {
+            var xhttp;
+
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+
+                }
+            };
+            xhttp.open("GET", "/del", true);
+            xhttp.send();
+        }
+
+        function checkAll(ele) {
+            var checkboxes = document.getElementsByTagName('input');
+            if (ele.checked) {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = true;
+                    }
+                }
+            } else {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    console.log(i)
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
+        }
+
+
+        function callSearchUrl(drugName) {
+            var xhttp;
+
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+
+                }
+            };
+            xhttp.open("GET", "/searchdrug", true);
+            xhttp.send();
+        }
+    </script>
+
+    <script>
+        function callToatl() {
+            document.getElementById("text99").value = document.getElementById("text7").value * document.getElementById("text8").value;
+        }
+    </script>
 </div>
 </body>
 </html>
