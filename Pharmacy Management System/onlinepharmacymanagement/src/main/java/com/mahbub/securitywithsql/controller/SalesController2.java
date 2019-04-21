@@ -52,6 +52,8 @@ public class SalesController2 {
         try {
         Summary summary = this.summaryRepo.findByDrugName(sales.getDrug().getDrugName());
         if(sales.getQty() <= summary.getAvailableQty()) {
+            sales.setUnitPrice(sales.getUnitPrice() + sales.getUnitPrice()*.20);
+            sales.setTotalPrice(sales.getUnitPrice()* sales.getQty());
             this.salesRepo.save(sales);
             model.addAttribute("sales", new Sales());
             model.addAttribute("success", "Congratulations! Data save sucessfully");
